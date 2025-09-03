@@ -60,33 +60,99 @@
 </head>
 <body>
   <!-- Header -->
-  <header class="sticky top-0 z-50 backdrop-blur-sm" style="background:linear-gradient(180deg, rgba(6,6,6,.9), rgba(6,6,6,.6)); border-bottom:1px solid rgba(255,255,255,.03)">
-    <div class="site-container flex items-center justify-between py-3">
-      <a class="flex items-center gap-4" href="#">
-        <div class="logo-dot">
-          <img src="/e-removebg-preview.png" alt="Recode UX Logo" class=" h-8" />
-        </div>
-        <div class="font-bold text-lg tracking-tight">Recode UX</div>
-      </a>
-      
-
-      <nav class="hidden lg:flex items-center gap-8 text-sm muted">
-        <a href="#work" class="hover:text-white">Work</a>
-        <a href="#services" class="hover:text-white">Services</a>
-        <a href="#process" class="hover:text-white">Process</a>
-        <a href="#whyus" class="hover:text-white">Why Us</a>
-        <a href="#reviews" class="hover:text-white">Reviews</a>
-        <a href="#contact" class="hover:text-white">Contact</a>
-      </nav>
-
-      <div class="flex items-center gap-4">
-        <a class="chip hidden md:inline" href="#">Behance</a>
-        <a class="btn-accent" href="#contact">Book A Free Call
-          <svg class="icon-sm" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m0 0l-5-5m5 5l-5 5" stroke="#060606" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+  <header class="sticky top-0 z-50 backdrop-blur-sm" 
+  style="background:linear-gradient(180deg, rgba(6,6,6,.9), rgba(6,6,6,.6)); border-bottom:1px solid rgba(255,255,255,.03)">
+  <div class="site-container flex items-center justify-between py-3">
+    <!-- Logo -->
+    <a class="flex items-center gap-4" href="#">
+      <div class="logo-dot">
+        <img src="/e-removebg-preview.png" alt="Recode UX Logo" class="h-8" />
       </div>
+      <div class="font-bold text-lg tracking-tight">Recode UX</div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden lg:flex items-center gap-8 text-sm muted">
+      <a href="#work" class="hover:text-white">Work</a>
+      <a href="#services" class="hover:text-white">Services</a>
+      <a href="#process" class="hover:text-white">Process</a>
+      <a href="#whyus" class="hover:text-white">Why Us</a>
+      <a href="#reviews" class="hover:text-white">Reviews</a>
+      <a href="#contact" class="hover:text-white">Contact</a>
+    </nav>
+
+    <!-- Desktop CTA -->
+    <div class="hidden md:flex items-center gap-4">
+      <a class="chip hidden md:inline" href="#">Behance</a>
+      <a class="btn-accent" href="#contact">Book A Free Call
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12h14m0 0l-5-5m5 5l-5 5" stroke="#060606" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
-  </header>
+
+    <!-- Mobile Menu Button -->
+    <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 z-50">
+      <span class="block w-6 h-0.5 bg-white"></span>
+      <span class="block w-6 h-0.5 bg-white"></span>
+      <span class="block w-6 h-0.5 bg-white"></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Fullscreen Menu -->
+<!-- Mobile Fullscreen Menu -->
+<div id="mobile-menu" 
+  class="fixed inset-0 z-[999] bg-[#000000] flex flex-col items-center justify-center 
+  text-white text-2xl opacity-0 pointer-events-none scale-95 
+  transition-all duration-500 ease-in-out">
+
+  <!-- Close Button -->
+  <button id="close-menu" class="absolute top-6 right-6 text-3xl">&times;</button>
+
+  <!-- Nav Links Centered -->
+  <nav class="flex flex-col gap-6 text-center">
+    <a href="#work" class="hover:text-accent">Work</a>
+    <a href="#services" class="hover:text-accent">Services</a>
+    <a href="#process" class="hover:text-accent">Process</a>
+    <a href="#whyus" class="hover:text-accent">Why Us</a>
+    <a href="#reviews" class="hover:text-accent">Reviews</a>
+    <a href="#contact" class="hover:text-accent">Contact</a>
+  </nav>
+
+  <!-- Email + CTA at Bottom -->
+  <div class="absolute bottom-10 flex flex-col items-center gap-4">
+    <a href="mailto:hello@recodeux.com" class="text-sm text-gray-400">hello@recodeux.com</a>
+    <a class="btn-accent px-6 py-2" href="#contact">Book A Free Call</a>
+  </div>
+</div>
+
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const closeBtn = document.getElementById("close-menu");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  function openMenu() {
+    mobileMenu.classList.remove("opacity-0", "pointer-events-none", "scale-95");
+    mobileMenu.classList.add("opacity-100", "scale-100");
+  }
+
+  function closeMenu() {
+    mobileMenu.classList.add("opacity-0", "pointer-events-none", "scale-95");
+    mobileMenu.classList.remove("opacity-100", "scale-100");
+  }
+
+  menuBtn.addEventListener("click", openMenu);
+  closeBtn.addEventListener("click", closeMenu);
+
+  // Auto-close when resizing to desktop
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 1024) {
+      closeMenu();
+    }
+  });
+</script>
+
 
   <!-- HERO (centered site-container ensures page is centered) -->
   <main class="pt-8 pb-12">
