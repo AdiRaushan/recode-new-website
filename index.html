@@ -27,6 +27,18 @@
       --card: #111115;
       --card-rgb: 17, 17, 21;
       --ring: rgba(201, 251, 51, .16);
+      --overlay-rgb: 0, 0, 0; /* for readable overlays in all themes */
+    }
+    /* Light theme overrides */
+    :root[data-theme="light"] {
+      --bg: #f6f7fb;
+      --bg-rgb: 246, 247, 251;
+      --text: #0b0b0f;
+      --muted: #4b5563;
+      --card: #ffffff;
+      --card-rgb: 255, 255, 255;
+      /* Keep accent the same to preserve brand */
+      --overlay-rgb: 0, 0, 0;
     }
   
     html, body {
@@ -37,7 +49,7 @@
       scroll-behavior: smooth;
       font-size: clamp(14px, 1.05vw, 16px);
       line-height: 1.6;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+      /* remove global text shadow to avoid blur */
     }
   
     /* Central container */
@@ -204,16 +216,19 @@
 
     <!-- Desktop Nav -->
     <nav class="hidden lg:flex items-center gap-8 text-sm muted">
-      <a href="#work" class="hover:text-white">Work</a>
-      <a href="#services" class="hover:text-white">Services</a>
-      <a href="#process" class="hover:text-white">Process</a>
-      <a href="#whyus" class="hover:text-white">Why Us</a>
-      <a href="#reviews" class="hover:text-white">Reviews</a>
-      <a href="#contact" class="hover:text-white">Contact</a>
+      <a href="#work" class="hover:text-accent">Work</a>
+      <a href="#services" class="hover:text-accent">Services</a>
+      <a href="#process" class="hover:text-accent">Process</a>
+      <a href="#whyus" class="hover:text-accent">Why Us</a>
+      <a href="#reviews" class="hover:text-accent">Reviews</a>
+      <a href="#contact" class="hover:text-accent">Contact</a>
     </nav>
 
     <!-- Desktop CTA -->
     <div class="hidden md:flex items-center gap-4">
+      <button id="theme-toggle" aria-label="Toggle theme" class="rounded-full p-2 border border-white/10 hover:bg-white/10 transition">
+        <span id="theme-icon" class="text-sm">🌙</span>
+      </button>
       <a class="chip hidden md:inline" href="#">Behance</a>
       <a class="btn-accent" href="#contact">Book A Free Call
         <svg class="icon-sm" viewBox="0 0 24 24" fill="none">
@@ -234,8 +249,8 @@
 <!-- Mobile Fullscreen Menu -->
 <!-- Mobile Fullscreen Menu -->
 <div id="mobile-menu" 
-  class="fixed inset-0 z-[999] flex flex-col items-center justify-center text-white text-2xl opacity-0 pointer-events-none scale-95 transition-all duration-500 ease-in-out"
-  style="background:var(--bg)">
+  class="fixed inset-0 z-[999] flex flex-col items-center justify-center text-2xl opacity-0 pointer-events-none scale-95 transition-all duration-500 ease-in-out"
+  style="background:var(--bg); color:var(--text)">
 
   <!-- Close Button -->
   <button id="close-menu" class="absolute top-6 right-6 text-3xl">&times;</button>
@@ -252,6 +267,7 @@
 
   <!-- Email + CTA at Bottom -->
   <div class="absolute bottom-10 flex flex-col items-center gap-4">
+    <button id="theme-toggle-mobile" aria-label="Toggle theme" class="rounded-full p-2 border border-white/10 hover:bg-white/10 transition">🌙</button>
     <a href="mailto:hello@recodeux.com" class="text-sm text-gray-400">hello@recodeux.com</a>
     <a class="btn-accent px-6 py-2" href="#contact">Book A Free Call</a>
   </div>
@@ -290,7 +306,7 @@
   
   
 <!-- Hero Section -->
-<section class="relative h-screen flex items-center justify-center overflow-hidden text-white" style="background:var(--bg)">
+<section class="relative h-screen flex items-center justify-center overflow-hidden" style="background:var(--bg); color:var(--text)">
   <!-- Gradient Background Glow -->
 
 
@@ -327,7 +343,7 @@
       <br />
       Digital Experiences
     </h1>
-    <p class="mt-6 text-lg md:text-xl text-gray-300">
+    <p class="mt-6 text-lg md:text-xl muted" style="color:var(--muted)">
       We craft high-performing websites with cutting-edge design, development,
       and SEO — tailored for your brand.
     </p>
@@ -447,7 +463,7 @@
       
           <!-- UI / UX Design -->
           <div class="service-item border border-white/10 rounded-xl overflow-hidden">
-            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition" onclick="toggleService(this)">
+            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition service-hover" data-preview="/1.png" onclick="toggleService(this)">
               <span>🎨 UI / UX Design</span>
               <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
@@ -482,7 +498,7 @@
       
           <!-- Web Development -->
           <div class="service-item border border-white/10 rounded-xl overflow-hidden">
-            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition" onclick="toggleService(this)">
+            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition service-hover" data-preview="/2.png" onclick="toggleService(this)">
               <span>💻 Web Development</span>
               <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
@@ -513,7 +529,7 @@
       
           <!-- Backend Development -->
           <div class="service-item border border-white/10 rounded-xl overflow-hidden">
-            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition" onclick="toggleService(this)">
+            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition service-hover" data-preview="/3.png" onclick="toggleService(this)">
               <span>⚙️ Backend Development</span>
               <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
@@ -545,7 +561,7 @@
       
           <!-- Logo & Brand Design -->
           <div class="service-item border border-white/10 rounded-xl overflow-hidden">
-            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition" onclick="toggleService(this)">
+            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition service-hover" data-preview="/4.png" onclick="toggleService(this)">
               <span>✨ Logo & Brand Design</span>
               <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
@@ -589,7 +605,7 @@
       
           <!-- Website Redesign -->
           <div class="service-item border border-white/10 rounded-xl overflow-hidden">
-            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition" onclick="toggleService(this)">
+            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition service-hover" data-preview="/5.png" onclick="toggleService(this)">
               <span>🔄 Website Redesign</span>
               <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
@@ -622,7 +638,7 @@
       
           <!-- SEO & Growth -->
           <div class="service-item border border-white/10 rounded-xl overflow-hidden">
-            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition" onclick="toggleService(this)">
+            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition service-hover" data-preview="/6.png" onclick="toggleService(this)">
               <span>📈 SEO & Growth</span>
               <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
@@ -951,7 +967,7 @@
           <div class="project-card group relative" style="background:var(--card)" data-category="saas">
             <img src="https://images.unsplash.com/photo-1678690832871-8b9993c76aa8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                  alt="SaaS" class="w-full h-64 object-cover" />
-            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition p-6 flex flex-col justify-end" style="background:rgba(var(--bg-rgb), .7)">
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition p-6 flex flex-col justify-end" style="background:rgba(var(--overlay-rgb), .7); color:var(--text)">
               <h3 class="text-xl font-bold">CloudMetrics</h3>
               <p class="text-sm text-gray-300 mt-2">Analytics SaaS dashboard optimized for speed & clarity.</p>
               <div class="flex gap-2 mt-3">
@@ -1208,12 +1224,12 @@
     <!-- ===== Extra CSS for custom dropdown ===== -->
     <style>
       .custom-select {
-        background-color: #1a1a1a;
-        color: #ffffff;
+        background-color: var(--card);
+        color: var(--text);
       }
       .custom-select option {
-        background-color: #1a1a1a;
-        color: #ffffff;
+        background-color: var(--card);
+        color: var(--text);
       }
     </style>
     
@@ -1258,6 +1274,30 @@
   <script>
     // Wait for deferred libs
     window.addEventListener('DOMContentLoaded', () => {
+      // Theme init & toggle
+      (function(){
+        const root = document.documentElement;
+        const saved = localStorage.getItem('theme');
+        const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        const initial = saved || (systemPrefersLight ? 'light' : 'dark');
+        if(initial === 'light') root.setAttribute('data-theme','light'); else root.removeAttribute('data-theme');
+        const toggleButtons = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')].filter(Boolean);
+        function updateIcon(){
+          const isLight = root.getAttribute('data-theme') === 'light';
+          const icon = document.getElementById('theme-icon');
+          if(icon){ icon.textContent = isLight ? '☀️' : '🌙'; }
+          const mobile = document.getElementById('theme-toggle-mobile');
+          if(mobile){ mobile.textContent = isLight ? '☀️' : '🌙'; }
+        }
+        function toggle(){
+          const isLight = root.getAttribute('data-theme') === 'light';
+          if(isLight){ root.removeAttribute('data-theme'); localStorage.setItem('theme','dark'); }
+          else { root.setAttribute('data-theme','light'); localStorage.setItem('theme','light'); }
+          updateIcon();
+        }
+        toggleButtons.forEach(btn=> btn.addEventListener('click', toggle));
+        updateIcon();
+      })();
       // header hide on scroll down, show on scroll up (global)
       (function(){
         const header = document.querySelector('header');
@@ -1342,6 +1382,44 @@
       if(window.anime && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
         anime({targets:'.btn-accent',scale:[1,1.02],duration:1600,direction:'alternate',loop:true,easing:'easeInOutSine'});
       }
+
+      // Service hover preview
+      (function(){
+        const preview = document.createElement('div');
+        preview.style.position = 'fixed';
+        preview.style.pointerEvents = 'none';
+        preview.style.zIndex = '9999';
+        preview.style.transform = 'translate(-50%, -50%)';
+        preview.style.opacity = '0';
+        preview.style.transition = 'opacity .15s ease, transform .15s ease';
+        const img = document.createElement('img');
+        img.style.width = '260px';
+        img.style.height = '160px';
+        img.style.objectFit = 'cover';
+        img.style.borderRadius = '12px';
+        img.style.border = '1px solid rgba(255,255,255,.08)';
+        img.style.boxShadow = '0 10px 30px rgba(0,0,0,.25)';
+        preview.appendChild(img);
+        document.body.appendChild(preview);
+
+        function move(e){
+          preview.style.left = `${e.clientX + 24}px`;
+          preview.style.top = `${e.clientY - 24}px`;
+        }
+        function enter(){ preview.style.opacity = '1'; preview.style.transform = 'translate(-50%, -50%) scale(1)'; }
+        function leave(){ preview.style.opacity = '0'; }
+
+        document.querySelectorAll('.service-hover').forEach(btn=>{
+          btn.addEventListener('mouseenter', (e)=>{
+            const src = btn.getAttribute('data-preview');
+            if(src){ img.src = src; }
+            move(e);
+            enter();
+          });
+          btn.addEventListener('mousemove', move);
+          btn.addEventListener('mouseleave', leave);
+        });
+      })();
     });
   </script>
 </body>
