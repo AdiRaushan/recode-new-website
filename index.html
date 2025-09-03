@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Recode UX — Neon Noir (Enhanced)</title>
+  <title>Recode UX</title>
   <meta name="description" content="Recode UX — Web development, backend & infrastructure, creative design, and SEO-focused UI/UX. Fast, modern, animated site with GSAP microinteractions." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,18 +11,20 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Animation libs (deferred for faster first paint) -->
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
     :root{
-      --bg:#060606;--muted:#9aa0a6;--text:#eaeaea;--accent:linear-gradient(to right, #6ee7b7, #4ade80);;--card:#0f0f10;--ring: rgba(201,251,51,.16);
+      --bg:#000000;--muted:#9aa0a6;--text:#ffffff;--accent:#0c0fc4;;--card:#0f0f10;--ring: rgba(201,251,51,.16);
     }
     html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Manrope',system-ui,-apple-system,Segoe UI,Roboto,Arial;scroll-behavior:smooth}
     /* Central container to keep everything perfectly centered */
     .site-container{max-width:1280px;margin-left:auto;margin-right:auto;padding-left:28px;padding-right:28px}
     .accent{color:var(--accent)}
-    .btn-accent{background:var(--accent);color:#070707;padding:.85rem 1.25rem;border-radius:9999px;font-weight:700;display:inline-flex;align-items:center;gap:.6rem;will-change:transform}
+    .btn-accent{background:var(--accent);color:#ffffff;padding:.85rem 1.25rem;border-radius:9999px;font-weight:700;display:inline-flex;align-items:center;gap:.6rem;will-change:transform}
     .btn-accent:hover{box-shadow:0 8px 30px var(--ring);transform:translateY(-2px)}
     .card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));border-radius:14px;border:1px solid rgba(255,255,255,0.04)}
     h1.big{line-height:0.92;font-weight:800}
@@ -30,7 +32,7 @@
     .chip{background:#111;padding:.35rem .6rem;border-radius:999px;font-size:.78rem;color:#cfcfcf}
     /* Small utility sizes used in SVGs/images */
     .icon-sm{width:22px;height:22px}
-    .logo-dot{width:44px;height:44px;border-radius:999px;background:var(--accent);display:grid;place-items:center;box-shadow:0 0 40px 8px rgba(201,251,51,.08)}
+    .logo-dot{width:55px;height:55px;border-radius:999px;background:var(--accent);display:grid;place-items:center;box-shadow:0 0 40px 8px rgba(201,251,51,.08)}
     /* Responsive hero text sizing closer to design */
     .hero-title{font-size:clamp(40px,9.5vw,120px)}
     /* fix for small left offset issues */
@@ -51,6 +53,9 @@
       *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
       .tilt{transform:none!important}
     }
+    /* navbar show/hide */
+    header{transition:transform .28s ease}
+    .nav-hidden{transform:translateY(-108%)}
   </style>
 </head>
 <body>
@@ -58,9 +63,12 @@
   <header class="sticky top-0 z-50 backdrop-blur-sm" style="background:linear-gradient(180deg, rgba(6,6,6,.9), rgba(6,6,6,.6)); border-bottom:1px solid rgba(255,255,255,.03)">
     <div class="site-container flex items-center justify-between py-3">
       <a class="flex items-center gap-4" href="#">
-        <div class="logo-dot"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M6 17l6-10 6 10" stroke="#060606" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="logo-dot">
+          <img src="/e-removebg-preview.png" alt="Recode UX Logo" class=" h-8" />
+        </div>
         <div class="font-bold text-lg tracking-tight">Recode UX</div>
       </a>
+      
 
       <nav class="hidden lg:flex items-center gap-8 text-sm muted">
         <a href="#work" class="hover:text-white">Work</a>
@@ -115,9 +123,11 @@
     <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight">
       Build
       <span
-        class="bg-gradient-to-r from-emerald-300 to-green-400 bg-clip-text text-transparent"
-        >Bold</span
-      >
+      class="bg-gradient-to-r from-[#0c0fc4] to-[#00d4ff] bg-clip-text text-transparent font-bold"
+    >
+      Bold
+    </span>
+    
       <br />
       Digital Experiences
     </h1>
@@ -142,7 +152,7 @@
 </section>
 
 <!-- GSAP + Animations -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
 <script>
   // Floating Animation
   gsap.utils.toArray(".floating-card").forEach((card, i) => {
@@ -226,265 +236,345 @@
     <!-- SERVICES -->
     <section id="services" class="mt-20">
       <div class="site-container">
-        <div class="flex items-center gap-3 text-accent text-sm font-semibold uppercase reveal-up"><span style="width:12px;height:12px;border-radius:999px;background:var(--accent)"></span> SERVICES</div>
+        <!-- Heading -->
+        <div class="flex items-center gap-3 text-accent text-sm font-semibold uppercase reveal-up">
+          <span style="width:12px;height:12px;border-radius:999px;background:var(--accent)"></span>
+          Services
+        </div>
         <h2 class="mt-3 text-3xl md:text-5xl font-extrabold reveal-up">What We Do</h2>
-        <p class="mt-4 text-muted max-w-2xl reveal-up">We craft modern products and digital experiences — design, build, and grow using the latest tools.</p>
-
-        <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="card p-6 tilt relative overflow-hidden service-card">
-            <div class="shine"></div>
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#060606" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div>
-                <h3 class="font-bold text-xl">Web Development</h3>
-                <p class="muted mt-2">Fast, scalable sites built with React, Next.js and modern tooling.</p>
-                <ul class="mt-3 space-y-1 text-sm muted">
-                  <li>• Custom responsive frontends</li>
-                  <li>• Headless & CMS integration</li>
-                  <li>• Performance & SEO-first</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="card p-6 tilt relative overflow-hidden service-card">
-            <div class="shine"></div>
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="#060606" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" stroke="#060606" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div>
-                <h3 class="font-bold text-xl">UI / UX Design</h3>
-                <p class="muted mt-2">User-first interfaces, prototypes and design systems in Figma.</p>
-                <ul class="mt-3 space-y-1 text-sm muted">
-                  <li>• Design systems & components</li>
-                  <li>• Clickable prototypes</li>
-                  <li>• Conversion-focused UX</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="card p-6 tilt relative overflow-hidden service-card">
-            <div class="shine"></div>
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="#060606" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.27 6.96L12 12.01l8.73-5.05" stroke="#060606" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 22.08V12" stroke="#060606" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div>
-                <h3 class="font-bold text-xl">Back-End & APIs</h3>
-                <p class="muted mt-2">Robust servers, APIs, integrations and infra that scale securely.</p>
-                <ul class="mt-3 space-y-1 text-sm muted">
-                  <li>• API & microservices</li>
-                  <li>• Auth, payments, integrations</li>
-                  <li>• Hosting & monitoring</li>
-                </ul>
+        <p class="mt-4 text-muted max-w-2xl reveal-up">
+          We craft modern products and digital experiences — design, build, and grow using the latest tools.
+        </p>
+      
+        <!-- Accordion -->
+        <div class="mt-8 space-y-4">
+      
+          <!-- UI / UX Design -->
+          <div class="service-item border border-white/10 rounded-xl overflow-hidden">
+            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition" onclick="toggleService(this)">
+              <span>🎨 UI / UX Design</span>
+              <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+              <div class="p-6 grid md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                  <p class="muted">We design user-first interfaces, prototypes, and scalable design systems.</p>
+                  <h4 class="mt-4 font-semibold">What’s Included</h4>
+                  <ul class="mt-2 space-y-1 text-sm muted list-disc pl-4">
+                    <li>Design systems & component libraries</li>
+                    <li>Clickable prototypes in Figma</li>
+                    <li>Conversion-focused UX flows</li>
+                  </ul>
+                  <h4 class="mt-4 font-semibold">Tools We Use</h4>
+                  <div class="flex flex-wrap gap-3 mt-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" 
+                    class="w-7 h-7" alt="Photoshop"/>
+               <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Adobe_XD_CC_icon.svg" 
+                    class="w-7 h-7" alt="Adobe XD"/>
+               <img src="https://cdn.simpleicons.org/figma/F24E1E" 
+                    class="w-7 h-7" alt="Figma"/>
+               
+                  </div>
+                  <div class="mt-5"><a href="#contact" class="btn-accent">Contact for Pricing</a></div>
+                </div>
+                <div><img src="/1.png" alt="UI/UX Design preview" class="rounded-lg border border-white/10"></div>
               </div>
             </div>
           </div>
-
-          <div class="card p-6 tilt relative overflow-hidden service-card">
-            <div class="shine"></div>
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" stroke="#060606" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 6h18" stroke="#060606" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 10a4 4 0 0 1-8 0" stroke="#060606" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div>
-                <h3 class="font-bold text-xl">E-commerce</h3>
-                <p class="muted mt-2">Fast, conversion-focused stores and subscription flows.</p>
-                <ul class="mt-3 space-y-1 text-sm muted">
-                  <li>• Headless & SaaS storefronts</li>
-                  <li>• Checkout & growth tools</li>
-                  <li>• Analytics & CRO</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="card p-6 tilt relative overflow-hidden service-card">
-            <div class="shine"></div>
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#060606" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div>
-                <h3 class="font-bold text-xl">SEO & Growth</h3>
-                <p class="muted mt-2">Technical SEO, content strategy and growth experimentation.</p>
-                <ul class="mt-3 space-y-1 text-sm muted">
-                  <li>• Site & content audits</li>
-                  <li>• Keyword & content strategy</li>
-                  <li>• Monitoring & reporting</li>
-                </ul>
+      
+          <!-- Web Development -->
+          <div class="service-item border border-white/10 rounded-xl overflow-hidden">
+            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition" onclick="toggleService(this)">
+              <span>💻 Web Development</span>
+              <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+              <div class="p-6 grid md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                  <p class="muted">We build fast, scalable, and SEO-optimized websites.</p>
+                  <h4 class="mt-4 font-semibold">What’s Included</h4>
+                  <ul class="mt-2 space-y-1 text-sm muted list-disc pl-4">
+                    <li>Custom responsive frontend</li>
+                    <li>Headless CMS integration</li>
+                    <li>Performance & SEO-first code</li>
+                  </ul>
+                  <h4 class="mt-4 font-semibold">Tech We Use</h4>
+                  <div class="flex flex-wrap gap-3 mt-2">
+                    <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-7 h-7" alt="React"/>
+                    <img src="https://cdn.simpleicons.org/nextdotjs/FFFFFF" class="w-7 h-7" alt="Next.js"/>
+                    <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" class="w-7 h-7" alt="TailwindCSS"/>
+                  </div>
+                  <div class="mt-5"><a href="#contact" class="btn-accent">Contact for Pricing</a></div>
+                </div>
+                <div><img src="/2.png" alt="Web Development preview" class="rounded-lg border border-white/10"></div>
               </div>
             </div>
           </div>
-
-          <div class="card p-6 tilt relative overflow-hidden service-card">
-            <div class="shine"></div>
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" stroke="#060606" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      
+          <!-- Backend Development -->
+          <div class="service-item border border-white/10 rounded-xl overflow-hidden">
+            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition" onclick="toggleService(this)">
+              <span>⚙️ Backend Development</span>
+              <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+              <div class="p-6 grid md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                  <p class="muted">Secure, scalable, and efficient backend systems for modern apps.</p>
+                  <h4 class="mt-4 font-semibold">What’s Included</h4>
+                  <ul class="mt-2 space-y-1 text-sm muted list-disc pl-4">
+                    <li>REST & GraphQL APIs</li>
+                    <li>Authentication & security</li>
+                    <li>Database design & optimization</li>
+                  </ul>
+                  <h4 class="mt-4 font-semibold">Tech We Use</h4>
+                  <div class="flex flex-wrap gap-3 mt-2">
+                    <img src="https://cdn.simpleicons.org/nodedotjs/339933" class="w-7 h-7" alt="Node.js"/>
+                    <img src="https://cdn.simpleicons.org/express/FFFFFF" class="w-7 h-7" alt="Express"/>
+                    <img src="https://cdn.simpleicons.org/mongodb/47A248" class="w-7 h-7" alt="MongoDB"/>
+                    <img src="https://cdn.simpleicons.org/postgresql/4169E1" class="w-7 h-7" alt="PostgreSQL"/>
+                  </div>
+                  <div class="mt-5"><a href="#contact" class="btn-accent">Contact for Pricing</a></div>
+                </div>
+                <div><img src="/3.png" alt="Backend Development preview" class="rounded-lg border border-white/10"></div>
               </div>
-              <div>
-                <h3 class="font-bold text-xl">Brand Strategy</h3>
-                <p class="muted mt-2">Complete brand identity, messaging and visual design systems.</p>
-                <ul class="mt-3 space-y-1 text-sm muted">
-                  <li>• Logo & visual identity</li>
-                  <li>• Brand guidelines & assets</li>
-                  <li>• Messaging & positioning</li>
-                </ul>
+            </div>
+          </div>
+      
+          <!-- Logo & Brand Design -->
+          <div class="service-item border border-white/10 rounded-xl overflow-hidden">
+            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition" onclick="toggleService(this)">
+              <span>✨ Logo & Brand Design</span>
+              <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+              <div class="p-6 grid md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                  <p class="muted">We craft unique logos, visual systems, and branding kits that tell your story.</p>
+                  <h4 class="mt-4 font-semibold">What’s Included</h4>
+                  <ul class="mt-2 space-y-1 text-sm muted list-disc pl-4">
+                    <li>Logo design & variations</li>
+                    <li>Brand color palettes & typography</li>
+                    <li>Social media kit & assets</li>
+                  </ul>
+                  <h4 class="mt-4 font-semibold">Tools We Use</h4>
+                  <div class="flex items-center gap-3">
+                    <!-- Illustrator -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg" 
+                         class="w-8 h-8 rounded" alt="Adobe Illustrator" title="Illustrator"/>
+                    
+                    <!-- Photoshop -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" 
+                         class="w-8 h-8 rounded" alt="Adobe Photoshop" title="Photoshop"/>
+                    
+                    <!-- Canva -->
+                    <img src="https://cdn.simpleicons.org/canva/00C4CC" 
+                         class="w-8 h-8" alt="Canva" title="Canva"/>
+                    
+                    <!-- Figma -->
+                    <img src="https://cdn.simpleicons.org/figma/F24E1E" 
+                         class="w-8 h-8" alt="Figma" title="Figma"/>
+                  </div>
+                  
+                  <div class="mt-5"><a href="#contact" class="btn-accent">Contact for Pricing</a></div>
+                </div>
+                <div><img src="/4.png " alt="Brand Design preview" class="rounded-lg border border-white/10"></div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Website Redesign -->
+          <div class="service-item border border-white/10 rounded-xl overflow-hidden">
+            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition" onclick="toggleService(this)">
+              <span>🔄 Website Redesign</span>
+              <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+              <div class="p-6 grid md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                  <p class="muted">We refresh outdated websites with modern design and improved performance.</p>
+                  <h4 class="mt-4 font-semibold">What’s Included</h4>
+                  <ul class="mt-2 space-y-1 text-sm muted list-disc pl-4">
+                    <li>UI/UX redesign & user testing</li>
+                    <li>Mobile-first responsive layouts</li>
+                    <li>Faster loading & SEO improvements</li>
+                  </ul>
+                  <h4 class="mt-4 font-semibold">Tech We Use</h4>
+                  <div class="flex flex-wrap gap-3 mt-2">
+                    <img src="https://cdn.simpleicons.org/html5/E34F26" class="w-7 h-7" alt="HTML"/>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg" class="w-7 h-7" alt="CSS"/>
+
+                    <img src="https://cdn.simpleicons.org/javascript/F7DF1E" class="w-7 h-7" alt="JavaScript"/>
+                    
+                  </div>
+                  <div class="mt-5"><a href="#contact" class="btn-accent">Contact for Pricing</a></div>
+                </div>
+                <div><img src="/5.png" alt="Website Redesign preview" class="rounded-lg border border-white/10"></div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- SEO & Growth -->
+          <div class="service-item border border-white/10 rounded-xl overflow-hidden">
+            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition" onclick="toggleService(this)">
+              <span>📈 SEO & Growth</span>
+              <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+              <div class="p-6 grid md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                  <p class="muted">Grow your business with SEO strategies and digital marketing campaigns.</p>
+                  <h4 class="mt-4 font-semibold">What’s Included</h4>
+                  <ul class="mt-2 space-y-1 text-sm muted list-disc pl-4">
+                    <li>On-page & off-page SEO</li>
+                    <li>Keyword research & analytics</li>
+                    <li>Content strategy & backlinks</li>
+                  </ul>
+                  <h4 class="mt-4 font-semibold">Tools We Use</h4>
+                  <div class="flex flex-wrap gap-3 mt-2">
+                    <img src="https://cdn.simpleicons.org/googleanalytics/FABC05" class="w-7 h-7" alt="Google Analytics"/>
+                    <img src="https://cdn.simpleicons.org/semrush/FF642D" class="w-7 h-7" alt="Semrush"/>
+                
+                  </div>
+                  <div class="mt-5"><a href="#contact" class="btn-accent">Contact for Pricing</a></div>
+                </div>
+                <div><img src="/6.png" alt="SEO preview" class="rounded-lg border border-white/10"></div>
+              </div>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+      
+      
+
+       <!-- Tools Marquee -->
+       <div class="mt-16 relative">
+        <!-- Gradient overlays -->
+        <div class="absolute left-0 top-0 h-full w-48 bg-gradient-to-r from-[#000000] to-transparent pointer-events-none z-10"></div>
+        <div class="absolute right-0 top-0 h-full w-48 bg-gradient-to-l from-[#000000] to-transparent pointer-events-none z-10"></div>
+      
+        <!-- Site container for equal spacing -->
+        <div class="site-container">
+          <div class="marquee-wrap py-8 border-t border-white/5 overflow-hidden">
+            <div class="marquee-track flex gap-20 animate-marquee">
+              <!-- Row -->
+              <div class="flex items-center gap-12">
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-8 h-8" alt="React"/>
+                  <span class="text-sm font-medium">React</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/vercel/ffffff" class="w-8 h-8" alt="Next.js"/>
+                  <span class="text-sm font-medium">Next</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/typescript/3178C6" class="w-8 h-8" alt="TypeScript"/>
+                  <span class="text-sm font-medium">TS</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" class="w-8 h-8" alt="Tailwind"/>
+                  <span class="text-sm font-medium">Tailwind</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/nodedotjs/5FA04E" class="w-8 h-8" alt="Node.js"/>
+                  <span class="text-sm font-medium">Node</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/figma/F24E1E" class="w-8 h-8" alt="Figma"/>
+                  <span class="text-sm font-medium">Figma</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/greensock/88CE02" class="w-8 h-8" alt="GSAP"/>
+                  <span class="text-sm font-medium">GSAP</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/vercel/ffffff" class="w-8 h-8" alt="Vercel"/>
+                  <span class="text-sm font-medium">Vercel</span>
+                </div>
+              </div>
+              <!-- Duplicate row -->
+              <div class="flex items-center gap-12" aria-hidden="true">
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-8 h-8" alt="React"/>
+                  <span class="text-sm font-medium">React</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/vercel/ffffff" class="w-8 h-8" alt="Next.js"/>
+                  <span class="text-sm font-medium">Next</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/typescript/3178C6" class="w-8 h-8" alt="TypeScript"/>
+                  <span class="text-sm font-medium">TS</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" class="w-8 h-8" alt="Tailwind"/>
+                  <span class="text-sm font-medium">Tailwind</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/nodedotjs/5FA04E" class="w-8 h-8" alt="Node.js"/>
+                  <span class="text-sm font-medium">Node</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/figma/F24E1E" class="w-8 h-8" alt="Figma"/>
+                  <span class="text-sm font-medium">Figma</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/greensock/88CE02" class="w-8 h-8" alt="GSAP"/>
+                  <span class="text-sm font-medium">GSAP</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/vercel/ffffff" class="w-8 h-8" alt="Vercel"/>
+                  <span class="text-sm font-medium">Vercel</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      
+      <style>
+      @keyframes marquee {
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-50%); }
+      }
+      .marquee-track {
+        width: max-content;
+        animation: marquee 40s linear infinite;
+      }
+      </style>
+      
+      
+    </section>
+    <script>
+      function toggleService(btn) {
+        const content = btn.nextElementSibling;
+        const icon = btn.querySelector("svg");
+        if (content.style.maxHeight && content.style.maxHeight !== "0px") {
+          content.style.maxHeight = "0px";
+          icon.classList.remove("rotate-180");
+        } else {
+          document.querySelectorAll(".service-content").forEach(c => c.style.maxHeight = "0px");
+          document.querySelectorAll(".service-item svg").forEach(i => i.classList.remove("rotate-180"));
+          content.style.maxHeight = content.scrollHeight + "px";
+          icon.classList.add("rotate-180");
+        }
+      }
+    </script>
 
-                 <div class="mt-10 text-center">
-           <a href="#contact" class="btn-accent">🚀 Book a Free Call</a>
-         </div>
-       </div>
-
-       <!-- Tools Marquee -->
-       <div class="mt-16">
-         <div class="marquee-wrap py-8 border-t border-white/5">
-           <div class="marquee-track" aria-hidden="true">
-             <div class="marquee-row flex items-center gap-12">
-               <!-- Tech Stack Icons -->
-               <div class="flex items-center gap-2">
-                 <svg class="w-8 h-8 text-blue-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                 <span class="text-sm font-medium">React</span>
-               </div>
-               <div class="flex items-center gap-2">
-                 <svg class="w-8 h-8 text-green-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                 <span class="text-sm font-medium">Next.js</span>
-               </div>
-               <div class="flex items-center gap-2">
-                 <svg class="w-8 h-8 text-cyan-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                 <span class="text-sm font-medium">TypeScript</span>
-               </div>
-               <div class="flex items-center gap-2">
-                 <svg class="w-8 h-8 text-blue-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                 <span class="text-sm font-medium">Tailwind CSS</span>
-               </div>
-               <div class="flex items-center gap-2">
-                 <svg class="w-8 h-8 text-green-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                 <span class="text-sm font-medium">Node.js</span>
-               </div>
-               <div class="flex items-center gap-2">
-                 <svg class="w-8 h-8 text-purple-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                 <span class="text-sm font-medium">Figma</span>
-               </div>
-               <div class="flex items-center gap-2">
-                 <svg class="w-8 h-8 text-orange-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                 <span class="text-sm font-medium">GSAP</span>
-               </div>
-               <div class="flex items-center gap-2">
-                 <svg class="w-8 h-8 text-red-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                 <span class="text-sm font-medium">Vercel</span>
-               </div>
-             </div>
-             <!-- Duplicate for seamless loop -->
-             <div class="marquee-row flex items-center gap-12" aria-hidden="true">
-               <div class="flex items-center gap-2">
-                 <svg class="w-8 h-8 text-blue-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                 <span class="text-sm font-medium">React</span>
-               </div>
-               <div class="flex items-center gap-2">
-                 <svg class="w-8 h-8 text-green-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                 <span class="text-sm font-medium">Next.js</span>
-               </div>
-               <div class="flex items-center gap-2">
-                 <svg class="w-8 h-8 text-cyan-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                 <span class="text-sm font-medium">TypeScript</span>
-               </div>
-               <div class="flex items-center gap-2">
-                 <svg class="w-8 h-8 text-blue-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                 <span class="text-sm font-medium">Tailwind CSS</span>
-               </div>
-               <div class="flex items-center gap-2">
-                 <svg class="w-8 h-8 text-green-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                 <span class="text-sm font-medium">Node.js</span>
-               </div>
-               <div class="flex items-center gap-2">
-                 <svg class="w-8 h-8 text-purple-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                 <span class="text-sm font-medium">Figma</span>
-               </div>
-               <div class="flex items-center gap-2">
-                 <svg class="w-8 h-8 text-orange-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                 <span class="text-sm font-medium">GSAP</span>
-               </div>
-               <div class="flex items-center gap-2">
-                 <svg class="w-8 h-8 text-red-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                 <span class="text-sm font-medium">Vercel</span>
-               </div>
-             </div>
-             <div class="marquee-row flex items-center gap-12" aria-hidden="true">
-              <div class="flex items-center gap-2">
-                <svg class="w-8 h-8 text-blue-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                <span class="text-sm font-medium">React</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <svg class="w-8 h-8 text-green-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                <span class="text-sm font-medium">Next.js</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <svg class="w-8 h-8 text-cyan-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                <span class="text-sm font-medium">TypeScript</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <svg class="w-8 h-8 text-blue-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                <span class="text-sm font-medium">Tailwind CSS</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <svg class="w-8 h-8 text-green-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                <span class="text-sm font-medium">Node.js</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <svg class="w-8 h-8 text-purple-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                <span class="text-sm font-medium">Figma</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <svg class="w-8 h-8 text-orange-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                <span class="text-sm font-medium">GSAP</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <svg class="w-8 h-8 text-red-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                <span class="text-sm font-medium">Vercel</span>
-              </div>
-            </div>
-           </div>
-         </div>
-       </div>
-     </section>
-
-     <!-- Marquee Styles -->
-     <style>
-       .marquee-wrap { 
-         overflow: hidden; 
-         position: relative;
-       }
-       .marquee-track {
-         display: flex;
-         gap: 0;
-         width: 200%;
-         animation: marquee 20s linear infinite;
-       }
-       .marquee-track:hover { 
-         animation-play-state: paused; 
-       }
-       .marquee-row { 
-         width: 50%; 
-         padding-left: 2rem; 
-       }
-       @keyframes marquee {
-         0% { transform: translateX(0); }
-         100% { transform: translateX(-50%); }
-       }
-       @media (prefers-reduced-motion: reduce) {
-         .marquee-track { animation: none; }
-       }
-     </style>
+    
 
 
     <!-- PROCESS -->
@@ -521,86 +611,209 @@
         </div>
       </div>
     </section>
+<!-- clients  -->
+<section class="site-container py-12">
+  <h2 class="text-2xl font-extrabold mb-8 text-center">
+    Trusted by <span class="accent">Clients</span>
+  </h2>
 
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+    <!-- Card -->
+    <div class="client-card relative card flex items-center justify-center p-6 cursor-pointer group">
+      <img src="https://cdn.simpleicons.org/amazon/ffffff" alt="Amazon" class="w-20 opacity-70 group-hover:opacity-100 transition">
+    </div>
+
+    <div class="client-card relative card flex items-center justify-center p-6 cursor-pointer group">
+      <img src="https://cdn.simpleicons.org/airbnb/ffffff" alt="Airbnb" class="w-20 opacity-70 group-hover:opacity-100 transition">
+    </div>
+
+    <div class="client-card relative card flex items-center justify-center p-6 cursor-pointer group">
+      <img src="https://cdn.simpleicons.org/walmart/ffffff" alt="Walmart" class="w-20 opacity-70 group-hover:opacity-100 transition">
+    </div>
+
+    <div class="client-card relative card flex items-center justify-center p-6 cursor-pointer group">
+      <img src="https://cdn.simpleicons.org/unity/ffffff" alt="Unity" class="w-20 opacity-70 group-hover:opacity-100 transition">
+    </div>
+
+    <div class="client-card relative card flex items-center justify-center p-6 cursor-pointer group">
+      <img src="https://cdn.simpleicons.org/meta/ffffff" alt="Meta" class="w-20 opacity-70 group-hover:opacity-100 transition">
+    </div>
+
+    <div class="client-card relative card flex items-center justify-center p-6 cursor-pointer group">
+      <img src="https://cdn.simpleicons.org/figma/ffffff" alt="Figma" class="w-20 opacity-70 group-hover:opacity-100 transition">
+    </div>
+
+    <div class="client-card relative card flex items-center justify-center p-6 cursor-pointer group">
+      <img src="https://cdn.simpleicons.org/ola/ffffff" alt="Ola" class="w-20 opacity-70 group-hover:opacity-100 transition">
+    </div>
+
+    <div class="client-card relative card flex items-center justify-center p-6 cursor-pointer group">
+      <img src="https://cdn.simpleicons.org/oculus/ffffff" alt="Oculus" class="w-20 opacity-70 group-hover:opacity-100 transition">
+    </div>
+  </div>
+</section>
+
+<style>
+.client-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  background: var(--card);
+}
+.client-card:hover {
+  border: 1px solid var(--accent);
+  background: rgba(12, 15, 196, 0.08);
+}
+</style>
+
+
+<!--  -->
     <!-- WORK / PORTFOLIO -->
-    <section id="work" class="mt-20 border-t border-white/5 pt-12">
+    <section id="projects" class="mt-20">
       <div class="site-container">
-        <div class="flex items-center justify-between">
-          <h3 class="text-3xl md:text-4xl font-extrabold">Selected Work</h3>
-          <a class="chip" href="#">View All</a>
+        <!-- Section Heading -->
+        <div class="flex items-center gap-3 text-accent text-sm font-semibold uppercase">
+          <span style="width:12px;height:12px;border-radius:999px;background:var(--accent)"></span>
+          Our Projects
         </div>
-
-        <div class="mt-6 grid md:grid-cols-2 gap-8">
-          <article class="group card overflow-hidden rounded-2xl tilt relative work-card">
-            <div class="shine"></div>
-            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1622866306044-221bdf2ecef9?auto=format&fit=crop&w=1600&q=70" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" alt="Crypto exchange UI">
-            <div class="p-6">
-              <h4 class="font-extrabold text-2xl">Crypto Currency Exchange Website</h4>
-              <p class="muted mt-1">Crypto Exchange Website Design</p>
-              <div class="mt-3 flex gap-2">
-                <span class="chip">UI UX Design</span>
-                <span class="chip">App Design</span>
-                <span class="chip">Finance</span>
+        <h2 class="mt-3 text-3xl md:text-5xl font-extrabold">
+          Crafted With Purpose & Precision
+        </h2>
+        <p class="muted mt-3 max-w-2xl">
+          From sleek e-commerce to tailored solutions for small businesses and professionals — here’s a glimpse of our work.
+        </p>
+    
+        <!-- Project Grid -->
+        <div id="project-grid" class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- Project 1 -->
+          <div class="project-card group relative bg-[#111]" data-category="ecommerce">
+            <img src="https://images.unsplash.com/photo-1519222970733-f546218fa6d7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                 alt="E-commerce" class="w-full h-64 object-cover" />
+            <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition p-6 flex flex-col justify-end">
+              <h3 class="text-xl font-bold">ShopSphere</h3>
+              <p class="text-sm text-gray-300 mt-2">High-performance e-commerce store built with Next.js & Stripe.</p>
+              <div class="flex gap-2 mt-3">
+                <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-6" alt="React"/>
+                <img src="https://cdn.simpleicons.org/nextdotjs/ffffff" class="w-6" alt="Next.js"/>
+                <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" class="w-6" alt="Tailwind"/>
               </div>
             </div>
-          </article>
-
-          <article class="group card overflow-hidden rounded-2xl tilt relative work-card">
-            <div class="shine"></div>
-            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=1600&q=70" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" alt="Ecommerce app UI">
-            <div class="p-6">
-              <h4 class="font-extrabold text-2xl">Bring App Design</h4>
-              <p class="muted mt-1">E‑commerce App Design</p>
-              <div class="mt-3 flex gap-2">
-                <span class="chip">UI UX Design</span>
-                <span class="chip">App Design</span>
-                <span class="chip">E‑commerce</span>
+            <a href="#" class="absolute w-12 h-12 flex items-center justify-center bg-accent text-white rounded-full bottom-2 right-2 z-20">↗</a>
+          </div>
+    
+          <!-- Project 2 -->
+          <div class="project-card group relative bg-[#111]" data-category="smallbiz">
+            <img src="https://images.unsplash.com/photo-1558174685-430919a96c8d?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D " 
+                 alt="Small Business" class="w-full h-64 object-cover" />
+            <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition p-6 flex flex-col justify-end">
+              <h3 class="text-xl font-bold">LocalBrew</h3>
+              <p class="text-sm text-gray-300 mt-2">Modern website for cafes & local shops with booking & menus.</p>
+              <div class="flex gap-2 mt-3">
+                <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-6" alt="React"/>
+                <img src="https://cdn.simpleicons.org/greensock/88CE02" class="w-6" alt="GSAP"/>
+                <img src="https://cdn.simpleicons.org/vercel/ffffff" class="w-6" alt="Vercel"/>
               </div>
             </div>
-          </article>
-
-          <article class="group card overflow-hidden rounded-2xl tilt relative work-card">
-            <div class="shine"></div>
-            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=1600&q=70" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" alt="Ecommerce app UI">
-            <div class="p-6">
-              <h4 class="font-extrabold text-2xl">Bring App Design</h4>
-              <p class="muted mt-1">E‑commerce App Design</p>
-              <div class="mt-3 flex gap-2">
-                <span class="chip">UI UX Design</span>
-                <span class="chip">App Design</span>
-                <span class="chip">E‑commerce</span>
+            <a href="#" class="absolute w-12 h-12 flex items-center justify-center bg-accent text-white rounded-full bottom-2 right-2 z-20">↗</a>
+          </div>
+    
+          <!-- Project 3 -->
+          <div class="project-card group relative bg-[#111]" data-category="dentist">
+            <img src="https://images.unsplash.com/photo-1658677414428-d0ae187034cc?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                 alt="Dentist Website" class="w-full h-64 object-cover" />
+            <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition p-6 flex flex-col justify-end">
+              <h3 class="text-xl font-bold">SmileCare</h3>
+              <p class="text-sm text-gray-300 mt-2">Clean, trust-building design with appointment scheduling.</p>
+              <div class="flex gap-2 mt-3">
+                <img src="https://cdn.simpleicons.org/nextdotjs/ffffff" class="w-6" alt="Next.js"/>
+                <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" class="w-6" alt="Tailwind"/>
+                <img src="https://cdn.simpleicons.org/nodedotjs/5FA04E" class="w-6" alt="Node.js"/>
               </div>
             </div>
-          </article>
-          <article class="group card overflow-hidden rounded-2xl tilt relative work-card">
-            <div class="shine"></div>
-            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=1600&q=70" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" alt="Ecommerce app UI">
-            <div class="p-6">
-              <h4 class="font-extrabold text-2xl">Bring App Design</h4>
-              <p class="muted mt-1">E‑commerce App Design</p>
-              <div class="mt-3 flex gap-2">
-                <span class="chip">UI UX Design</span>
-                <span class="chip">App Design</span>
-                <span class="chip">E‑commerce</span>
+            <a href="#" class="absolute w-12 h-12 flex items-center justify-center bg-accent text-white rounded-full bottom-2 right-2 z-20">↗</a>
+          </div>
+    
+          <!-- Project 4 -->
+          <div class="project-card group relative bg-[#111]" data-category="portfolio">
+            <img src="https://images.unsplash.com/photo-1642132652935-d750e2014719?q=80&w=1460&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                 alt="Portfolio" class="w-full h-64 object-cover" />
+            <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition p-6 flex flex-col justify-end">
+              <h3 class="text-xl font-bold">Visionary</h3>
+              <p class="text-sm text-gray-300 mt-2">A designer’s personal portfolio with animations and showcase.</p>
+              <div class="flex gap-2 mt-3">
+                <img src="https://cdn.simpleicons.org/figma/F24E1E" class="w-6" alt="Figma"/>
+                <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-6" alt="React"/>
+                <img src="https://cdn.simpleicons.org/greensock/88CE02" class="w-6" alt="GSAP"/>
               </div>
             </div>
-          </article>
-          <article class="group card overflow-hidden rounded-2xl tilt relative work-card">
-            <div class="shine"></div>
-            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=1600&q=70" class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" alt="Ecommerce app UI">
-            <div class="p-6">
-              <h4 class="font-extrabold text-2xl">Bring App Design</h4>
-              <p class="muted mt-1">E‑commerce App Design</p>
-              <div class="mt-3 flex gap-2">
-                <span class="chip">UI UX Design</span>
-                <span class="chip">App Design</span>
-                <span class="chip">E‑commerce</span>
+            <a href="#" class="absolute w-12 h-12 flex items-center justify-center bg-accent text-white rounded-full bottom-2 right-2 z-20">↗</a>
+          </div>
+    
+          <!-- Project 5 -->
+          <div class="project-card group relative bg-[#111]" data-category="saas">
+            <img src="https://images.unsplash.com/photo-1678690832871-8b9993c76aa8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                 alt="SaaS" class="w-full h-64 object-cover" />
+            <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition p-6 flex flex-col justify-end">
+              <h3 class="text-xl font-bold">CloudMetrics</h3>
+              <p class="text-sm text-gray-300 mt-2">Analytics SaaS dashboard optimized for speed & clarity.</p>
+              <div class="flex gap-2 mt-3">
+                <img src="https://cdn.simpleicons.org/typescript/3178C6" class="w-6" alt="TypeScript"/>
+                <img src="https://cdn.simpleicons.org/nextdotjs/ffffff" class="w-6" alt="Next.js"/>
+                <img src="https://cdn.simpleicons.org/vercel/ffffff" class="w-6" alt="Vercel"/>
               </div>
             </div>
-          </article>
+            <a href="#" class="absolute w-12 h-12 flex items-center justify-center bg-accent text-white rounded-full bottom-2 right-2 z-20">↗</a>
+          </div>
+    
         </div>
       </div>
     </section>
+    
+    <style>
+      .project-card {
+  position: relative;
+  border-radius: 1rem; /* same as your theme */
+  overflow: hidden;
+  clip-path: polygon(
+    0 0, 
+    100% 0, 
+    100% calc(100% - 2.5rem), /* cut starts */
+    calc(100% - 2.5rem) 100%, /* diagonal into corner */
+    0 100%
+  );
+  transition: transform 0.3s ease;
+}
+.project-card:hover {
+  transform: translateY(-6px);
+}
+
+    </style>
+    
+    <script>
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      const cards = document.querySelectorAll(".project-card");
+    
+      filterBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const filter = btn.dataset.filter;
+          
+          filterBtns.forEach(b => b.classList.remove("text-accent", "font-semibold"));
+          btn.classList.add("text-accent", "font-semibold");
+    
+          cards.forEach(card => {
+            card.style.display =
+              filter === "all" || card.dataset.category === filter
+                ? "block"
+                : "none";
+          });
+        });
+      });
+    </script>
+    
+    
+    
 
     <!-- TESTIMONIALS -->
     <section id="reviews" class="mt-20">
@@ -849,15 +1062,22 @@
   <script>
     // Wait for deferred libs
     window.addEventListener('DOMContentLoaded', () => {
-      // small header hide on scroll micro-interaction
+      // header hide on scroll down, show on scroll up (global)
       (function(){
         const header = document.querySelector('header');
-        let lastY = window.scrollY; let ticking = false;
+        let lastY = window.scrollY;
+        let ticking = false;
         window.addEventListener('scroll', ()=>{
           if(ticking) return; ticking = true; requestAnimationFrame(()=>{
             const y = window.scrollY;
-            header.style.transform = (y > lastY && y > 80) ? 'translateY(-108%)' : 'translateY(0)';
-            lastY = y; ticking = false;
+            const scrollingDown = y > lastY;
+            if(y < 80){
+              header.classList.remove('nav-hidden');
+            } else {
+              header.classList.toggle('nav-hidden', scrollingDown);
+            }
+            lastY = y;
+            ticking = false;
           });
         }, {passive:true});
       })();
