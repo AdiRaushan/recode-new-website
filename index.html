@@ -1,20 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Recode UX</title>
-  <meta name="description" content="Recode UX — Web development, backend & infrastructure, creative design, and SEO-focused UI/UX. Fast, modern, animated site with GSAP microinteractions." />
+  <title>Recode UX — Professional Web Development & UI/UX Design Services</title>
+  <meta name="description" content="Recode UX delivers professional web development, UI/UX design, and digital solutions. We build fast, responsive websites that drive results for businesses worldwide. Expert team, proven results." />
+  <meta name="keywords" content="web development, UI/UX design, responsive websites, digital solutions, web design agency, custom websites, e-commerce development" />
+  <meta name="author" content="Recode UX" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://recodeux.com" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://recodeux.com" />
+  <meta property="og:title" content="Recode UX — Professional Web Development & UI/UX Design" />
+  <meta property="og:description" content="Transform your business with strategic web solutions. We build fast, responsive websites that convert visitors into customers and drive measurable growth." />
+  <meta property="og:image" content="https://recodeux.com/og-image.jpg" />
+  <meta property="og:site_name" content="Recode UX" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://recodeux.com" />
+  <meta property="twitter:title" content="Recode UX — Professional Web Development & UI/UX Design" />
+  <meta property="twitter:description" content="Transform your business with strategic web solutions. We build fast, responsive websites that convert visitors into customers." />
+  <meta property="twitter:image" content="https://recodeux.com/og-image.jpg" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Animation libs (deferred for faster first paint) -->
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Recode UX",
+    "url": "https://recodeux.com",
+    "logo": "https://recodeux.com/logo.png",
+    "description": "Professional web development, UI/UX design, and digital solutions company",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "616A, 6th Floor, Devika Tower",
+      "addressLocality": "Nehru Place",
+      "addressRegion": "New Delhi",
+      "postalCode": "110019",
+      "addressCountry": "IN"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-98765-43210",
+      "contactType": "customer service",
+      "email": "hello@recodeux.com"
+    },
+    "sameAs": [
+      "https://www.behance.net/recodeux",
+      "https://www.linkedin.com/company/recodeux",
+      "https://dribbble.com/recodeux"
+    ],
+    "service": [
+      {
+        "@type": "Service",
+        "name": "Web Development",
+        "description": "Custom web development and responsive website design"
+      },
+      {
+        "@type": "Service", 
+        "name": "UI/UX Design",
+        "description": "User interface and user experience design services"
+      },
+      {
+        "@type": "Service",
+        "name": "Digital Marketing",
+        "description": "SEO, social media marketing, and digital strategy"
+      }
+    ]
+  }
+  </script>
   
   <style>
     :root {
@@ -51,7 +134,13 @@
       line-height: 1.6;
       /* remove global text shadow to avoid blur */
     }
-  
+
+
+    .project-caption .title {
+  color: #ffffff !important; /* Always white */
+}
+
+
     /* Central container */
     .site-container {
       max-width: 1280px;
@@ -81,8 +170,22 @@
     }
   
     .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      background: var(--card);
       border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: all 0.3s ease;
+    }
+    
+    /* Light mode card styling */
+    :root[data-theme="light"] .card {
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    
+    /* Dark mode card styling */
+    :root:not([data-theme="light"]) .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
       border: 1px solid rgba(255,255,255,0.04);
     }
   
@@ -97,12 +200,13 @@
     .muted { color: var(--muted); }
   
     .chip {
-      background: var(--card);
-      padding: .35rem .6rem;
-      border-radius: 999px;
-      font-size: .78rem;
-      color: #cfcfcf;
-    }
+  background: var(--accent);
+  color: #fff;
+  padding: .35rem .6rem;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 600;
+}
   
     /* Small utility sizes */
     .icon-sm { width: 22px; height: 22px; }
@@ -119,6 +223,39 @@
   
     /* Responsive hero title */
     .hero-title { font-size: clamp(40px, 9.5vw, 120px); }
+
+    /* Consistent vertical rhythm for sections */
+    .site-section {
+      padding-top: clamp(48px, 8vh, 96px);
+      padding-bottom: clamp(48px, 8vh, 96px);
+    }
+    
+    /* Ensure all sections have consistent padding */
+    section {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    
+    /* Override any inconsistent padding in specific sections */
+    .storyline.site-section {
+      padding: clamp(48px, 8vh, 96px) 0 !important;
+    }
+
+    /* Subtle nav underline hover */
+    nav a { position: relative; }
+    @media (hover:hover){
+      nav a::after {
+        content: '';
+        position: absolute;
+        left: 0; right: 0; bottom: -4px;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(var(--accent-rgb), .0), rgba(var(--accent-rgb), .9), rgba(var(--accent-rgb), .0));
+        transform: scaleX(0);
+        transform-origin: 50% 50%;
+        transition: transform .25s ease;
+      }
+      nav a:hover::after { transform: scaleX(1); }
+    }
   
     /* Grid layout for sections */
     .align-left-grid {
@@ -198,17 +335,59 @@
         font-size: 1rem;
       }
     }
+    /* Storyline section separation - using data-theme attribute */
+.storyline:nth-child(odd) {
+  background-color: var(--bg) !important;
+  transition: background-color 0.3s ease-in-out !important;
+}
+
+.storyline:nth-child(even) {
+  background-color: var(--card) !important;
+  transition: background-color 0.3s ease-in-out !important;
+}
+
+/* Light mode overrides for better separation */
+:root[data-theme="light"] .storyline:nth-child(odd) {
+  background-color: #f8fafc !important; /* Light gray-50 */
+}
+
+:root[data-theme="light"] .storyline:nth-child(even) {
+  background-color: #ffffff !important; /* Pure white */
+}
+
+/* Dark mode overrides for better separation */
+:root:not([data-theme="light"]) .storyline:nth-child(odd) {
+  background-color: #0b0b0f !important; /* Darker background */
+}
+
+:root:not([data-theme="light"]) .storyline:nth-child(even) {
+  background-color: #111115 !important; /* Card background */
+}
+
+/* Consistent padding for all storyline sections */
+.storyline {
+  padding: clamp(48px, 8vh, 96px) 0 !important;
+  transition: background-color 0.3s ease-in-out !important;
+}
+
   </style>
-  
+  <script>
+    
+  </script>
 </head>
 <body>
+  <!-- Skip Navigation for Accessibility -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-accent text-white px-4 py-2 rounded z-50">
+    Skip to main content
+  </a>
+  
   <!-- Header -->
   <header class="sticky top-0 z-50 backdrop-blur-sm" 
   style="background:linear-gradient(180deg, rgba(var(--bg-rgb), .9), rgba(var(--bg-rgb), .6)); border-bottom:1px solid rgba(255,255,255,.03)">
   <div class="site-container flex items-center justify-between py-3">
     <!-- Logo -->
-    <a class="flex items-center gap-4" href="#">
-      <div class="logo-dot">
+    <a class="flex items-center gap-4" href="#" aria-label="Recode UX - Home">
+      <div class="logo-dot" aria-hidden="true">
         <img src="/e-removebg-preview.png" alt="Recode UX Logo" class="h-8" />
       </div>
       <div class="font-bold text-lg tracking-tight">Recode UX</div>
@@ -301,120 +480,332 @@
 
 
   <!-- HERO (centered site-container ensures page is centered) -->
-  <main class="pt-8 pb-12">
-  <!-- Hero Section -->
-  
-  
-<!-- Hero Section -->
-<section class="relative h-screen flex items-center justify-center overflow-hidden" style="background:var(--bg); color:var(--text)">
-  <!-- Gradient Background Glow -->
+  <main id="main-content" class="">
 
 
-  <!-- Floating Website Cards (all inside viewport) -->
-  <div class="absolute inset-0 pointer-events-none">
-    <img
-      src="https://images.unsplash.com/photo-1619462729367-e47da54ba992?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0"
-      class="floating-card absolute top-16 left-[8%] w-56 md:w-64 lg:w-72 rounded-2xl shadow-2xl"
-    />
-    <img
-      src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0"
-      class="floating-card absolute bottom-24 left-[22%] w-56 md:w-64 lg:w-72 rounded-2xl shadow-xl"
-    />
-    <img
-      src="https://images.unsplash.com/photo-1678690832311-bb6e361989ca?q=80&w=1224&auto=format&fit=crop&ixlib=rb-4.1.0"
-      class="floating-card absolute top-20 right-[15%] w-52 md:w-60 lg:w-64 rounded-2xl shadow-xl"
-    />
-    <img
-      src="https://images.unsplash.com/photo-1642132652809-8c6ab1971169?q=80&w=1460&auto=format&fit=crop&ixlib=rb-4.1.0"
-      class="floating-card absolute bottom-28 right-[25%] w-56 md:w-64 lg:w-72 rounded-2xl shadow-2xl"
-    />
-  </div>
+<!-- HERO SECTION -->
 
-  <!-- Content -->
-  <div class="relative z-10 text-center px-6 max-w-2xl">
-    <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight">
-      Build
-      <span
-      class="bg-gradient-to-r from-[#0c0fc4] to-[#00d4ff] bg-clip-text text-transparent font-bold"
-    >
-      Bold
-    </span>
-    
-      <br />
-      Digital Experiences
-    </h1>
-    <p class="mt-6 text-lg md:text-xl muted" style="color:var(--muted)">
-      We craft high-performing websites with cutting-edge design, development,
-      and SEO — tailored for your brand.
-    </p>
-    <div class="mt-8 flex flex-wrap justify-center gap-4">
-      <a
-        href="#contact"
-        class="cta-btn px-8 py-3 rounded-full bg-[#c9fb33] text-black font-semibold shadow-lg hover:scale-105 hover:shadow-[#c9fb33]/50 transition transform"
-        >🚀 Book a Call</a
-      >
-      <a
-        href="#work"
-        class="cta-btn px-8 py-3 rounded-full border border-gray-600 text-gray-200 font-semibold hover:border-[#c9fb33] hover:text-[#c9fb33] transition"
-        >✨ Explore Work</a
-      >
+  <section id="hero-carousel" class="storyline h-screen overflow-hidden transition-colors duration-300"
+           style="background: var(--bg); color: var(--text)">
+    <div class="swiper h-full">
+      <div class="swiper-wrapper">
+
+        <!-- SLIDE 1 -->
+        <div class="swiper-slide flex items-center justify-center h-full px-6 md:px-20">
+          <div class="max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center pt-12 md:pt-20">
+
+            <!-- LEFT -->
+            <div class="space-y-6 pl-2 md:pl-16">
+              <p class="uppercase tracking-[.25em] text-sm" style="color: var(--muted)">
+                TRANSFORM YOUR BUSINESS WITH STRATEGIC WEB SOLUTIONS
+              </p>
+              <h1 class="font-extrabold text-5xl md:text-6xl leading-[1.1]">
+                We Don't Just Build Websites—<span style="color: #d6ff3d;">We Drive Results</span>
+              </h1>
+              <p class="text-lg max-w-lg leading-relaxed" style="color: var(--text)">
+                From startups to enterprises, we create digital experiences that convert visitors into customers and deliver measurable growth for your business.
+              </p>
+              <div class="flex flex-wrap gap-4 mt-6">
+
+                <!-- Book a Call (accent button) -->
+                <a href="#contact"
+                   class="relative btn-accent overflow-hidden group">
+              
+                   <!-- Shine sweep -->
+                   <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent
+                                -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></span>
+              
+                   <!-- Text + Hover Icon -->
+                   <span class="relative flex items-center gap-2">
+                     🚀 Book a Call
+                     <svg xmlns="http://www.w3.org/2000/svg" 
+                          fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                          class="w-5 h-5 opacity-0 group-hover:opacity-100 translate-x-[-6px] group-hover:translate-x-0 transition duration-300">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                             d="M3 5h12M9 3v2m0 14v2m0-2a7 7 0 110-14 7 7 0 010 14zm8 0h4m0 0v-4m0 4l-4-4" />
+                     </svg>
+                   </span>
+                </a>
+              
+                <!-- View Work (secondary button) -->
+                <a href="#work"
+                   class="relative px-6 py-3 font-semibold rounded-full border transition overflow-hidden group"
+                   style="border: 1px solid var(--muted); color: var(--text)">
+              
+                   <!-- Subtle hover background pattern -->
+                   <span class="absolute inset-0 opacity-0 group-hover:opacity-10 transition duration-300"
+                         style="background: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 fill=%22%23fff%22 opacity=%220.1%22><circle cx=%2220%22 cy=%2220%22 r=%224%22/></svg>') center/20px repeat;">
+                   </span>
+              
+                   <!-- Text + Hover Icon -->
+                   <span class="relative flex items-center gap-2">
+                     ✨ View Work
+                     <svg xmlns="http://www.w3.org/2000/svg"
+                          fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                          class="w-5 h-5 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition duration-300">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                             d="M12 4v16m8-8H4" />
+                     </svg>
+                   </span>
+                </a>
+              
+              </div>
+              
+            </div>
+
+            <!-- RIGHT -->
+            <div>
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
+                   alt="Web Development"
+                   class="rounded-2xl shadow-2xl object-cover w-full h-[400px] md:h-[500px]" />
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="swiper-slide flex items-center justify-center h-full px-6 md:px-20">
+          <div class="max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center pt-12 md:pt-20">
+            <div class="space-y-6 pl-2 md:pl-16">
+              <p class="uppercase tracking-[.25em] text-sm" style="color: var(--muted)">
+                DESIGN THAT ENGAGES
+              </p>
+              <h1 class="font-extrabold text-5xl md:text-6xl leading-[1.1]">
+                Impactful <span style="color: #ff8c00;">UI/UX</span> for Your Brand
+              </h1>
+              <p class="text-lg max-w-lg leading-relaxed" style="color: var(--text)">
+                We craft interfaces that not only look beautiful but also provide seamless user experiences.
+              </p>
+              <div class="flex flex-wrap gap-4 mt-6">
+
+                <!-- Services Button (accent style with hover pattern) -->
+                <a href="#services"
+                   class="relative btn-accent overflow-hidden group">
+                   
+                   <!-- Hover background pattern -->
+                   <span class="absolute inset-0 opacity-0 group-hover:opacity-15 transition duration-300"
+                         style="background: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 fill=%22%23fff%22 opacity=%220.2%22><circle cx=%2220%22 cy=%2220%22 r=%224%22/></svg>') center/28px repeat;">
+                   </span>
+              
+                   <span class="relative flex items-center gap-2">
+                     🎨 Our Services
+                     <svg xmlns="http://www.w3.org/2000/svg" 
+                          fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                          class="w-5 h-5 opacity-0 group-hover:opacity-100 translate-x-[-8px] group-hover:translate-x-0 transition duration-300">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                     </svg>
+                   </span>
+                </a>
+              
+                <!-- Portfolio Button (secondary + shine effect) -->
+                <a href="#portfolio"
+                   class="relative px-6 py-3 font-semibold rounded-full border transition overflow-hidden group"
+                   style="border: 1px solid var(--muted); color: var(--text)">
+                   
+                   <!-- Shine sweep -->
+                   <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent 
+                                -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></span>
+              
+                   <span class="relative flex items-center gap-2">
+                     📂 View Portfolio
+                     <svg xmlns="http://www.w3.org/2000/svg" 
+                          fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                          class="w-5 h-5 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition duration-300">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                     </svg>
+                   </span>
+                </a>
+              </div>
+              
+              
+            </div>
+            <div>
+              <img src="https://images.unsplash.com/photo-1619462729367-e47da54ba992?q=80&w=800&auto=format&fit=crop"
+                   alt="UI/UX Design"
+                   class="rounded-2xl shadow-2xl object-cover w-full h-[400px] md:h-[500px]" />
+            </div>
+          </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="swiper-slide flex items-center justify-center h-full px-6 md:px-20">
+          <div class="max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center pt-12 md:pt-20">
+            <div class="space-y-6 pl-2 md:pl-16">
+              <p class="uppercase tracking-[.25em] text-sm" style="color: var(--muted)">
+                GROW SMARTER
+              </p>
+              <h1 class="font-extrabold text-5xl md:text-6xl leading-[1.1]">
+                Smarter <span style="color: #16a34a;">Growth</span> with SEO & Analytics
+              </h1>
+              <p class="text-lg max-w-lg leading-relaxed" style="color: var(--text)">
+                Our SEO, optimization, and analytics strategies help you reach more people and scale effectively.
+              </p>
+              <div class="flex flex-wrap gap-4 mt-6">
+
+                <!-- Learn More Button (accent green variant) -->
+                <a href="#about"
+                   class="relative px-6 py-3 font-semibold rounded-full shadow-lg overflow-hidden group"
+                   style="background: #16a34a; color: #fff;">
+                   
+                   <!-- Shine sweep -->
+                   <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent 
+                                -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></span>
+              
+                   <span class="relative flex items-center gap-2">
+                     📈 Learn More
+                     <svg xmlns="http://www.w3.org/2000/svg" 
+                          fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                          class="w-5 h-5 opacity-0 group-hover:opacity-100 translate-x-[-6px] group-hover:translate-x-0 transition duration-300">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                     </svg>
+                   </span>
+                </a>
+              
+                <!-- Get in Touch Button (secondary style) -->
+                <a href="#contact"
+                   class="relative px-6 py-3 font-semibold rounded-full border transition overflow-hidden group"
+                   style="border: 1px solid var(--muted); color: var(--text)">
+                   
+                   <!-- Hover background pattern -->
+                   <span class="absolute inset-0 opacity-0 group-hover:opacity-10 transition duration-300"
+                         style="background: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22 fill=%22%23fff%22 opacity=%220.15%22><circle cx=%2215%22 cy=%2215%22 r=%223%22/></svg>') center/20px repeat;">
+                   </span>
+              
+                   <span class="relative flex items-center gap-2">
+                     🤝 Get in Touch
+                     <svg xmlns="http://www.w3.org/2000/svg" 
+                          fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                          class="w-5 h-5 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition duration-300">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                             d="M18 8a6 6 0 00-12 0c0 6 6 12 6 12s6-6 6-12z"/>
+                     </svg>
+                   </span>
+                </a>
+              </div>
+            </div>
+            <div>
+              <img src="https://images.unsplash.com/photo-1678690832311-bb6e361989ca?q=80&w=800&auto=format&fit=crop"
+                   alt="SEO Growth"
+                   class="rounded-2xl shadow-2xl object-cover w-full h-[400px] md:h-[500px]" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Swiper Pagination -->
+      <div class="swiper-pagination !bottom-4"></div>
     </div>
-    <div class="absolute inset-0 blur-3xl" style="background:linear-gradient(to bottom, rgba(var(--accent-rgb), .20), transparent, rgba(var(--accent-rgb), .12))"></div>
-  </div>
-</section>
+  </section>
 
-<!-- GSAP + Animations -->
 
+
+
+
+<!-- SwiperJS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-  // Floating Animation
-  gsap.utils.toArray(".floating-card").forEach((card, i) => {
-    gsap.to(card, {
-      y: i % 2 === 0 ? 20 : -20,
-      duration: 4 + i,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-    });
-  });
-
-  // Hover 3D Tilt + Scale
-  document.querySelectorAll(".floating-card").forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const rotateX = ((y / rect.height) - 0.5) * 10;
-      const rotateY = ((x / rect.width) - 0.5) * -10;
-      gsap.to(card, { rotateX, rotateY, scale: 1.05, duration: 0.3 });
-    });
-    card.addEventListener("mouseleave", () => {
-      gsap.to(card, { rotateX: 0, rotateY: 0, scale: 1, duration: 0.5 });
-    });
-  });
-
-  // Entry Animation
-  gsap.from(".floating-card", {
-    opacity: 0,
-    y: 80,
-    duration: 1.2,
-    stagger: 0.25,
-    ease: "power3.out",
-  });
-
-  gsap.from("h1, p, .cta-btn", {
-    opacity: 0,
-    y: 40,
-    duration: 1,
-    stagger: 0.2,
-    ease: "power2.out",
-    delay: 0.5,
+  const swiper = new Swiper('.swiper', {
+    loop: true,
+    autoplay: { delay: 3000 },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
   });
 </script>
 
 
 
+
+
+
+<!-- GSAP Carousel Script -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script>
+  const slides = document.querySelectorAll(".hero-slide");
+  let current = 0;
+  let animating = false;
+
+  function showSlide(index, direction = 1) {
+    if (animating || index === current) return;
+    animating = true;
+
+    const currentSlide = slides[current];
+    const nextSlide = slides[index];
+
+    // Ensure next slide is visible for animation
+    nextSlide.classList.remove("hidden");
+
+    // Animate current slide out
+    gsap.to(currentSlide, {
+      x: -200 * direction,
+      opacity: 0,
+      duration: 0.7,
+      ease: "power3.inOut",
+      onComplete: () => currentSlide.classList.add("hidden")
+    });
+
+    // Animate next slide in
+    gsap.fromTo(nextSlide, 
+      { x: 200 * direction, opacity: 0 }, 
+      { x: 0, opacity: 1, duration: 0.8, ease: "power3.inOut", onComplete: () => animating = false }
+    );
+
+    current = index;
+  }
+
+  function nextSlide() {
+    showSlide((current + 1) % slides.length, 1);
+  }
+  function prevSlide() {
+    showSlide((current - 1 + slides.length) % slides.length, -1);
+  }
+
+  document.getElementById("next-slide").addEventListener("click", nextSlide);
+  document.getElementById("prev-slide").addEventListener("click", prevSlide);
+
+  // Auto-play every 6s
+  setInterval(nextSlide, 6000);
+</script>
+
+
+<!-- GSAP + Animations -->
+
+
+
+
+
+    <!-- STATISTICS SECTION -->
+    <section class="storyline site-section">
+      <div class="site-container">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div class="space-y-2">
+            <div class="text-3xl md:text-4xl font-bold text-accent">150+</div>
+            <div class="text-sm text-muted">Projects Delivered</div>
+          </div>
+          <div class="space-y-2">
+            <div class="text-3xl md:text-4xl font-bold text-accent">98%</div>
+            <div class="text-sm text-muted">Client Satisfaction</div>
+          </div>
+          <div class="space-y-2">
+            <div class="text-3xl md:text-4xl font-bold text-accent">5+</div>
+            <div class="text-sm text-muted">Years Experience</div>
+          </div>
+          <div class="space-y-2">
+            <div class="text-3xl md:text-4xl font-bold text-accent">24/7</div>
+            <div class="text-sm text-muted">Support Available</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- WHY CHOOSE US -->
-    <section id="whyus" class="mt-20">
+    <section id="whyus" class="storyline site-section">
       <div class="site-container">
         <div class="flex items-center gap-3 text-accent text-sm font-semibold uppercase reveal-up"><span style="width:12px;height:12px;border-radius:999px;background:var(--accent)"></span> WHY CHOOSE US</div>
         <h2 class="mt-3 text-3xl md:text-5xl font-extrabold reveal-up">Expertise For Your Digital Growth Journey</h2>
@@ -423,13 +814,13 @@
           <div class="space-y-5">
             <div class="card p-6 tilt relative overflow-hidden">
               <div class="shine"></div>
-              <h3 class="font-bold text-xl">Data‑Driven Approach</h3>
-              <p class="muted mt-2">We leverage analytics, research, and rapid iteration to drive measurable outcomes.</p>
+              <h3 class="font-bold text-xl">Personalized Approach & Dedicated Support</h3>
+              <p class="muted mt-2">Tailored solutions that fit your specific business needs.</p>
             </div>
             <div class="card p-6 tilt relative overflow-hidden">
               <div class="shine"></div>
-              <h3 class="font-bold text-xl">Competitive Pricing</h3>
-              <p class="muted mt-2">Top‑quality services packed with value — flexible engagement models that fit your stage.</p>
+              <h3 class="font-bold text-xl">Quality & Value Combined</h3>
+              <p class="muted mt-2">High-quality deliverables without breaking your budget.</p>
             </div>
             <div class="card p-6 tilt relative overflow-hidden">
               <div class="shine"></div>
@@ -439,241 +830,540 @@
           </div>
 
           <div class="card overflow-hidden rounded-2xl reveal-up">
-            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=70" alt="collaboration" class="w-full object-cover h-full min-h-[320px]">
+            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=70" alt="Team collaboration and brainstorming session for web development projects" class="w-full object-cover h-full min-h-[320px]">
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SERVICES -->
-    <section id="services" class="mt-20">
-      <div class="site-container">
-        <!-- Heading -->
-        <div class="flex items-center gap-3 text-accent text-sm font-semibold uppercase reveal-up">
-          <span style="width:12px;height:12px;border-radius:999px;background:var(--accent)"></span>
-          Services
-        </div>
-        <h2 class="mt-3 text-3xl md:text-5xl font-extrabold reveal-up">What We Do</h2>
-        <p class="mt-4 text-muted max-w-2xl reveal-up">
-          We craft modern products and digital experiences — design, build, and grow using the latest tools.
-        </p>
-      
-        <!-- Accordion -->
-        <div class="mt-8 space-y-4">
-      
-          <!-- UI / UX Design -->
-          <div class="service-item border border-white/10 rounded-xl overflow-hidden">
-            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition service-hover" data-preview="/1.png" onclick="toggleService(this)">
-              <span>🎨 UI / UX Design</span>
-              <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </button>
-            <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-              <div class="p-6 grid md:grid-cols-2 gap-8">
-                <div class="space-y-4">
-                  <p class="muted">We design user-first interfaces, prototypes, and scalable design systems.</p>
-                  <h4 class="mt-4 font-semibold">What’s Included</h4>
-                  <ul class="mt-2 space-y-1 text-sm muted list-disc pl-4">
-                    <li>Design systems & component libraries</li>
-                    <li>Clickable prototypes in Figma</li>
-                    <li>Conversion-focused UX flows</li>
-                  </ul>
-                  <h4 class="mt-4 font-semibold">Tools We Use</h4>
-                  <div class="flex flex-wrap gap-3 mt-2">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" 
-                    class="w-7 h-7" alt="Photoshop"/>
-               <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Adobe_XD_CC_icon.svg" 
-                    class="w-7 h-7" alt="Adobe XD"/>
-               <img src="https://cdn.simpleicons.org/figma/F24E1E" 
-                    class="w-7 h-7" alt="Figma"/>
-               
-                  </div>
-                  <div class="mt-5"><a href="#contact" class="btn-accent">Contact for Pricing</a></div>
-                </div>
-                <div><img src="/1.png" alt="UI/UX Design preview" class="rounded-lg border border-white/10"></div>
-              </div>
-            </div>
-          </div>
-      
-          <!-- Web Development -->
-          <div class="service-item border border-white/10 rounded-xl overflow-hidden">
-            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition service-hover" data-preview="/2.png" onclick="toggleService(this)">
-              <span>💻 Web Development</span>
-              <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </button>
-            <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-              <div class="p-6 grid md:grid-cols-2 gap-8">
-                <div class="space-y-4">
-                  <p class="muted">We build fast, scalable, and SEO-optimized websites.</p>
-                  <h4 class="mt-4 font-semibold">What’s Included</h4>
-                  <ul class="mt-2 space-y-1 text-sm muted list-disc pl-4">
-                    <li>Custom responsive frontend</li>
-                    <li>Headless CMS integration</li>
-                    <li>Performance & SEO-first code</li>
-                  </ul>
-                  <h4 class="mt-4 font-semibold">Tech We Use</h4>
-                  <div class="flex flex-wrap gap-3 mt-2">
-                    <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-7 h-7" alt="React"/>
-                    <img src="https://cdn.simpleicons.org/nextdotjs/FFFFFF" class="w-7 h-7" alt="Next.js"/>
-                    <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" class="w-7 h-7" alt="TailwindCSS"/>
-                  </div>
-                  <div class="mt-5"><a href="#contact" class="btn-accent">Contact for Pricing</a></div>
-                </div>
-                <div><img src="/2.png" alt="Web Development preview" class="rounded-lg border border-white/10"></div>
-              </div>
-            </div>
-          </div>
-      
-          <!-- Backend Development -->
-          <div class="service-item border border-white/10 rounded-xl overflow-hidden">
-            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition service-hover" data-preview="/3.png" onclick="toggleService(this)">
-              <span>⚙️ Backend Development</span>
-              <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </button>
-            <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-              <div class="p-6 grid md:grid-cols-2 gap-8">
-                <div class="space-y-4">
-                  <p class="muted">Secure, scalable, and efficient backend systems for modern apps.</p>
-                  <h4 class="mt-4 font-semibold">What’s Included</h4>
-                  <ul class="mt-2 space-y-1 text-sm muted list-disc pl-4">
-                    <li>REST & GraphQL APIs</li>
-                    <li>Authentication & security</li>
-                    <li>Database design & optimization</li>
-                  </ul>
-                  <h4 class="mt-4 font-semibold">Tech We Use</h4>
-                  <div class="flex flex-wrap gap-3 mt-2">
-                    <img src="https://cdn.simpleicons.org/nodedotjs/339933" class="w-7 h-7" alt="Node.js"/>
-                    <img src="https://cdn.simpleicons.org/express/FFFFFF" class="w-7 h-7" alt="Express"/>
-                    <img src="https://cdn.simpleicons.org/mongodb/47A248" class="w-7 h-7" alt="MongoDB"/>
-                    <img src="https://cdn.simpleicons.org/postgresql/4169E1" class="w-7 h-7" alt="PostgreSQL"/>
-                  </div>
-                  <div class="mt-5"><a href="#contact" class="btn-accent">Contact for Pricing</a></div>
-                </div>
-                <div><img src="/3.png" alt="Backend Development preview" class="rounded-lg border border-white/10"></div>
-              </div>
-            </div>
-          </div>
-      
-          <!-- Logo & Brand Design -->
-          <div class="service-item border border-white/10 rounded-xl overflow-hidden">
-            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition service-hover" data-preview="/4.png" onclick="toggleService(this)">
-              <span>✨ Logo & Brand Design</span>
-              <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </button>
-            <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-              <div class="p-6 grid md:grid-cols-2 gap-8">
-                <div class="space-y-4">
-                  <p class="muted">We craft unique logos, visual systems, and branding kits that tell your story.</p>
-                  <h4 class="mt-4 font-semibold">What’s Included</h4>
-                  <ul class="mt-2 space-y-1 text-sm muted list-disc pl-4">
-                    <li>Logo design & variations</li>
-                    <li>Brand color palettes & typography</li>
-                    <li>Social media kit & assets</li>
-                  </ul>
-                  <h4 class="mt-4 font-semibold">Tools We Use</h4>
-                  <div class="flex items-center gap-3">
-                    <!-- Illustrator -->
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg" 
-                         class="w-8 h-8 rounded" alt="Adobe Illustrator" title="Illustrator"/>
-                    
-                    <!-- Photoshop -->
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" 
-                         class="w-8 h-8 rounded" alt="Adobe Photoshop" title="Photoshop"/>
-                    
-                    <!-- Canva -->
-                    <img src="https://cdn.simpleicons.org/canva/00C4CC" 
-                         class="w-8 h-8" alt="Canva" title="Canva"/>
-                    
-                    <!-- Figma -->
-                    <img src="https://cdn.simpleicons.org/figma/F24E1E" 
-                         class="w-8 h-8" alt="Figma" title="Figma"/>
-                  </div>
-                  
-                  <div class="mt-5"><a href="#contact" class="btn-accent">Contact for Pricing</a></div>
-                </div>
-                <div><img src="/4.png " alt="Brand Design preview" class="rounded-lg border border-white/10"></div>
-              </div>
-            </div>
-          </div>
-      
-          <!-- Website Redesign -->
-          <div class="service-item border border-white/10 rounded-xl overflow-hidden">
-            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition service-hover" data-preview="/5.png" onclick="toggleService(this)">
-              <span>🔄 Website Redesign</span>
-              <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </button>
-            <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-              <div class="p-6 grid md:grid-cols-2 gap-8">
-                <div class="space-y-4">
-                  <p class="muted">We refresh outdated websites with modern design and improved performance.</p>
-                  <h4 class="mt-4 font-semibold">What’s Included</h4>
-                  <ul class="mt-2 space-y-1 text-sm muted list-disc pl-4">
-                    <li>UI/UX redesign & user testing</li>
-                    <li>Mobile-first responsive layouts</li>
-                    <li>Faster loading & SEO improvements</li>
-                  </ul>
-                  <h4 class="mt-4 font-semibold">Tech We Use</h4>
-                  <div class="flex flex-wrap gap-3 mt-2">
-                    <img src="https://cdn.simpleicons.org/html5/E34F26" class="w-7 h-7" alt="HTML"/>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg" class="w-7 h-7" alt="CSS"/>
+    <!-- TEAM SECTION -->
+   
 
-                    <img src="https://cdn.simpleicons.org/javascript/F7DF1E" class="w-7 h-7" alt="JavaScript"/>
-                    
-                  </div>
-                  <div class="mt-5"><a href="#contact" class="btn-accent">Contact for Pricing</a></div>
+    <!-- SERVICES -->
+    <section id="services" class="storyline site-section">
+      <div class="site-container grid md:grid-cols-2 gap-12">
+        
+        <!-- LEFT: Heading -->
+        <div class="flex flex-col items-start self-start max-w-2xl">
+          <!-- Label -->
+          <div class="flex items-center gap-3 text-accent text-sm font-semibold uppercase reveal-up">
+            <span class="w-3 h-3 rounded-full" style="background:var(--accent)"></span>
+            Our Services
+          </div>
+        
+          <!-- Heading -->
+          <h2 class="mt-2 text-3xl md:text-5xl font-extrabold leading-tight reveal-up">
+            Creative Web Solutions That Drive Results
+          </h2>
+        
+          <!-- Supporting text -->
+          <p class="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed reveal-up">
+            From branding and UI/UX design to full-stack development and marketing, our team provides 
+            end-to-end solutions that help your business scale faster, look sharper, and perform better.
+          </p>
+        
+          <!-- Tools / icons -->
+          <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4 reveal-up">
+            <div class="flex items-center gap-3 p-3 rounded-xl border border-white/10 bg-card hover:shadow-lg transition">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" 
+                   alt="React" class="w-6 h-6">
+              <span class="text-sm font-medium">React</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 rounded-xl border border-white/10 bg-card hover:shadow-lg transition">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" 
+                   alt="Figma" class="w-6 h-6">
+              <span class="text-sm font-medium">Figma</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 rounded-xl border border-white/10 bg-card hover:shadow-lg transition">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/shopify/shopify-original.svg" 
+                   alt="Shopify" class="w-6 h-6">
+              <span class="text-sm font-medium">Shopify</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 rounded-xl border border-white/10 bg-card hover:shadow-lg transition">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" 
+                   alt="Next.js" class="w-6 h-6">
+              <span class="text-sm font-medium">Next.js</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 rounded-xl border border-white/10 bg-card hover:shadow-lg transition">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg" 
+                   alt="WordPress" class="w-6 h-6">
+              <span class="text-sm font-medium">WordPress</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 rounded-xl border border-white/10 bg-card hover:shadow-lg transition">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" 
+                   alt="Node.js" class="w-6 h-6">
+              <span class="text-sm font-medium">Node.js</span>
+            </div>
+          </div>
+        
+          <!-- CTA Button -->
+        <a href="#services" 
+   id="ctaBtn" 
+   class="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-gray-800 text-sm font-medium shadow-md hover:shadow-lg transition-all border border-gray-200">
+  Explore
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+       stroke-width="2" stroke="currentColor" class="w-4 h-4 arrow-icon">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/>
+  </svg>
+</a>
+       
+       <script>
+         // GSAP animation for arrow
+         gsap.to(".arrow-icon", {
+           x: 6,
+           repeat: -1,
+           yoyo: true,
+           duration: 0.8,
+           ease: "power1.inOut"
+         });
+       </script>
+       
+        </div>
+        
+        
+    
+        <!-- RIGHT: Preview Image (hidden on mobile) -->
+        <div class="sticky top-24 self-start hidden md:block">
+          <div id="servicePreview" class="rounded-2xl overflow-hidden border border-white/10 bg-card shadow-lg">
+            <img src="https://recodeux.com/wp-content/uploads/2025/05/Untitled-design-8.png" 
+                 alt="Service Preview" 
+                 class="w-full h-[420px] object-cover transition-all duration-500">
+          </div>
+        </div>
+    
+        <!-- RIGHT: Accordion List -->
+        <div class="space-y-6">
+    
+          <!-- 001 Branding -->
+          <div class="service-item border border-white/10 rounded-xl overflow-hidden bg-card/40">
+            <button class="w-full flex items-center justify-between p-5 text-left group"
+                    data-preview="/branding.png"
+                    onclick="toggleService(this)">
+              <div>
+                <span class="text-accent text-sm font-mono">001</span>
+                <h3 class="text-2xl font-bold mt-1 group-hover:text-accent transition">Branding</h3>
+                <p class="text-sm text-muted mt-1">
+                  Logo Design · Brand Guidelines · Visual Identity · Presentations · Custom Emails
+                </p>
+              </div>
+              <span class="w-9 h-9 flex items-center justify-center rounded-full border border-white/20 group-hover:bg-accent group-hover:text-black transition">➝</span>
+            </button>
+          
+            <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+              <div class="p-6 text-sm leading-relaxed text-muted space-y-6">
+          
+                <!-- Intro paragraph -->
+                <p>We build strong, recognizable brands that stand the test of time. Our branding service covers everything from strategy to execution.</p>
+          
+                <!-- Features with icons -->
+                <ul class="space-y-3">
+                  <li class="flex items-start gap-2">
+                    <span class="text-accent mt-1">🎨</span>
+                    <span>Logo Design & Variations</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-accent mt-1">📐</span>
+                    <span>Typography & Color Systems</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-accent mt-1">📄</span>
+                    <span>Complete Brand Guidelines (PDF/Interactive)</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-accent mt-1">💼</span>
+                    <span>Business Cards, Stationery & Templates</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-accent mt-1">✉️</span>
+                    <span>Email Signatures & Presentation Decks</span>
+                  </li>
+                </ul>
+          
+                <!-- Optional "who it's for" section -->
+                <div class="flex items-start gap-2">
+                  <span class="text-accent mt-1">👥</span>
+                  <p>Whether you're a startup or an enterprise, we ensure your brand feels consistent everywhere it appears.</p>
                 </div>
-                <div><img src="/5.png" alt="Website Redesign preview" class="rounded-lg border border-white/10"></div>
+          
+                <!-- CTA inside accordion -->
+                <div class="mt-4">
+                  <a href="#contact" class="inline-block px-4 py-2 bg-accent text-black rounded-lg font-medium hover:opacity-90 transition">Start Your Branding</a>
+                </div>
               </div>
             </div>
           </div>
-      
-          <!-- SEO & Growth -->
-          <div class="service-item border border-white/10 rounded-xl overflow-hidden">
-            <button class="w-full flex items-center justify-between p-4 text-left font-semibold text-lg hover:text-accent transition service-hover" data-preview="/6.png" onclick="toggleService(this)">
-              <span>📈 SEO & Growth</span>
-              <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-              </svg>
+          
+    
+          <!-- 002 UI/UX Design -->
+          <div class="service-item border border-white/10 rounded-xl overflow-hidden bg-card/40">
+            <button class="w-full flex items-center justify-between p-5 text-left group"
+                    data-preview="/uiux.png"
+                    onclick="toggleService(this)">
+              <div>
+                <span class="text-accent text-sm font-mono">002</span>
+                <h3 class="text-2xl font-bold mt-1 group-hover:text-accent transition">UI/UX Design</h3>
+                <p class="text-sm text-muted mt-1">
+                  Wireframes · Prototypes · Responsive Websites · Mobile Apps · Design Systems
+                </p>
+              </div>
+              <span class="w-9 h-9 flex items-center justify-center rounded-full border border-white/20 group-hover:bg-accent group-hover:text-black transition">➝</span>
             </button>
             <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-              <div class="p-6 grid md:grid-cols-2 gap-8">
-                <div class="space-y-4">
-                  <p class="muted">Grow your business with SEO strategies and digital marketing campaigns.</p>
-                  <h4 class="mt-4 font-semibold">What’s Included</h4>
-                  <ul class="mt-2 space-y-1 text-sm muted list-disc pl-4">
-                    <li>On-page & off-page SEO</li>
-                    <li>Keyword research & analytics</li>
-                    <li>Content strategy & backlinks</li>
-                  </ul>
-                  <h4 class="mt-4 font-semibold">Tools We Use</h4>
-                  <div class="flex flex-wrap gap-3 mt-2">
-                    <img src="https://cdn.simpleicons.org/googleanalytics/FABC05" class="w-7 h-7" alt="Google Analytics"/>
-                    <img src="https://cdn.simpleicons.org/semrush/FF642D" class="w-7 h-7" alt="Semrush"/>
-                
-                  </div>
-                  <div class="mt-5"><a href="#contact" class="btn-accent">Contact for Pricing</a></div>
-                </div>
-                <div><img src="/6.png" alt="SEO preview" class="rounded-lg border border-white/10"></div>
+              <div class="p-6 text-sm leading-relaxed text-muted space-y-4">
+                <p>We design interfaces that are not just beautiful but also intuitive. Our process is rooted in research, usability, and conversion optimization.</p>
+                <ul class="list-check space-y-2">
+                  <li>✔ User Research & Persona Building</li>
+                  <li>✔ Wireframes & Journey Maps</li>
+                  <li>✔ Interactive Prototypes (Figma/Adobe XD)</li>
+                  <li>✔ Mobile App & Web Dashboards</li>
+                  <li>✔ Accessibility-First Design (WCAG)</li>
+                  <li>✔ Scalable Design Systems</li>
+                </ul>
+                <p>We ensure every design decision contributes to a smooth and engaging user experience.</p>
               </div>
             </div>
           </div>
-      
+    
+          <!-- 003 Development -->
+          <div class="service-item border border-white/10 rounded-xl overflow-hidden bg-card/40">
+            <button class="w-full flex items-center justify-between p-5 text-left group"
+                    data-preview="/dev.png"
+                    onclick="toggleService(this)">
+              <div>
+                <span class="text-accent text-sm font-mono">003</span>
+                <h3 class="text-2xl font-bold mt-1 group-hover:text-accent transition">Development</h3>
+                <p class="text-sm text-muted mt-1">
+                  React.js · Next.js · Node.js · WordPress · Laravel · APIs
+                </p>
+              </div>
+              <span class="w-9 h-9 flex items-center justify-center rounded-full border border-white/20 group-hover:bg-accent group-hover:text-black transition">➝</span>
+            </button>
+            <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+              <div class="p-6 text-sm leading-relaxed text-muted space-y-4">
+                <p>We don’t just design websites — we build high-performance digital platforms tailored to your needs.</p>
+                <ul class="list-check space-y-2">
+                  <li>✔ Frontend Development (React, Next.js)</li>
+                  <li>✔ Backend APIs (Node.js, Laravel)</li>
+                  <li>✔ WordPress & Custom CMS</li>
+                  <li>✔ E-commerce Platforms (Shopify, WooCommerce)</li>
+                  <li>✔ Database Design & Cloud Deployment</li>
+                  <li>✔ SEO & Speed Optimization</li>
+                </ul>
+                <p>Our code is scalable, secure, and future-ready, ensuring smooth performance on all devices.</p>
+              </div>
+            </div>
+          </div>
+    
+          <!-- 004 Marketing -->
+          <div class="service-item border border-white/10 rounded-xl overflow-hidden bg-card/40">
+            <button class="w-full flex items-center justify-between p-5 text-left group"
+                    data-preview="/marketing.png"
+                    onclick="toggleService(this)">
+              <div>
+                <span class="text-accent text-sm font-mono">004</span>
+                <h3 class="text-2xl font-bold mt-1 group-hover:text-accent transition">Marketing</h3>
+                <p class="text-sm text-muted mt-1">
+                  SEO · Social Media · Content Marketing · Ads · Email Campaigns
+                </p>
+              </div>
+              <span class="w-9 h-9 flex items-center justify-center rounded-full border border-white/20 group-hover:bg-accent group-hover:text-black transition">➝</span>
+            </button>
+            <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+              <div class="p-6 text-sm leading-relaxed text-muted space-y-4">
+                <p>We create data-driven marketing strategies to grow your brand’s online presence and revenue.</p>
+                <ul class="list-check space-y-2">
+                  <li>✔ SEO Audits & Keyword Strategy</li>
+                  <li>✔ Social Media Growth Campaigns</li>
+                  <li>✔ Paid Ads (Google, Meta, LinkedIn)</li>
+                  <li>✔ Email Automation & Funnels</li>
+                  <li>✔ Content Writing & Blog Strategy</li>
+                  <li>✔ Analytics & Conversion Tracking</li>
+                </ul>
+                <p>Our goal is simple: make your brand visible, trusted, and profitable.</p>
+              </div>
+            </div>
+          </div>
+    
+          <!-- 005 Motion & Animation -->
+          <div class="service-item border border-white/10 rounded-xl overflow-hidden bg-card/40">
+            <button class="w-full flex items-center justify-between p-5 text-left group"
+                    data-preview="/motion.png"
+                    onclick="toggleService(this)">
+              <div>
+                <span class="text-accent text-sm font-mono">005</span>
+                <h3 class="text-2xl font-bold mt-1 group-hover:text-accent transition">Motion & Animation</h3>
+                <p class="text-sm text-muted mt-1">
+                  Explainer Videos · Product Demos · Logo Animations · Social Motion Graphics
+                </p>
+              </div>
+              <span class="w-9 h-9 flex items-center justify-center rounded-full border border-white/20 group-hover:bg-accent group-hover:text-black transition">➝</span>
+            </button>
+            <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+              <div class="p-6 text-sm leading-relaxed text-muted space-y-4">
+                <p>We bring stories to life through engaging motion design and animations.</p>
+                <ul class="list-check space-y-2">
+                  <li>✔ Animated Explainer Videos</li>
+                  <li>✔ Logo & Intro Animations</li>
+                  <li>✔ Motion Graphics for Ads</li>
+                  <li>✔ Product Walkthrough Videos</li>
+                  <li>✔ Social Media Animated Posts</li>
+                </ul>
+                <p>Animations help you capture attention and communicate ideas faster and more effectively.</p>
+              </div>
+            </div>
+          </div>
+    
         </div>
       </div>
+    </section>
+    
+    <script>
+      function toggleService(btn) {
+        const item = btn.closest('.service-item');
+        const content = item.querySelector('.service-content');
+        const previewImg = document.getElementById('servicePreview').querySelector('img');
+      
+        // Collapse all other items
+        document.querySelectorAll('.service-item').forEach(i => {
+          if (i !== item) {
+            i.querySelector('.service-content').style.maxHeight = null;
+            i.classList.remove('open');
+          }
+        });
+      
+        // Toggle current item
+        if (content.style.maxHeight && content.style.maxHeight !== "0px") {
+          content.style.maxHeight = null;
+          item.classList.remove('open');
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          item.classList.add('open');
+        }
+      
+        // Update preview image
+       
+      }
+      </script>
       
       
+    
+    <style>
+      /* Services: elevate visuals without changing behavior */
+      .service-item {
+        background: var(--card);
+        border: 1px solid rgba(255,255,255,0.04);
+        transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease, background .3s ease;
+      }
+      
+      /* Light mode service items */
+      :root[data-theme="light"] .service-item {
+        background: #ffffff;
+        border: 1px solid rgba(0,0,0,0.06);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      }
+      
+      /* Dark mode service items */
+      :root:not([data-theme="light"]) .service-item {
+        background: var(--card);
+        border: 1px solid rgba(255,255,255,0.04);
+      }
+      .service-item > button { position: relative; }
+      .service-item > button::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 12px;
+        pointer-events: none;
+        background: radial-gradient(120% 200% at 10% 0%, rgba(var(--accent-rgb), .12), transparent 60%);
+        opacity: 0;
+        transition: opacity .3s ease;
+      }
+      @media (hover:hover) {
+        .service-item:hover { 
+          transform: translateY(-3px); 
+          box-shadow: 0 12px 30px rgba(0,0,0,.28);
+          border-color: rgba(var(--accent-rgb), .28);
+        }
+        .service-item:hover > button::after { opacity: 1; }
+      }
+      .service-item.open { 
+        border-color: rgba(var(--accent-rgb), .5);
+        box-shadow: 0 12px 36px rgba(var(--accent-rgb), .18), 0 8px 22px rgba(0,0,0,.35);
+        background: linear-gradient(180deg, rgba(var(--accent-rgb), .06), rgba(255,255,255,0));
+      }
+      .service-item.open > button {
+        box-shadow: inset 0 0 0 1px rgba(var(--accent-rgb), .25);
+      }
+      .service-item.open > button::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 10px;
+        bottom: 10px;
+        width: 3px;
+        border-radius: 999px;
+        background: var(--accent);
+        opacity: .85;
+      }
+      /* Fade content in when opened */
+      .service-item .service-content > .p-6 {
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity .35s ease, transform .35s ease;
+      }
+      .service-item.open .service-content > .p-6 {
+        opacity: 1;
+        transform: none;
+      }
+    </style>
+    
 
+    
+
+
+    <!-- PROCESS -->
+    <section id="process" class="storyline site-section">
+      <div class="site-container">
+        
+        <!-- Section Tag -->
+        <div class="flex items-center gap-3 text-accent text-sm font-semibold uppercase reveal-up">
+          <span class="w-3 h-3 rounded-full" style="background:var(--accent)"></span>
+          Our process
+        </div>
+    
+        <!-- Heading -->
+        <h2 class="mt-3 text-3xl md:text-5xl font-extrabold">
+          Simple, Collaborative, Outcome-Focused
+        </h2>
+    
+        <!-- Process Steps -->
+        <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Step 1 -->
+          <div class="card p-6 rounded-2xl tilt relative overflow-hidden">
+            <div class="shine"></div>
+            <div class="chip inline-block">1</div>
+            <h4 class="mt-3 font-bold text-xl">Understand Your Business</h4>
+            <p class="muted mt-2">
+              We start with a call to learn about your goals, audience, and brand.
+            </p>
+          </div>
+    
+          <!-- Step 2 -->
+          <div class="card p-6 rounded-2xl tilt relative overflow-hidden">
+            <div class="shine"></div>
+            <div class="chip inline-block">2</div>
+            <h4 class="mt-3 font-bold text-xl">Design That Fits You</h4>
+            <p class="muted mt-2">
+              We create a custom, mobile-ready design and iterate with your feedback.
+            </p>
+          </div>
+    
+          <!-- Step 3 -->
+          <div class="card p-6 rounded-2xl tilt relative overflow-hidden">
+            <div class="shine"></div>
+            <div class="chip inline-block">3</div>
+            <h4 class="mt-3 font-bold text-xl">Build, Optimize & Test</h4>
+            <p class="muted mt-2">
+              We develop fast code, clean layout, and SEO best practices.
+            </p>
+          </div>
+    
+          <!-- Step 4 -->
+          <div class="card p-6 rounded-2xl tilt relative overflow-hidden">
+            <div class="shine"></div>
+            <div class="chip inline-block">4</div>
+            <h4 class="mt-3 font-bold text-xl">Launch, Support & Guide</h4>
+            <p class="muted mt-2">
+              We launch, hand over, and support — with training so you’re confident.
+            </p>
+          </div>
+    
+        </div>
+      </div>
+    </section>
+    
+<!-- clients  -->
+<section id="clients" class="storyline site-section py-12">
+  <div class="site-container">
+
+    <!-- Section Heading -->
+    <h2 class="text-2xl md:text-4xl font-extrabold mb-8 text-center">
+      Trusted by <span class="accent">Clients</span>
+    </h2>
+
+    <!-- Clients Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+
+      <!-- Client Card Template -->
+      <div class="client-card relative card flex items-center justify-center p-6 min-h-[180px] cursor-pointer group">
+        <img src="https://recodeux.com/wp-content/uploads/2025/05/IFirm_Logo-New-removebg-preview-2.png" alt="Amazon" class="w-24 opacity-70 group-hover:opacity-100 transition">
+      </div>
+
+      <div class="client-card relative card flex items-center justify-center p-6 min-h-[180px] cursor-pointer group">
+        <img src="https://recodeux.com/wp-content/uploads/2025/05/5.pngf" alt="Airbnb" class="w-24 opacity-70 group-hover:opacity-100 transition">
+      </div>
+
+      <div class="client-card relative card flex items-center justify-center p-6 min-h-[180px] cursor-pointer group">
+        <img src="https://recodeux.com/wp-content/uploads/2025/05/4.png" alt="Walmart" class="w-24 opacity-70 group-hover:opacity-100 transition">
+      </div>
+
+      <div class="client-card relative card flex items-center justify-center p-6 min-h-[180px] cursor-pointer group">
+        <img src="https://recodeux.com/wp-content/uploads/2025/05/4.png" alt="Unity" class="w-24 opacity-70 group-hover:opacity-100 transition">
+      </div>
+
+      <div class="client-card relative card flex items-center justify-center p-6 min-h-[180px] cursor-pointer group">
+        <img src="https://recodeux.com/wp-content/uploads/2025/05/fundify-logo.svg" alt="Meta" class="w-24 opacity-70 group-hover:opacity-100 transition">
+      </div>
+
+      <div class="client-card relative card flex items-center justify-center p-6 min-h-[180px] cursor-pointer group">
+        <img src="https://recodeux.com/wp-content/uploads/2025/05/1.png" alt="Figma" class="w-24 opacity-70 group-hover:opacity-100 transition">
+      </div>
+
+      <div class="client-card relative card flex items-center justify-center p-6 min-h-[180px] cursor-pointer group">
+        <img src="https://recodeux.com/wp-content/uploads/2025/05/3.png" alt="Ola" class="w-24 opacity-70 group-hover:opacity-100 transition">
+      </div>
+
+      <div class="client-card relative card flex items-center justify-center p-6 min-h-[180px] cursor-pointer group">
+        <img src="https://cdn.simpleicons.org/oculus/ffffff" alt="Oculus" class="w-24 opacity-70 group-hover:opacity-100 transition">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<style>
+.client-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Light mode client cards */
+:root[data-theme="light"] .client-card {
+  background: #ffffff00;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Dark mode client cards */
+:root:not([data-theme="light"]) .client-card {
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+.client-card:hover {
+  border: 1px solid var(--accent);
+  background: rgba(12, 15, 196, 0.08);
+  transform: translateY(-2px);
+}
+</style>
        <!-- Tools Marquee -->
-       <div class="mt-16 relative">
+       <div class=" relative">
         <!-- Gradient overlays -->
         <div class="absolute left-0 top-0 h-full w-48 pointer-events-none z-10" style="background:linear-gradient(to right, rgba(var(--bg-rgb), 1), rgba(var(--bg-rgb), 0))"></div>
         <div class="absolute right-0 top-0 h-full w-48 pointer-events-none z-10" style="background:linear-gradient(to left, rgba(var(--bg-rgb), 1), rgba(var(--bg-rgb), 0))"></div>
@@ -767,122 +1457,10 @@
         animation: marquee 40s linear infinite;
       }
       </style>
-      
-      
-    </section>
-    <script>
-      function toggleService(btn) {
-        const content = btn.nextElementSibling;
-        const icon = btn.querySelector("svg");
-        if (content.style.maxHeight && content.style.maxHeight !== "0px") {
-          content.style.maxHeight = "0px";
-          icon.classList.remove("rotate-180");
-        } else {
-          document.querySelectorAll(".service-content").forEach(c => c.style.maxHeight = "0px");
-          document.querySelectorAll(".service-item svg").forEach(i => i.classList.remove("rotate-180"));
-          content.style.maxHeight = content.scrollHeight + "px";
-          icon.classList.add("rotate-180");
-        }
-      }
-    </script>
-
-    
-
-
-    <!-- PROCESS -->
-    <section id="process" class="mt-20">
-      <div class="site-container">
-        <div class="flex items-center gap-3 text-accent text-sm font-semibold uppercase"><span style="width:12px;height:12px;border-radius:999px;background:var(--accent)"></span> Our Process</div>
-        <h2 class="mt-3 text-3xl md:text-5xl font-extrabold">Simple, Collaborative, Outcome‑Focused</h2>
-
-        <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="card p-6 rounded-2xl tilt relative overflow-hidden process-step">
-            <div class="shine"></div>
-            <div class="chip inline-block">1</div>
-            <h4 class="mt-3 font-bold text-xl">Understand Your Business</h4>
-            <p class="muted mt-2">We start with a call to learn about your goals, audience, and brand.</p>
-          </div>
-          <div class="card p-6 rounded-2xl tilt relative overflow-hidden process-step">
-            <div class="shine"></div>
-            <div class="chip inline-block">2</div>
-            <h4 class="mt-3 font-bold text-xl">Design That Fits You</h4>
-            <p class="muted mt-2">We create a custom, mobile‑ready design and iterate with your feedback.</p>
-          </div>
-          <div class="card p-6 rounded-2xl tilt relative overflow-hidden process-step">
-            <div class="shine"></div>
-            <div class="chip inline-block">3</div>
-            <h4 class="mt-3 font-bold text-xl">Build, Optimize & Test</h4>
-            <p class="muted mt-2">We develop fast code, clean layout, and SEO best practices.</p>
-          </div>
-          <div class="card p-6 rounded-2xl tilt relative overflow-hidden process-step">
-            <div class="shine"></div>
-            <div class="chip inline-block">4</div>
-            <h4 class="mt-3 font-bold text-xl">Launch, Support & Guide</h4>
-            <p class="muted mt-2">We launch, hand over, and support — with training so you’re confident.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-<!-- clients  -->
-<section class="site-container py-12">
-  <h2 class="text-2xl font-extrabold mb-8 text-center">
-    Trusted by <span class="accent">Clients</span>
-  </h2>
-
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-    <!-- Card -->
-    <div class="client-card relative card flex items-center justify-center p-6 cursor-pointer group">
-      <img src="https://cdn.simpleicons.org/amazon/ffffff" alt="Amazon" class="w-20 opacity-70 group-hover:opacity-100 transition">
-    </div>
-
-    <div class="client-card relative card flex items-center justify-center p-6 cursor-pointer group">
-      <img src="https://cdn.simpleicons.org/airbnb/ffffff" alt="Airbnb" class="w-20 opacity-70 group-hover:opacity-100 transition">
-    </div>
-
-    <div class="client-card relative card flex items-center justify-center p-6 cursor-pointer group">
-      <img src="https://cdn.simpleicons.org/walmart/ffffff" alt="Walmart" class="w-20 opacity-70 group-hover:opacity-100 transition">
-    </div>
-
-    <div class="client-card relative card flex items-center justify-center p-6 cursor-pointer group">
-      <img src="https://cdn.simpleicons.org/unity/ffffff" alt="Unity" class="w-20 opacity-70 group-hover:opacity-100 transition">
-    </div>
-
-    <div class="client-card relative card flex items-center justify-center p-6 cursor-pointer group">
-      <img src="https://cdn.simpleicons.org/meta/ffffff" alt="Meta" class="w-20 opacity-70 group-hover:opacity-100 transition">
-    </div>
-
-    <div class="client-card relative card flex items-center justify-center p-6 cursor-pointer group">
-      <img src="https://cdn.simpleicons.org/figma/ffffff" alt="Figma" class="w-20 opacity-70 group-hover:opacity-100 transition">
-    </div>
-
-    <div class="client-card relative card flex items-center justify-center p-6 cursor-pointer group">
-      <img src="https://cdn.simpleicons.org/ola/ffffff" alt="Ola" class="w-20 opacity-70 group-hover:opacity-100 transition">
-    </div>
-
-    <div class="client-card relative card flex items-center justify-center p-6 cursor-pointer group">
-      <img src="https://cdn.simpleicons.org/oculus/ffffff" alt="Oculus" class="w-20 opacity-70 group-hover:opacity-100 transition">
-    </div>
-  </div>
-</section>
-
-<style>
-.client-card {
-  position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: all 0.25s ease;
-  background: var(--card);
-}
-.client-card:hover {
-  border: 1px solid var(--accent);
-  background: rgba(12, 15, 196, 0.08);
-}
-</style>
-
 
 <!--  -->
     <!-- WORK / PORTFOLIO -->
-    <section id="projects" class="mt-20">
+    <section id="projects" class="storyline site-section">
       <div class="site-container">
         <!-- Section Heading -->
         <div class="flex items-center gap-3 text-accent text-sm font-semibold uppercase">
@@ -893,142 +1471,262 @@
           Crafted With Purpose & Precision
         </h2>
         <p class="muted mt-3 max-w-2xl">
-          From sleek e-commerce to tailored solutions for small businesses and professionals — here’s a glimpse of our work.
+          From sleek e-commerce to tailored solutions for small businesses and professionals — here's a glimpse of our work.
         </p>
     
         <!-- Project Grid -->
         <div id="project-grid" class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           
           <!-- Project 1 -->
-          <div class="project-card group relative" style="background:var(--card)" data-category="ecommerce">
-            <img src="https://images.unsplash.com/photo-1519222970733-f546218fa6d7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+          <a href="case-study.html?project=shop-sphere" class="project-card group relative reveal-up" style="background:var(--card)">
+            <img src="https://images.unsplash.com/photo-1519222970733-f546218fa6d7?q=80&w=1170&auto=format&fit=crop" 
                  alt="E-commerce" class="w-full h-64 object-cover" />
-            <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition p-6 flex flex-col justify-end">
-              <h3 class="text-xl font-bold">ShopSphere</h3>
-              <p class="text-sm text-gray-300 mt-2">High-performance e-commerce store built with Next.js & Stripe.</p>
-              <div class="flex gap-2 mt-3">
+            <div class="project-caption">
+              <div class="title">ShopSphere</div>
+              <div class="meta">E-commerce • Next.js, Stripe</div>
+            </div>
+            <div class="project-overlay">
+              <p>High-performance e-commerce store built with Next.js & Stripe.</p>
+              <div class="stack">
                 <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-6" alt="React"/>
                 <img src="https://cdn.simpleicons.org/nextdotjs/ffffff" class="w-6" alt="Next.js"/>
                 <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" class="w-6" alt="Tailwind"/>
               </div>
             </div>
-            <a href="#" class="absolute w-12 h-12 flex items-center justify-center bg-accent text-white rounded-full bottom-2 right-2 z-20">↗</a>
-          </div>
-    
+            <span class="project-link absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-full bg-[var(--accent)] text-black shadow-lg opacity-0 group-hover:opacity-100 transition duration-300"
+                  aria-label="Open project details">↗</span>
+          </a>
+
           <!-- Project 2 -->
-          <div class="project-card group relative" style="background:var(--card)" data-category="smallbiz">
-            <img src="https://images.unsplash.com/photo-1558174685-430919a96c8d?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D " 
+          <a href="case-study.html?project=localbrew" class="project-card group relative reveal-up" style="background:var(--card)">
+            <img src="https://images.unsplash.com/photo-1558174685-430919a96c8d?q=80&w=1171&auto=format&fit=crop" 
                  alt="Small Business" class="w-full h-64 object-cover" />
-            <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition p-6 flex flex-col justify-end">
-              <h3 class="text-xl font-bold">LocalBrew</h3>
-              <p class="text-sm text-gray-300 mt-2">Modern website for cafes & local shops with booking & menus.</p>
-              <div class="flex gap-2 mt-3">
+            <div class="project-caption">
+              <div class="title">LocalBrew</div>
+              <div class="meta">Small Business • Booking, Menus</div>
+            </div>
+            <div class="project-overlay">
+              <p>Modern website for cafes & local shops with booking & menus.</p>
+              <div class="stack">
                 <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-6" alt="React"/>
                 <img src="https://cdn.simpleicons.org/greensock/88CE02" class="w-6" alt="GSAP"/>
                 <img src="https://cdn.simpleicons.org/vercel/ffffff" class="w-6" alt="Vercel"/>
               </div>
             </div>
-            <a href="#" class="absolute w-12 h-12 flex items-center justify-center bg-accent text-white rounded-full bottom-2 right-2 z-20">↗</a>
-          </div>
+            <span class="project-link absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-full bg-[var(--accent)] text-black shadow-lg opacity-0 group-hover:opacity-100 transition duration-300"
+                  aria-label="Open project details">↗</span>
+          </a>
     
           <!-- Project 3 -->
-          <div class="project-card group relative" style="background:var(--card)" data-category="dentist">
-            <img src="https://images.unsplash.com/photo-1658677414428-d0ae187034cc?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+          <a href="case-study.html?project=smilecare" class="project-card group relative reveal-up" style="background:var(--card)">
+            <img src="https://images.unsplash.com/photo-1658677414428-d0ae187034cc?q=80&w=1170&auto=format&fit=crop" 
                  alt="Dentist Website" class="w-full h-64 object-cover" />
-            <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition p-6 flex flex-col justify-end">
-              <h3 class="text-xl font-bold">SmileCare</h3>
-              <p class="text-sm text-gray-300 mt-2">Clean, trust-building design with appointment scheduling.</p>
-              <div class="flex gap-2 mt-3">
+            <div class="project-caption">
+              <div class="title">SmileCare</div>
+              <div class="meta">Healthcare • Appointments</div>
+            </div>
+            <div class="project-overlay">
+              <p>Clean, trust-building design with appointment scheduling.</p>
+              <div class="stack">
                 <img src="https://cdn.simpleicons.org/nextdotjs/ffffff" class="w-6" alt="Next.js"/>
                 <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" class="w-6" alt="Tailwind"/>
                 <img src="https://cdn.simpleicons.org/nodedotjs/5FA04E" class="w-6" alt="Node.js"/>
               </div>
             </div>
-            <a href="#" class="absolute w-12 h-12 flex items-center justify-center bg-accent text-white rounded-full bottom-2 right-2 z-20">↗</a>
-          </div>
+            <span class="project-link absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-full bg-[var(--accent)] text-black shadow-lg opacity-0 group-hover:opacity-100 transition duration-300"
+                  aria-label="Open project details">↗</span>
+          </a>
     
           <!-- Project 4 -->
-          <div class="project-card group relative" style="background:var(--card)" data-category="portfolio">
-            <img src="https://images.unsplash.com/photo-1642132652935-d750e2014719?q=80&w=1460&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+          <a href="case-study.html?project=visionary" class="project-card group relative reveal-up" style="background:var(--card)">
+            <img src="https://images.unsplash.com/photo-1642132652935-d750e2014719?q=80&w=1460&auto=format&fit=crop" 
                  alt="Portfolio" class="w-full h-64 object-cover" />
-            <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition p-6 flex flex-col justify-end">
-              <h3 class="text-xl font-bold">Visionary</h3>
-              <p class="text-sm text-gray-300 mt-2">A designer’s personal portfolio with animations and showcase.</p>
-              <div class="flex gap-2 mt-3">
+            <div class="project-caption">
+              <div class="title">Visionary</div>
+              <div class="meta">Portfolio • Motion, Showcase</div>
+            </div>
+            <div class="project-overlay">
+              <p>A designer's personal portfolio with animations and showcase.</p>
+              <div class="stack">
                 <img src="https://cdn.simpleicons.org/figma/F24E1E" class="w-6" alt="Figma"/>
                 <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-6" alt="React"/>
                 <img src="https://cdn.simpleicons.org/greensock/88CE02" class="w-6" alt="GSAP"/>
               </div>
             </div>
-            <a href="#" class="absolute w-12 h-12 flex items-center justify-center bg-accent text-white rounded-full bottom-2 right-2 z-20">↗</a>
-          </div>
+            <span class="project-link absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-full bg-[var(--accent)] text-black shadow-lg opacity-0 group-hover:opacity-100 transition duration-300"
+                  aria-label="Open project details">↗</span>
+          </a>
     
           <!-- Project 5 -->
-          <div class="project-card group relative" style="background:var(--card)" data-category="saas">
-            <img src="https://images.unsplash.com/photo-1678690832871-8b9993c76aa8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+          <a href="case-study.html?project=cloudmetrics" class="project-card group relative reveal-up" style="background:var(--card)">
+            <img src="https://images.unsplash.com/photo-1678690832871-8b9993c76aa8?q=80&w=1170&auto=format&fit=crop" 
                  alt="SaaS" class="w-full h-64 object-cover" />
-            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition p-6 flex flex-col justify-end" style="background:rgba(var(--overlay-rgb), .7); color:var(--text)">
-              <h3 class="text-xl font-bold">CloudMetrics</h3>
-              <p class="text-sm text-gray-300 mt-2">Analytics SaaS dashboard optimized for speed & clarity.</p>
-              <div class="flex gap-2 mt-3">
+            <div class="project-caption">
+              <div class="title">CloudMetrics</div>
+              <div class="meta">SaaS • Analytics</div>
+            </div>
+            <div class="project-overlay">
+              <p>Analytics SaaS dashboard optimized for speed & clarity.</p>
+              <div class="stack">
                 <img src="https://cdn.simpleicons.org/typescript/3178C6" class="w-6" alt="TypeScript"/>
                 <img src="https://cdn.simpleicons.org/nextdotjs/ffffff" class="w-6" alt="Next.js"/>
                 <img src="https://cdn.simpleicons.org/vercel/ffffff" class="w-6" alt="Vercel"/>
               </div>
             </div>
-            <a href="#" class="absolute w-12 h-12 flex items-center justify-center bg-accent text-white rounded-full bottom-2 right-2 z-20">↗</a>
-          </div>
+            <span class="project-link absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-full bg-[var(--accent)] text-black shadow-lg opacity-0 group-hover:opacity-100 transition duration-300"
+                  aria-label="Open project details">↗</span>
+          </a>
     
         </div>
       </div>
     </section>
+
+   <!--  -->
     
     <style>
       .project-card {
-  position: relative;
-  border-radius: 1rem; /* same as your theme */
-  overflow: hidden;
-  clip-path: polygon(
-    0 0, 
-    100% 0, 
-    100% calc(100% - 2.5rem), /* cut starts */
-    calc(100% - 2.5rem) 100%, /* diagonal into corner */
-    0 100%
-  );
-  transition: transform 0.3s ease;
+        position: relative;
+        border-radius: 1rem;
+        overflow: hidden;
+        background: var(--card);
+        border: 1px solid rgba(255,255,255,0.04);
+        transition: all 0.3s ease;
+      }
+      
+      /* Light mode project cards */
+      :root[data-theme="light"] .project-card {
+        background: #ffffff;
+        border: 1px solid rgba(0,0,0,0.06);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      }
+      
+      /* Dark mode project cards */
+      :root:not([data-theme="light"]) .project-card {
+        background: var(--card);
+        border: 1px solid rgba(255,255,255,0.04);
+      }
+      
+      .project-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      }
+
+/* Modal styles */
+#project-modal { transition: opacity .25s ease; }
+#project-modal.active { opacity: 1; pointer-events: auto; }
+.modal-panel { box-shadow: 0 30px 80px rgba(0,0,0,.45); }
+
+/* Project persistent caption bar */
+.project-card .project-caption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: .75rem;
+  padding: .75rem 1rem;
+  background: linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.55));
 }
-.project-card:hover {
-  transform: translateY(-6px);
+.project-card .project-caption .title { font-weight: 800; }
+.project-card .project-caption .meta { font-size: .85rem; color: #c9c9c9; }
+
+/* Project overlay detail */
+.project-card .project-overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 1rem;
+  background: linear-gradient(180deg, rgba(0,0,0,.0) 40%, rgba(0,0,0,.7) 100%);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .25s ease, transform .25s ease;
 }
+.project-card:hover .project-overlay { opacity: 1; transform: none; }
+.project-card .project-overlay p { color: #d9d9d9; font-size: .95rem; }
+.project-card .project-overlay .stack { display: flex; gap: .5rem; margin-top: .5rem; }
+
+/* Project external link button */
+.project-card .project-link {
+  position: absolute; right: .6rem; bottom: .6rem; z-index: 20;
+  width: 2.5rem; height: 2.5rem; border-radius: 9999px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent); color: white;
+  transform: translateY(8px);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.project-card:hover .project-link { transform: translateY(0); box-shadow: 0 10px 25px rgba(var(--accent-rgb), .35); }
+/* Modal hidden by default */
+#project-modal {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* When active */
+#project-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 
     </style>
     
     <script>
-      const filterBtns = document.querySelectorAll(".filter-btn");
-      const cards = document.querySelectorAll(".project-card");
+      const projectModal = document.getElementById("project-modal");
+      const modalClose = document.getElementById("modal-close");
+      const modalOverlay = document.getElementById("modal-overlay");
     
-      filterBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-          const filter = btn.dataset.filter;
-          
-          filterBtns.forEach(b => b.classList.remove("text-accent", "font-semibold"));
-          btn.classList.add("text-accent", "font-semibold");
-    
-          cards.forEach(card => {
-            card.style.display =
-              filter === "all" || card.dataset.category === filter
-                ? "block"
-                : "none";
-          });
+      // Example: when clicking a project card, open modal
+      document.querySelectorAll(".project-card").forEach(card => {
+        card.addEventListener("click", () => {
+          projectModal.classList.add("active");
         });
+      });
+    
+      // Close modal on ✕ button or overlay click
+      modalClose.addEventListener("click", () => {
+        projectModal.classList.remove("active");
+      });
+      modalOverlay.addEventListener("click", () => {
+        projectModal.classList.remove("active");
       });
     </script>
     
     
     
+    
+
+    <!-- NEWSLETTER SIGNUP -->
+    <section class="storyline site-section">
+      <div class="site-container">
+        <div class="card p-8 md:p-12 text-center">
+          <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
+              Stay Updated with Our <span class="text-accent">Latest Insights</span>
+            </h2>
+            <p class="muted mb-8">
+              Get exclusive web development tips, design trends, and business growth strategies delivered to your inbox weekly.
+            </p>
+            <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" id="newsletter-form">
+              <input 
+                type="email" 
+                placeholder="Enter your email address" 
+                required
+                class="flex-1 px-4 py-3 rounded-full border border-white/10 bg-white/5 text-center sm:text-left focus:outline-none focus:border-accent transition"
+              />
+              <button 
+                type="submit"
+                class="btn-accent whitespace-nowrap"
+              >
+                Subscribe
+              </button>
+            </form>
+            <p class="text-xs muted mt-4">
+              No spam, unsubscribe at any time. We respect your privacy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- TESTIMONIALS -->
-    <section id="reviews" class="mt-20">
+    <section id="reviews" class="storyline mt-20 site-section">
       <div class="site-container">
         <h3 class="text-3xl md:text-4xl font-extrabold">What Clients Say</h3>
         <div class="mt-6 grid md:grid-cols-3 gap-6 gradient-mask">
@@ -1117,7 +1815,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="mt-20">
+    <section id="contact" class="mt-20 site-section">
       <div class="site-container grid lg:grid-cols-2 gap-10 items-start">
         <!-- Left side text -->
         <div>
@@ -1170,52 +1868,98 @@
         </div>
     
         <!-- Contact Form -->
-        <form class="card p-6 rounded-2xl grid grid-cols-1 sm:grid-cols-2 gap-4"
-          onsubmit="event.preventDefault();document.getElementById('sent').classList.remove('hidden');">
+        <form class="card p-6 rounded-2xl grid grid-cols-1 sm:grid-cols-2 gap-4" id="contact-form">
           <div>
-            <label class="muted text-sm">Full Name</label>
-            <input required placeholder="John Doe"
-              class="w-full bg-transparent border-b border-white/20 py-3 outline-none" />
+            <label for="fullName" class="muted text-sm">Full Name *</label>
+            <input 
+              id="fullName"
+              name="fullName"
+              type="text" 
+              required 
+              placeholder="John Doe"
+              class="w-full bg-transparent border-b border-white/20 py-3 outline-none focus:border-accent transition"
+              aria-describedby="name-error"
+            />
+            <div id="name-error" class="text-red-400 text-xs mt-1 hidden"></div>
           </div>
           <div>
-            <label class="muted text-sm">Email *</label>
-            <input type="email" required placeholder="yourmail@gmail.com"
-              class="w-full bg-transparent border-b border-white/20 py-3 outline-none" />
+            <label for="email" class="muted text-sm">Email *</label>
+            <input 
+              id="email"
+              name="email"
+              type="email" 
+              required 
+              placeholder="yourmail@gmail.com"
+              class="w-full bg-transparent border-b border-white/20 py-3 outline-none focus:border-accent transition"
+              aria-describedby="email-error"
+            />
+            <div id="email-error" class="text-red-400 text-xs mt-1 hidden"></div>
           </div>
           <div>
-            <label class="muted text-sm">Company Name</label>
-            <input placeholder="Ex Tesla"
-              class="w-full bg-transparent border-b border-white/20 py-3 outline-none" />
+            <label for="company" class="muted text-sm">Company Name</label>
+            <input 
+              id="company"
+              name="company"
+              type="text"
+              placeholder="Ex Tesla"
+              class="w-full bg-transparent border-b border-white/20 py-3 outline-none focus:border-accent transition"
+            />
           </div>
           <div>
-            <label class="muted text-sm">Project budget *</label>
-            <select required
-              class="w-full border-b border-white/20 py-3 outline-none custom-select">
-              <option>Select your range</option>
-              <option>$1k - $5k</option>
-              <option>$5k - $15k</option>
-              <option>$15k - $40k</option>
+            <label for="budget" class="muted text-sm">Project budget *</label>
+            <select 
+              id="budget"
+              name="budget"
+              required
+              class="w-full border-b border-white/20 py-3 outline-none custom-select focus:border-accent transition"
+              aria-describedby="budget-error"
+            >
+              <option value="">Select your range</option>
+              <option value="$1k - $5k">$1k - $5k</option>
+              <option value="$5k - $15k">$5k - $15k</option>
+              <option value="$15k - $40k">$15k - $40k</option>
+              <option value="$40k+">$40k+</option>
             </select>
+            <div id="budget-error" class="text-red-400 text-xs mt-1 hidden"></div>
           </div>
           <div class="sm:col-span-2">
-            <label class="muted text-sm">Service required *</label>
-            <select required
-              class="w-full border-b border-white/20 py-3 outline-none custom-select">
-              <option>Select your Service</option>
-              <option>UI UX Design</option>
-              <option>Web Development</option>
-              <option>Branding</option>
-              <option>Marketing</option>
+            <label for="service" class="muted text-sm">Service required *</label>
+            <select 
+              id="service"
+              name="service"
+              required
+              class="w-full border-b border-white/20 py-3 outline-none custom-select focus:border-accent transition"
+              aria-describedby="service-error"
+            >
+              <option value="">Select your Service</option>
+              <option value="UI/UX Design">UI/UX Design</option>
+              <option value="Web Development">Web Development</option>
+              <option value="Branding">Branding</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Full Package">Full Package</option>
             </select>
+            <div id="service-error" class="text-red-400 text-xs mt-1 hidden"></div>
           </div>
           <div class="sm:col-span-2">
-            <label class="muted text-sm">Project details *</label>
-            <textarea required rows="4" placeholder="Share your idea with us"
-              class="w-full bg-transparent border-b border-white/20 py-3 outline-none"></textarea>
+            <label for="message" class="muted text-sm">Project details *</label>
+            <textarea 
+              id="message"
+              name="message"
+              required 
+              rows="4" 
+              placeholder="Share your idea with us"
+              class="w-full bg-transparent border-b border-white/20 py-3 outline-none focus:border-accent transition resize-none"
+              aria-describedby="message-error"
+            ></textarea>
+            <div id="message-error" class="text-red-400 text-xs mt-1 hidden"></div>
           </div>
           <div class="sm:col-span-2 flex items-center gap-4">
-            <button class="btn-accent">Send Inquiry</button>
-            <div id="sent" class="muted hidden">Thanks! We’ll be in touch shortly.</div>
+            <button type="submit" class="btn-accent" id="submit-btn">
+              <span id="btn-text">Send Inquiry</span>
+              <span id="btn-loading" class="hidden">Sending...</span>
+            </button>
+            <div id="sent" class="muted hidden">✅ Thanks! We'll be in touch within 24 hours.</div>
+            <div id="error" class="text-red-400 hidden">❌ Something went wrong. Please try again.</div>
           </div>
         </form>
       </div>
@@ -1226,12 +1970,169 @@
       .custom-select {
         background-color: var(--card);
         color: var(--text);
+        border: 1px solid rgba(255,255,255,0.04);
+        border-radius: 8px;
+        padding: 0.75rem;
+        transition: all 0.3s ease;
       }
+      
+      /* Light mode form elements */
+      :root[data-theme="light"] .custom-select {
+        background-color: #ffffff;
+        color: var(--text);
+        border: 1px solid rgba(0,0,0,0.06);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      }
+      
+      /* Dark mode form elements */
+      :root:not([data-theme="light"]) .custom-select {
+        background-color: var(--card);
+        color: var(--text);
+        border: 1px solid rgba(255,255,255,0.04);
+      }
+      
       .custom-select option {
         background-color: var(--card);
         color: var(--text);
       }
+      
+      /* Form input styling */
+      input, textarea, select {
+        background-color: transparent;
+        color: var(--text);
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        transition: all 0.3s ease;
+      }
+      
+      :root[data-theme="light"] input,
+      :root[data-theme="light"] textarea,
+      :root[data-theme="light"] select {
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+      }
+      
+      input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-bottom-color: var(--accent);
+      }
     </style>
+    
+    <!-- Form Validation Script -->
+    <script>
+      // Contact Form Validation
+      document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const form = this;
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnLoading = document.getElementById('btn-loading');
+        const sentMsg = document.getElementById('sent');
+        const errorMsg = document.getElementById('error');
+        
+        // Clear previous errors
+        document.querySelectorAll('[id$="-error"]').forEach(error => {
+          error.classList.add('hidden');
+          error.textContent = '';
+        });
+        
+        // Validate form
+        let isValid = true;
+        const errors = {};
+        
+        // Name validation
+        const name = form.fullName.value.trim();
+        if (name.length < 2) {
+          errors.name = 'Name must be at least 2 characters';
+          isValid = false;
+        }
+        
+        // Email validation
+        const email = form.email.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          errors.email = 'Please enter a valid email address';
+          isValid = false;
+        }
+        
+        // Budget validation
+        if (!form.budget.value) {
+          errors.budget = 'Please select a budget range';
+          isValid = false;
+        }
+        
+        // Service validation
+        if (!form.service.value) {
+          errors.service = 'Please select a service';
+          isValid = false;
+        }
+        
+        // Message validation
+        const message = form.message.value.trim();
+        if (message.length < 10) {
+          errors.message = 'Please provide more details (at least 10 characters)';
+          isValid = false;
+        }
+        
+        // Show errors
+        if (!isValid) {
+          Object.keys(errors).forEach(field => {
+            const errorElement = document.getElementById(field + '-error');
+            if (errorElement) {
+              errorElement.textContent = errors[field];
+              errorElement.classList.remove('hidden');
+            }
+          });
+          return;
+        }
+        
+        // Show loading state
+        btnText.classList.add('hidden');
+        btnLoading.classList.remove('hidden');
+        submitBtn.disabled = true;
+        
+        // Simulate form submission (replace with actual API call)
+        setTimeout(() => {
+          btnText.classList.remove('hidden');
+          btnLoading.classList.add('hidden');
+          submitBtn.disabled = false;
+          sentMsg.classList.remove('hidden');
+          form.reset();
+          
+          // Hide success message after 5 seconds
+          setTimeout(() => {
+            sentMsg.classList.add('hidden');
+          }, 5000);
+        }, 2000);
+      });
+      
+      // Newsletter Form Validation
+      document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = this.querySelector('input[type="email"]').value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!emailRegex.test(email)) {
+          alert('Please enter a valid email address');
+          return;
+        }
+        
+        // Simulate newsletter signup
+        const button = this.querySelector('button');
+        const originalText = button.textContent;
+        button.textContent = 'Subscribing...';
+        button.disabled = true;
+        
+        setTimeout(() => {
+          button.textContent = 'Subscribed!';
+          this.reset();
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.disabled = false;
+          }, 2000);
+        }, 1500);
+      });
+    </script>
     
 
     <!-- FOOTER -->
@@ -1282,6 +2183,7 @@
         const initial = saved || (systemPrefersLight ? 'light' : 'dark');
         if(initial === 'light') root.setAttribute('data-theme','light'); else root.removeAttribute('data-theme');
         const toggleButtons = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')].filter(Boolean);
+        
         function updateIcon(){
           const isLight = root.getAttribute('data-theme') === 'light';
           const icon = document.getElementById('theme-icon');
@@ -1289,14 +2191,39 @@
           const mobile = document.getElementById('theme-toggle-mobile');
           if(mobile){ mobile.textContent = isLight ? '☀️' : '🌙'; }
         }
+        
         function toggle(){
           const isLight = root.getAttribute('data-theme') === 'light';
-          if(isLight){ root.removeAttribute('data-theme'); localStorage.setItem('theme','dark'); }
-          else { root.setAttribute('data-theme','light'); localStorage.setItem('theme','light'); }
+          if(isLight){ 
+            root.removeAttribute('data-theme'); 
+            localStorage.setItem('theme','dark'); 
+          } else { 
+            root.setAttribute('data-theme','light'); 
+            localStorage.setItem('theme','light'); 
+          }
           updateIcon();
+          
+          // Force a repaint to ensure smooth transition
+          root.style.transition = 'all 0.3s ease';
+          setTimeout(() => {
+            root.style.transition = '';
+          }, 300);
         }
+        
         toggleButtons.forEach(btn=> btn.addEventListener('click', toggle));
         updateIcon();
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+          if (!localStorage.getItem('theme')) {
+            if (e.matches) {
+              root.setAttribute('data-theme', 'light');
+            } else {
+              root.removeAttribute('data-theme');
+            }
+            updateIcon();
+          }
+        });
       })();
       // header hide on scroll down, show on scroll up (global)
       (function(){
@@ -1383,8 +2310,55 @@
         anime({targets:'.btn-accent',scale:[1,1.02],duration:1600,direction:'alternate',loop:true,easing:'easeInOutSine'});
       }
 
-      // Service hover preview
+      // Projects modal logic
       (function(){
+        const modal = document.getElementById('project-modal');
+        const closeBtn = document.getElementById('modal-close');
+        const titleEl = document.getElementById('modal-title');
+        const toolsEl = document.getElementById('modal-tools');
+        const descEl = document.getElementById('modal-description');
+        const caseEl = document.getElementById('modal-casestudy');
+
+        function openModal(fromCard){
+          const title = fromCard.dataset.title || 'Project';
+          const tools = (fromCard.dataset.tools || '').split(',').map(s=> s.trim()).filter(Boolean);
+          const desc = fromCard.dataset.description || '';
+          const study = fromCard.dataset.casestudy || '';
+          titleEl.textContent = title;
+          descEl.textContent = desc;
+          caseEl.textContent = study;
+          toolsEl.innerHTML = '';
+          tools.forEach(t=>{
+            const li = document.createElement('li');
+            li.textContent = t;
+            li.className = 'chip inline-block';
+            toolsEl.appendChild(li);
+          });
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+        function closeModal(){
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.project-card').forEach(card=>{
+          const btn = card.querySelector('.project-link');
+          if(btn){ btn.addEventListener('click', (e)=>{ e.preventDefault(); openModal(card); }); }
+        });
+
+        closeBtn?.addEventListener('click', closeModal);
+        modal?.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+        window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+      })();
+
+      // Service hover preview (desktop only)
+      (function(){
+        // Only enable preview on desktop devices with hover capability
+        if (window.matchMedia('(max-width: 768px)').matches || !window.matchMedia('(hover: hover)').matches) {
+          return; // Skip preview functionality on mobile/touch devices
+        }
+
         const preview = document.createElement('div');
         preview.style.position = 'fixed';
         preview.style.pointerEvents = 'none';
