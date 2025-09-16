@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -37,6 +37,7 @@
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Animation libs (deferred for faster first paint) -->
+
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
@@ -99,107 +100,134 @@
   }
   </script>
   
-  <style>
-    :root {
-      --bg: #0b0b0f; /* softer than pure black */
-      --bg-rgb: 11, 11, 15;
-      --muted: #9aa0a6;
-      --text: #e6e6e6; /* softer white */
-      --accent: #0c0fc4;
-      --accent-rgb: 12, 15, 196;
-      --card: #111115;
-      --card-rgb: 17, 17, 21;
-      --ring: rgba(201, 251, 51, .16);
-      --overlay-rgb: 0, 0, 0; /* for readable overlays in all themes */
-    }
-    /* Light theme overrides */
-    :root[data-theme="light"] {
-      --bg: #f6f7fb;
-      --bg-rgb: 246, 247, 251;
-      --text: #0b0b0f;
-      --muted: #4b5563;
-      --card: #ffffff;
-      --card-rgb: 255, 255, 255;
-      /* Keep accent the same to preserve brand */
-      --overlay-rgb: 0, 0, 0;
-    }
-  
-    html, body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      scroll-behavior: smooth;
-      font-size: clamp(14px, 1.05vw, 16px);
-      line-height: 1.6;
-      /* remove global text shadow to avoid blur */
-    }
-
-
-    .project-caption .title {
-  color: #ffffff !important; /* Always white */
+<style>
+  /* ===============================
+   THEME VARIABLES
+   =============================== */
+:root {
+  /* Dark theme (default) */
+  --bg: #0b0b0f;             /* softer than pure black */
+  --bg-rgb: 11, 11, 15;
+  --text: #e6e6e6;           /* softer white */
+  --muted: #9aa0a6;
+  --accent: #0c0fc4;         /* brand accent */
+  --accent-rgb: 12, 15, 196;
+  --card: #111115;
+  --card-rgb: 17, 17, 21;
+  --ring: rgba(201, 251, 51, .16);
+  --overlay-rgb: 0, 0, 0;    /* overlay fallback */
 }
 
 
-    /* Central container */
-    .site-container {
-      max-width: 1280px;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 28px;
-      padding-right: 28px;
-    }
-  
-    .accent { color: var(--accent); }
-  
-    .btn-accent {
-      background: var(--accent);
-      color: #ffffff;
-      padding: .85rem 1.25rem;
-      border-radius: 9999px;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: .6rem;
-      will-change: transform;
-      transition: all .25s ease;
-    }
-    .btn-accent:hover {
-      box-shadow: 0 8px 30px var(--ring);
-      transform: translateY(-2px);
-    }
-  
-    .card {
-      background: var(--card);
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.04);
-      transition: all 0.3s ease;
-    }
-    
-    /* Light mode card styling */
-    :root[data-theme="light"] .card {
-      background: #ffffff;
-      border: 1px solid rgba(0,0,0,0.06);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    }
-    
-    /* Dark mode card styling */
-    :root:not([data-theme="light"]) .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
-      border: 1px solid rgba(255,255,255,0.04);
-    }
-  
-    h1.big {
-      font-size: clamp(32px, 6vw, 72px);
-      line-height: 1.1;
-      font-weight: 800;
-    }
-  
-    h2, h3 { line-height: 1.3; }
-  
-    .muted { color: var(--muted); }
-  
-    .chip {
+/* Light theme overrides */
+:root[data-theme="light"] {
+  --bg: #f6f7fb;
+  --bg-rgb: 246, 247, 251;
+  --text: #0b0b0f;
+  --muted: #4b5563;
+  --card: #ffffff;
+  --card-rgb: 255, 255, 255;
+  --overlay-rgb: 0, 0, 0; /* keep black overlays */
+}
+
+/* ===============================
+   BASE TYPOGRAPHY & LAYOUT
+   =============================== */
+   body {
+  background-color: var(--bg);
+ 
+  background-size: 32px 32px;
+  color: var(--text);
+  font-family: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-size: clamp(14px, 1.05vw, 16px);
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+/* Notebook grid background */
+
+
+/* Grid color variables */
+:root {
+  --grid-line-color: rgba(255, 255, 255, 0.05); /* subtle lines on dark */
+}
+
+:root[data-theme="light"] {
+  --grid-line-color: rgba(0, 0, 0, 0.07); /* subtle lines on light */
+}
+
+
+h1.big {
+  font-size: clamp(32px, 6vw, 72px);
+  line-height: 1.1;
+  font-weight: 800;
+}
+h2, h3 { line-height: 1.3; }
+
+.muted { color: var(--muted); }
+.accent { color: var(--accent); }
+
+.project-caption .title {
+  color: #fff !important; /* force white caption titles */
+}
+
+/* ===============================
+   CONTAINERS
+   =============================== */
+.site-container {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 28px;
+}
+
+.site-section {
+  padding-top: clamp(48px, 8vh, 96px);
+  padding-bottom: clamp(48px, 8vh, 96px);
+}
+
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: 600px;
+  padding-inline: 0; /* sections take full width */
+}
+
+/* ===============================
+   CARDS & COMPONENTS
+   =============================== */
+.card {
+  background: var(--card);
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: all 0.3s ease;
+}
+:root[data-theme="light"] .card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+:root:not([data-theme="light"]) .card {
+  background: linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,0));
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Buttons */
+.btn-accent {
+  background: var(--accent);
+  color: #fff;
+  padding: .85rem 1.25rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  transition: all .25s ease;
+}
+.btn-accent:hover {
+  box-shadow: 0 8px 30px var(--ring);
+  transform: translateY(-2px);
+}
+
+/* Chips */
+.chip {
   background: var(--accent);
   color: #fff;
   padding: .35rem .6rem;
@@ -207,182 +235,94 @@
   font-size: .78rem;
   font-weight: 600;
 }
-  
-    /* Small utility sizes */
-    .icon-sm { width: 22px; height: 22px; }
-  
-    .logo-dot {
-      width: 55px;
-      height: 55px;
-      border-radius: 999px;
-      background: var(--accent);
-      display: grid;
-      place-items: center;
-      box-shadow: 0 0 40px 8px rgba(201, 251, 51, .08);
-    }
-  
-    /* Responsive hero title */
-    .hero-title { font-size: clamp(40px, 9.5vw, 120px); }
 
-    /* Consistent vertical rhythm for sections */
-    .site-section {
-      padding-top: clamp(48px, 8vh, 96px);
-      padding-bottom: clamp(48px, 8vh, 96px);
-    }
-    
-    /* Ensure all sections have consistent padding */
-    section {
-      padding-left: 0;
-      padding-right: 0;
-    }
-    
-    /* Override any inconsistent padding in specific sections */
-    .storyline.site-section {
-      padding: clamp(48px, 8vh, 96px) 0 !important;
-    }
+/* ===============================
+   STORYLINE BACKGROUNDS
+   =============================== */
 
-    /* Subtle nav underline hover */
-    nav a { position: relative; }
-    @media (hover:hover){
-      nav a::after {
-        content: '';
-        position: absolute;
-        left: 0; right: 0; bottom: -4px;
-        height: 2px;
-        background: linear-gradient(90deg, rgba(var(--accent-rgb), .0), rgba(var(--accent-rgb), .9), rgba(var(--accent-rgb), .0));
-        transform: scaleX(0);
-        transform-origin: 50% 50%;
-        transition: transform .25s ease;
-      }
-      nav a:hover::after { transform: scaleX(1); }
-    }
-  
-    /* Grid layout for sections */
-    .align-left-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-    }
-    @media (min-width: 900px) {
-      .align-left-grid { grid-template-columns: 1fr 420px; }
-    }
-  
-    /* Subtle fade mask */
-    .gradient-mask {
-      mask-image: linear-gradient(180deg, black 60%, transparent 100%);
-      -webkit-mask-image: linear-gradient(180deg, black 60%, transparent 100%);
-    }
-  
-    /* performance: avoid painting offscreen sections */
-    section {
-      content-visibility: auto;
-      contain-intrinsic-size: 600px;
-    }
-  
-    /* Tilt card effect */
-    .tilt {
-      transform-style: preserve-3d;
-      will-change: transform;
-      transition: transform .2s ease;
-      position: relative;
-    }
-    .tilt .shine {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: radial-gradient(
-        600px 200px at var(--mx,50%) var(--my,50%),
-        rgba(255,255,255,.08), 
-        transparent 40%
-      );
-      opacity: 0;
-      transition: opacity .2s ease;
-    }
-    .tilt:hover .shine { opacity: .9; }
-  
-    /* checklist */
-    .list-check li {
-      display: flex;
-      gap: .6rem;
-      align-items: flex-start;
-    }
-    .list-check svg {
-      flex: 0 0 auto;
-      margin-top: .22rem;
-    }
-  
-    /* reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-      .tilt { transform: none !important; }
-    }
-  
-    /* navbar hide/show */
-    header { transition: transform .28s ease; }
-    .nav-hidden { transform: translateY(-108%); }
-  
-    /* Mobile adjustments */
-    @media (max-width: 768px) {
-      .site-container {
-        padding-left: 18px;
-        padding-right: 18px;
-      }
-      .btn-accent {
-        padding: 0.75rem 1rem;
-        font-size: 0.9rem;
-      }
-      nav a {
-        font-size: 1rem;
-      }
-    }
-    /* Storyline section separation - using data-theme attribute */
-.storyline:nth-child(odd) {
-  background-color: var(--bg) !important;
-  transition: background-color 0.3s ease-in-out !important;
+/* Default: dark mode alternates */
+.storyline:nth-of-type(odd) {
+  background-color: #0b0b0f !important;
+}
+.storyline:nth-of-type(even) {
+  background-color: #111115 !important;
 }
 
-.storyline:nth-child(even) {
-  background-color: var(--card) !important;
-  transition: background-color 0.3s ease-in-out !important;
+/* Light mode: alternate subtle grays */
+:root[data-theme="light"] .storyline:nth-of-type(odd) {
+  background-color: #f8fafc !important; /* light gray */
+}
+:root[data-theme="light"] .storyline:nth-of-type(even) {
+  background-color: #ffffff !important; /* white */
 }
 
-/* Light mode overrides for better separation */
-:root[data-theme="light"] .storyline:nth-child(odd) {
-  background-color: #f8fafc !important; /* Light gray-50 */
+/* Specific section overrides (if you want fixed colors) */
+:root[data-theme="light"] #clients { background-color: #f8fafc; }
+:root[data-theme="light"] #tools   { background-color: #fff; }
+:root[data-theme="light"] #projects{ background-color: #f8fafc; }
+
+/* ===============================
+   UTILITIES
+   =============================== */
+.icon-sm { width: 22px; height: 22px; }
+.logo-dot {
+  width: 55px; height: 55px; border-radius: 999px;
+  background: var(--accent); display: grid; place-items: center;
+  box-shadow: 0 0 40px 8px rgba(201, 251, 51, .08);
 }
 
-:root[data-theme="light"] .storyline:nth-child(even) {
-  background-color: #ffffff !important; /* Pure white */
+/* Navbar hover underline */
+nav a { position: relative; }
+@media (hover:hover){
+  nav a::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -4px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(var(--accent-rgb),0), rgba(var(--accent-rgb),.9), rgba(var(--accent-rgb),0));
+    transform: scaleX(0);
+    transition: transform .25s ease;
+  }
+  nav a:hover::after { transform: scaleX(1); }
 }
 
-/* Dark mode overrides for better separation */
-:root:not([data-theme="light"]) .storyline:nth-child(odd) {
-  background-color: #0b0b0f !important; /* Darker background */
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .site-container { padding-inline: 18px; }
+  .btn-accent { padding: .75rem 1rem; font-size: 0.9rem; }
+  nav a { font-size: 1rem; }
+  /* Stats section: compress spacing and text on mobile */
+  #stats.site-section { padding-top: 24px; padding-bottom: 24px; }
+  #stats .grid { gap: 12px; }
+  #stats .text-3xl,
+  #stats .md\:text-4xl { font-size: 1.5rem; line-height: 1.2; }
+  #stats .text-sm { font-size: .8rem; }
 }
 
-:root:not([data-theme="light"]) .storyline:nth-child(even) {
-  background-color: #111115 !important; /* Card background */
-}
-
-/* Consistent padding for all storyline sections */
-.storyline {
-  padding: clamp(48px, 8vh, 96px) 0 !important;
-  transition: background-color 0.3s ease-in-out !important;
-}
-
-  </style>
+</style>
   <script>
     
   </script>
 </head>
 <body>
+  <script>
+    // Lightweight lazy loader for images outside hero
+    (function(){
+      const images = Array.from(document.querySelectorAll('img'))
+        .filter(img => !img.closest('#hero-carousel'));
+      images.forEach(img => {
+        if(!img.hasAttribute('loading')) img.setAttribute('loading','lazy');
+        if(!img.hasAttribute('decoding')) img.setAttribute('decoding','async');
+      });
+    })();
+  </script>
   <!-- Skip Navigation for Accessibility -->
   <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-accent text-white px-4 py-2 rounded z-50">
     Skip to main content
   </a>
   
   <!-- Header -->
-  <header class="sticky top-0 z-50 backdrop-blur-sm" 
+  <header class="sticky top-0 z-50" 
   style="background:linear-gradient(180deg, rgba(var(--bg-rgb), .9), rgba(var(--bg-rgb), .6)); border-bottom:1px solid rgba(255,255,255,.03)">
   <div class="site-container flex items-center justify-between py-3">
     <!-- Logo -->
@@ -485,7 +425,7 @@
 
 <!-- HERO SECTION -->
 
-  <section id="hero-carousel" class="storyline h-screen overflow-hidden transition-colors duration-300"
+  <section id="hero-carousel" class="h-[135vh] md:h-[90vh] overflow-hidden transition-colors duration-300"
            style="background: var(--bg); color: var(--text)">
     <div class="swiper h-full">
       <div class="swiper-wrapper">
@@ -497,10 +437,10 @@
             <!-- LEFT -->
             <div class="space-y-6 pl-2 md:pl-16">
               <p class="uppercase tracking-[.25em] text-sm" style="color: var(--muted)">
-                TRANSFORM YOUR BUSINESS WITH STRATEGIC WEB SOLUTIONS
+                DIGITAL TRANSFORMATION
               </p>
               <h1 class="font-extrabold text-5xl md:text-6xl leading-[1.1]">
-                We Don't Just Build Websites—<span style="color: #d6ff3d;">We Drive Results</span>
+                We Build Websites That <span style="color: #d6ff3d;">Drive Results</span>
               </h1>
               <p class="text-lg max-w-lg leading-relaxed" style="color: var(--text)">
                 From startups to enterprises, we create digital experiences that convert visitors into customers and deliver measurable growth for your business.
@@ -555,7 +495,7 @@
 
             <!-- RIGHT -->
             <div>
-              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
+              <img src="Banner/8.1.png"
                    alt="Web Development"
                    class="rounded-2xl shadow-2xl object-cover w-full h-[400px] md:h-[500px]" />
             </div>
@@ -567,10 +507,11 @@
           <div class="max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center pt-12 md:pt-20">
             <div class="space-y-6 pl-2 md:pl-16">
               <p class="uppercase tracking-[.25em] text-sm" style="color: var(--muted)">
-                DESIGN THAT ENGAGES
+                CREATIVE & STRATEGIC
               </p>
               <h1 class="font-extrabold text-5xl md:text-6xl leading-[1.1]">
-                Impactful <span style="color: #ff8c00;">UI/UX</span> for Your Brand
+                Designs That 
+               <span style="color: #ff8c00;">Inspire, Experiences</span> That Convert
               </h1>
               <p class="text-lg max-w-lg leading-relaxed" style="color: var(--text)">
                 We craft interfaces that not only look beautiful but also provide seamless user experiences.
@@ -619,7 +560,7 @@
               
             </div>
             <div>
-              <img src="https://images.unsplash.com/photo-1619462729367-e47da54ba992?q=80&w=800&auto=format&fit=crop"
+              <img src="Banner/1.3.png"
                    alt="UI/UX Design"
                    class="rounded-2xl shadow-2xl object-cover w-full h-[400px] md:h-[500px]" />
             </div>
@@ -631,10 +572,10 @@
           <div class="max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center pt-12 md:pt-20">
             <div class="space-y-6 pl-2 md:pl-16">
               <p class="uppercase tracking-[.25em] text-sm" style="color: var(--muted)">
-                GROW SMARTER
+                FUTURE-READY WEB SOLUTIONS
               </p>
               <h1 class="font-extrabold text-5xl md:text-6xl leading-[1.1]">
-                Smarter <span style="color: #16a34a;">Growth</span> with SEO & Analytics
+                Where Innovation Meets<span style="color: #16a34a;">Functionality</span>
               </h1>
               <p class="text-lg max-w-lg leading-relaxed" style="color: var(--text)">
                 Our SEO, optimization, and analytics strategies help you reach more people and scale effectively.
@@ -643,8 +584,7 @@
 
                 <!-- Learn More Button (accent green variant) -->
                 <a href="#about"
-                   class="relative px-6 py-3 font-semibold rounded-full shadow-lg overflow-hidden group"
-                   style="background: #16a34a; color: #fff;">
+                   class="btn-accent relative px-6 py-3 font-semibold rounded-full shadow-lg overflow-hidden group">
                    
                    <!-- Shine sweep -->
                    <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent 
@@ -683,7 +623,7 @@
               </div>
             </div>
             <div>
-              <img src="https://images.unsplash.com/photo-1678690832311-bb6e361989ca?q=80&w=800&auto=format&fit=crop"
+              <img src="Banner/10.png"
                    alt="SEO Growth"
                    class="rounded-2xl shadow-2xl object-cover w-full h-[400px] md:h-[500px]" />
             </div>
@@ -781,7 +721,7 @@
 
 
     <!-- STATISTICS SECTION -->
-    <section class="storyline site-section">
+    <section id="stats" class="storyline site-section">
       <div class="site-container">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div class="space-y-2">
@@ -807,11 +747,27 @@
     <!-- WHY CHOOSE US -->
     <section id="whyus" class="storyline site-section">
       <div class="site-container">
-        <div class="flex items-center gap-3 text-accent text-sm font-semibold uppercase reveal-up"><span style="width:12px;height:12px;border-radius:999px;background:var(--accent)"></span> WHY CHOOSE US</div>
-        <h2 class="mt-3 text-3xl md:text-5xl font-extrabold reveal-up">Expertise For Your Digital Growth Journey</h2>
-
+        <div class="flex items-center gap-3 text-accent text-sm font-semibold uppercase reveal-up">
+          <span style="width:12px;height:12px;border-radius:999px;background:var(--accent)"></span> WHY CHOOSE US
+        </div>
+        <h2 class="mt-3 text-3xl md:text-5xl font-extrabold reveal-up">
+          Expertise For Your Digital Growth Journey
+        </h2>
+    
         <div class="mt-8 grid lg:grid-cols-2 gap-8 items-start">
-          <div class="space-y-5">
+          <!-- Image first on large screens -->
+          <div class="card overflow-hidden rounded-2xl reveal-up order-1 lg:order-none">
+            <img 
+              decoding="async" 
+              loading="lazy" 
+              src="/4.png" 
+              alt="Team collaboration and brainstorming session for web development projects" 
+              class="w-full object-cover h-full min-h-[320px]"
+            >
+          </div>
+    
+          <!-- Text second on large screens -->
+          <div class="space-y-5 order-2 lg:order-none">
             <div class="card p-6 tilt relative overflow-hidden">
               <div class="shine"></div>
               <h3 class="font-bold text-xl">Personalized Approach & Dedicated Support</h3>
@@ -828,13 +784,10 @@
               <p class="muted mt-2">Clear communication, transparent timelines, and craftsmanship you can trust.</p>
             </div>
           </div>
-
-          <div class="card overflow-hidden rounded-2xl reveal-up">
-            <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=70" alt="Team collaboration and brainstorming session for web development projects" class="w-full object-cover h-full min-h-[320px]">
-          </div>
         </div>
       </div>
     </section>
+    
 
     <!-- TEAM SECTION -->
    
@@ -1040,7 +993,7 @@
             </button>
             <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
               <div class="p-6 text-sm leading-relaxed text-muted space-y-4">
-                <p>We don’t just design websites — we build high-performance digital platforms tailored to your needs.</p>
+                <p>We don't just design websites — we build high-performance digital platforms tailored to your needs.</p>
                 <ul class="list-check space-y-2">
                   <li>✔ Frontend Development (React, Next.js)</li>
                   <li>✔ Backend APIs (Node.js, Laravel)</li>
@@ -1070,7 +1023,7 @@
             </button>
             <div class="service-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
               <div class="p-6 text-sm leading-relaxed text-muted space-y-4">
-                <p>We create data-driven marketing strategies to grow your brand’s online presence and revenue.</p>
+                <p>We create data-driven marketing strategies to grow your brand's online presence and revenue.</p>
                 <ul class="list-check space-y-2">
                   <li>✔ SEO Audits & Keyword Strategy</li>
                   <li>✔ Social Media Growth Campaigns</li>
@@ -1275,7 +1228,7 @@
             <div class="chip inline-block">4</div>
             <h4 class="mt-3 font-bold text-xl">Launch, Support & Guide</h4>
             <p class="muted mt-2">
-              We launch, hand over, and support — with training so you’re confident.
+              We launch, hand over, and support — with training so you're confident.
             </p>
           </div>
     
@@ -1284,53 +1237,84 @@
     </section>
     
 <!-- clients  -->
-<section id="clients" class="storyline site-section py-12">
+<section id="clients" class="storyline site-section py-8 overflow-hidden">
   <div class="site-container">
-
+    <div class="flex items-center gap-3 text-accent text-sm font-semibold uppercase reveal-up">
+      <span class="w-3 h-3 rounded-full" style="background:var(--accent)"></span>
+      Our Clients
+    </div>
     <!-- Section Heading -->
-    <h2 class="text-2xl md:text-4xl font-extrabold mb-8 text-center">
+    <h2 class="mt-3 text-3xl md:text-5xl font-extrabold reveal-up mb-6">
       Trusted by <span class="accent">Clients</span>
     </h2>
 
-    <!-- Clients Grid -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+    <!-- Slider Container -->
+    <div class="relative overflow-hidden">
+      <div id="clients-slider" class="flex gap-6 md:gap-12 transition-transform duration-700">
 
-      <!-- Client Card Template -->
-      <div class="client-card relative card flex items-center justify-center p-6 min-h-[180px] cursor-pointer group">
-        <img src="https://recodeux.com/wp-content/uploads/2025/05/IFirm_Logo-New-removebg-preview-2.png" alt="Amazon" class="w-24 opacity-70 group-hover:opacity-100 transition">
+        <!-- IFirm -->
+        <div class="client-card flex items-center justify-start p-2 cursor-pointer flex-shrink-0">
+          <img src="/logo/new logo 1.png" alt="IFirm" class="w-20 sm:w-24 md:w-32 hover:scale-105 transition-transform">
+        </div>
+        
+
+        <!-- Airbnb -->
+        <div class="client-card flex items-center justify-start p-2 cursor-pointer flex-shrink-0">
+          <img src="/logo/new logo 2.png" alt="Airbnb" class="w-20 sm:w-24 md:w-32 hover:scale-105 transition-transform">
+        </div>
+
+        <!-- Walmart -->
+        <div class="client-card flex items-center justify-start p-2 cursor-pointer flex-shrink-0">
+          <img src="/logo/new logo 3.png" alt="Walmart" class="w-20 sm:w-24 md:w-32 hover:scale-105 transition-transform">
+        </div>
+
+        <!-- Unity -->
+        <div class="client-card flex items-center justify-start p-2 cursor-pointer flex-shrink-0">
+          <img src="/logo/1.2.png" alt="Unity" class="w-20 sm:w-24 md:w-32 hover:scale-105 transition-transform">
+        </div>
+
+        <!-- Repeat logos for smooth looping -->
+        <div class="client-card flex items-center justify-start p-2 cursor-pointer flex-shrink-0">
+          <img src="/logo/new logo 2.png" alt="IFirm" class="w-20 sm:w-24 md:w-32 hover:scale-105 transition-transform">
+        </div>
+        <div class="client-card flex items-center justify-start p-2 cursor-pointer flex-shrink-0">
+          <img src="/logo/new logo 1.png" alt="Airbnb" class="w-20 sm:w-24 md:w-32 hover:scale-105 transition-transform">
+        </div>
+        <div class="client-card flex items-center justify-start p-2 cursor-pointer flex-shrink-0">
+          <img src="/logo/new logo 2.png" alt="Airbnb" class="w-20 sm:w-24 md:w-32 hover:scale-105 transition-transform">
+        </div>
+
+        <!-- Walmart -->
+        <div class="client-card flex items-center justify-start p-2 cursor-pointer flex-shrink-0">
+          <img src="/logo/new logo 3.png" alt="Walmart" class="w-20 sm:w-24 md:w-32 hover:scale-105 transition-transform">
+        </div>
+
       </div>
-
-      <div class="client-card relative card flex items-center justify-center p-6 min-h-[180px] cursor-pointer group">
-        <img src="https://recodeux.com/wp-content/uploads/2025/05/5.pngf" alt="Airbnb" class="w-24 opacity-70 group-hover:opacity-100 transition">
-      </div>
-
-      <div class="client-card relative card flex items-center justify-center p-6 min-h-[180px] cursor-pointer group">
-        <img src="https://recodeux.com/wp-content/uploads/2025/05/4.png" alt="Walmart" class="w-24 opacity-70 group-hover:opacity-100 transition">
-      </div>
-
-      <div class="client-card relative card flex items-center justify-center p-6 min-h-[180px] cursor-pointer group">
-        <img src="https://recodeux.com/wp-content/uploads/2025/05/4.png" alt="Unity" class="w-24 opacity-70 group-hover:opacity-100 transition">
-      </div>
-
-      <div class="client-card relative card flex items-center justify-center p-6 min-h-[180px] cursor-pointer group">
-        <img src="https://recodeux.com/wp-content/uploads/2025/05/fundify-logo.svg" alt="Meta" class="w-24 opacity-70 group-hover:opacity-100 transition">
-      </div>
-
-      <div class="client-card relative card flex items-center justify-center p-6 min-h-[180px] cursor-pointer group">
-        <img src="https://recodeux.com/wp-content/uploads/2025/05/1.png" alt="Figma" class="w-24 opacity-70 group-hover:opacity-100 transition">
-      </div>
-
-      <div class="client-card relative card flex items-center justify-center p-6 min-h-[180px] cursor-pointer group">
-        <img src="https://recodeux.com/wp-content/uploads/2025/05/3.png" alt="Ola" class="w-24 opacity-70 group-hover:opacity-100 transition">
-      </div>
-
-      <div class="client-card relative card flex items-center justify-center p-6 min-h-[180px] cursor-pointer group">
-        <img src="https://cdn.simpleicons.org/oculus/ffffff" alt="Oculus" class="w-24 opacity-70 group-hover:opacity-100 transition">
-      </div>
-
     </div>
+
   </div>
 </section>
+
+<script>
+  const slider = document.getElementById('clients-slider');
+  let scrollAmount = 0;
+  const step = 1; // pixels per interval
+  const intervalTime = 20; // milliseconds
+
+  function slide() {
+    scrollAmount += step;
+    if (scrollAmount >= slider.scrollWidth / 2) {
+      scrollAmount = 0;
+    }
+    slider.style.transform = `translateX(-${scrollAmount}px)`;
+  }
+
+  setInterval(slide, intervalTime);
+</script>
+
+
+
+
 
 
 <style>
@@ -1345,9 +1329,14 @@
 
 /* Light mode client cards */
 :root[data-theme="light"] .client-card {
-  background: #ffffff00;
+  background: rgba(0,0,0,0.03);
   border: 1px solid rgba(0,0,0,0.06);
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Improve white logo visibility in light theme */
+:root[data-theme="light"] .client-card img {
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.45)) drop-shadow(0 2px 2px rgba(0,0,0,0.15));
 }
 
 /* Dark mode client cards */
@@ -1362,91 +1351,11 @@
   transform: translateY(-2px);
 }
 </style>
+
+
        <!-- Tools Marquee -->
-       <div class=" relative">
-        <!-- Gradient overlays -->
-        <div class="absolute left-0 top-0 h-full w-48 pointer-events-none z-10" style="background:linear-gradient(to right, rgba(var(--bg-rgb), 1), rgba(var(--bg-rgb), 0))"></div>
-        <div class="absolute right-0 top-0 h-full w-48 pointer-events-none z-10" style="background:linear-gradient(to left, rgba(var(--bg-rgb), 1), rgba(var(--bg-rgb), 0))"></div>
-      
-        <!-- Site container for equal spacing -->
-        <div class="site-container">
-          <div class="marquee-wrap py-8 border-t border-white/5 overflow-hidden">
-            <div class="marquee-track flex gap-20 animate-marquee">
-              <!-- Row -->
-              <div class="flex items-center gap-12">
-                <div class="flex items-center gap-3">
-                  <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-8 h-8" alt="React"/>
-                  <span class="text-sm font-medium">React</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <img src="https://cdn.simpleicons.org/vercel/ffffff" class="w-8 h-8" alt="Next.js"/>
-                  <span class="text-sm font-medium">Next</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <img src="https://cdn.simpleicons.org/typescript/3178C6" class="w-8 h-8" alt="TypeScript"/>
-                  <span class="text-sm font-medium">TS</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" class="w-8 h-8" alt="Tailwind"/>
-                  <span class="text-sm font-medium">Tailwind</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <img src="https://cdn.simpleicons.org/nodedotjs/5FA04E" class="w-8 h-8" alt="Node.js"/>
-                  <span class="text-sm font-medium">Node</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <img src="https://cdn.simpleicons.org/figma/F24E1E" class="w-8 h-8" alt="Figma"/>
-                  <span class="text-sm font-medium">Figma</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <img src="https://cdn.simpleicons.org/greensock/88CE02" class="w-8 h-8" alt="GSAP"/>
-                  <span class="text-sm font-medium">GSAP</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <img src="https://cdn.simpleicons.org/vercel/ffffff" class="w-8 h-8" alt="Vercel"/>
-                  <span class="text-sm font-medium">Vercel</span>
-                </div>
-              </div>
-              <!-- Duplicate row -->
-              <div class="flex items-center gap-12" aria-hidden="true">
-                <div class="flex items-center gap-3">
-                  <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-8 h-8" alt="React"/>
-                  <span class="text-sm font-medium">React</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <img src="https://cdn.simpleicons.org/vercel/ffffff" class="w-8 h-8" alt="Next.js"/>
-                  <span class="text-sm font-medium">Next</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <img src="https://cdn.simpleicons.org/typescript/3178C6" class="w-8 h-8" alt="TypeScript"/>
-                  <span class="text-sm font-medium">TS</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" class="w-8 h-8" alt="Tailwind"/>
-                  <span class="text-sm font-medium">Tailwind</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <img src="https://cdn.simpleicons.org/nodedotjs/5FA04E" class="w-8 h-8" alt="Node.js"/>
-                  <span class="text-sm font-medium">Node</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <img src="https://cdn.simpleicons.org/figma/F24E1E" class="w-8 h-8" alt="Figma"/>
-                  <span class="text-sm font-medium">Figma</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <img src="https://cdn.simpleicons.org/greensock/88CE02" class="w-8 h-8" alt="GSAP"/>
-                  <span class="text-sm font-medium">GSAP</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <img src="https://cdn.simpleicons.org/vercel/ffffff" class="w-8 h-8" alt="Vercel"/>
-                  <span class="text-sm font-medium">Vercel</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
+   
+  
       <style>
       @keyframes marquee {
         0% { transform: translateX(0%); }
@@ -1459,8 +1368,10 @@
       </style>
 
 <!--  -->
+
+
     <!-- WORK / PORTFOLIO -->
-    <section id="projects" class="storyline site-section">
+    <section id="projects" class="storyline  py-12 site-section">
       <div class="site-container">
         <!-- Section Heading -->
         <div class="flex items-center gap-3 text-accent text-sm font-semibold uppercase">
@@ -1687,46 +1598,176 @@
         projectModal.classList.remove("active");
       });
     </script>
-    
-    
-    
+
+<section class="storyline site-section py-12 site-section relative">
+  <!-- Gradient overlays -->
+  <div class="absolute left-0 top-0 h-full w-48 pointer-events-none z-10"
+       style="background:linear-gradient(to right, rgba(var(--bg-rgb),1), rgba(var(--bg-rgb),0))"></div>
+  <div class="absolute right-0 top-0 h-full w-48 pointer-events-none z-10"
+       style="background:linear-gradient(to left, rgba(var(--bg-rgb),1), rgba(var(--bg-rgb),0))"></div>
+
+  <!-- Site container -->
+  <div class="site-container">
+    <div class="marquee-wrap py-4 border-t border-white/5 overflow-hidden">
+      <div class="marquee-track flex gap-20 animate-marquee">
+        <!-- Rows go here --> <div class="flex items-center gap-12">
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-8 h-8" alt="React"/>
+                  <span class="text-sm font-medium">React</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/vercel/ffffff" class="w-8 h-8" alt="Next.js"/>
+                  <span class="text-sm font-medium">Next</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/typescript/3178C6" class="w-8 h-8" alt="TypeScript"/>
+                  <span class="text-sm font-medium">TS</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" class="w-8 h-8" alt="Tailwind"/>
+                  <span class="text-sm font-medium">Tailwind</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/nodedotjs/5FA04E" class="w-8 h-8" alt="Node.js"/>
+                  <span class="text-sm font-medium">Node</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/figma/F24E1E" class="w-8 h-8" alt="Figma"/>
+                  <span class="text-sm font-medium">Figma</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/greensock/88CE02" class="w-8 h-8" alt="GSAP"/>
+                  <span class="text-sm font-medium">GSAP</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/vercel/ffffff" class="w-8 h-8" alt="Vercel"/>
+                  <span class="text-sm font-medium">Vercel</span>
+                </div>
+              </div>
+              <!-- Duplicate row -->
+              <div class="flex items-center gap-12" aria-hidden="true">
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-8 h-8" alt="React"/>
+                  <span class="text-sm font-medium">React</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/vercel/ffffff" class="w-8 h-8" alt="Next.js"/>
+                  <span class="text-sm font-medium">Next</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/typescript/3178C6" class="w-8 h-8" alt="TypeScript"/>
+                  <span class="text-sm font-medium">TS</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" class="w-8 h-8" alt="Tailwind"/>
+                  <span class="text-sm font-medium">Tailwind</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/nodedotjs/5FA04E" class="w-8 h-8" alt="Node.js"/>
+                  <span class="text-sm font-medium">Node</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/figma/F24E1E" class="w-8 h-8" alt="Figma"/>
+                  <span class="text-sm font-medium">Figma</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/greensock/88CE02" class="w-8 h-8" alt="GSAP"/>
+                  <span class="text-sm font-medium">GSAP</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <img src="https://cdn.simpleicons.org/vercel/ffffff" class="w-8 h-8" alt="Vercel"/>
+                  <span class="text-sm font-medium">Vercel</span>
+                </div>
+              </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+</section>
     
 
     <!-- NEWSLETTER SIGNUP -->
-    <section class="storyline site-section">
-      <div class="site-container">
-        <div class="card p-8 md:p-12 text-center">
-          <div class="max-w-2xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
-              Stay Updated with Our <span class="text-accent">Latest Insights</span>
+    <section id="services" class="storyline site-section">
+      <div class="site-container grid lg:grid-cols-2 gap-12 items-center">
+        
+        <!-- Left Card -->
+        <div class="p-16 rounded-2xl shadow-lg" 
+             style="background: var(--accent); color: #fff;">
+          <div class="bg-black/80 p-6 rounded-lg inline-block mb-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold leading-snug">
+              All Your Website Needs, <br class="hidden md:block"/> Expertly Handled
             </h2>
-            <p class="muted mb-8">
-              Get exclusive web development tips, design trends, and business growth strategies delivered to your inbox weekly.
-            </p>
-            <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" id="newsletter-form">
-              <input 
-                type="email" 
-                placeholder="Enter your email address" 
-                required
-                class="flex-1 px-4 py-3 rounded-full border border-white/10 bg-white/5 text-center sm:text-left focus:outline-none focus:border-accent transition"
-              />
-              <button 
-                type="submit"
-                class="btn-accent whitespace-nowrap"
-              >
-                Subscribe
-              </button>
-            </form>
-            <p class="text-xs muted mt-4">
-              No spam, unsubscribe at any time. We respect your privacy.
-            </p>
+            <div class="mt-2 w-16 h-1 bg-yellow-400 rounded-full"></div>
           </div>
+          <p class="mt-4 text-base font-medium">
+            End-to-end website solutions <span class="ml-1">🔥</span> that ensure your website looks great, functions flawlessly, and drives results 🚀
+          </p>
+          <button class="mt-6 px-6 py-3 bg-black text-white rounded-lg font-semibold hover:bg-white hover:text-black transition">
+            BOOK A CALL
+          </button>
         </div>
+    
+        <!-- Right List -->
+      <!-- Right Services Grid -->
+<div class="grid sm:grid-cols-2 gap-6">
+  <div class="p-5 rounded-xl bg-[var(--card)] shadow-md hover:shadow-xl transition group">
+    <div class="flex items-center gap-3">
+      <span class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-[var(--accent)] text-[var(--accent)] font-bold group-hover:bg-[var(--accent)] group-hover:text-white transition">✓</span>
+      <h3 class="text-lg font-semibold">End-to-End Web Development</h3>
+    </div>
+    <p class="mt-2 text-sm text-[var(--muted)]">From concept to deployment, we handle every step.</p>
+  </div>
+
+  <div class="p-5 rounded-xl bg-[var(--card)] shadow-md hover:shadow-xl transition group">
+    <div class="flex items-center gap-3">
+      <span class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-[var(--accent)] text-[var(--accent)] font-bold group-hover:bg-[var(--accent)] group-hover:text-white transition">✓</span>
+      <h3 class="text-lg font-semibold">Custom Website Design</h3>
+    </div>
+    <p class="mt-2 text-sm text-[var(--muted)]">Unique, modern designs tailored to your brand.</p>
+  </div>
+
+  <div class="p-5 rounded-xl bg-[var(--card)] shadow-md hover:shadow-xl transition group">
+    <div class="flex items-center gap-3">
+      <span class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-[var(--accent)] text-[var(--accent)] font-bold group-hover:bg-[var(--accent)] group-hover:text-white transition">✓</span>
+      <h3 class="text-lg font-semibold">Landing Page</h3>
+    </div>
+    <p class="mt-2 text-sm text-[var(--muted)]">High-converting landing pages that capture leads.</p>
+  </div>
+
+  <div class="p-5 rounded-xl bg-[var(--card)] shadow-md hover:shadow-xl transition group">
+    <div class="flex items-center gap-3">
+      <span class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-[var(--accent)] text-[var(--accent)] font-bold group-hover:bg-[var(--accent)] group-hover:text-white transition">✓</span>
+      <h3 class="text-lg font-semibold">E-Commerce Website</h3>
+    </div>
+    <p class="mt-2 text-sm text-[var(--muted)]">Seamless shopping experiences with secure checkout.</p>
+  </div>
+
+  <div class="p-5 rounded-xl bg-[var(--card)] shadow-md hover:shadow-xl transition group">
+    <div class="flex items-center gap-3">
+      <span class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-[var(--accent)] text-[var(--accent)] font-bold group-hover:bg-[var(--accent)] group-hover:text-white transition">✓</span>
+      <h3 class="text-lg font-semibold">Website Optimization</h3>
+    </div>
+    <p class="mt-2 text-sm text-[var(--muted)]">Faster, smoother websites optimized for performance.</p>
+  </div>
+
+  <div class="p-5 rounded-xl bg-[var(--card)] shadow-md hover:shadow-xl transition group">
+    <div class="flex items-center gap-3">
+      <span class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-[var(--accent)] text-[var(--accent)] font-bold group-hover:bg-[var(--accent)] group-hover:text-white transition">✓</span>
+      <h3 class="text-lg font-semibold">SEO Optimization</h3>
+    </div>
+    <p class="mt-2 text-sm text-[var(--muted)]">Boost rankings & visibility with effective SEO strategies.</p>
+  </div>
+</div>
+
       </div>
     </section>
+    
 
     <!-- TESTIMONIALS -->
-    <section id="reviews" class="storyline mt-20 site-section">
+    <section id="reviews" class="storyline  site-section">
       <div class="site-container">
         <h3 class="text-3xl md:text-4xl font-extrabold">What Clients Say</h3>
         <div class="mt-6 grid md:grid-cols-3 gap-6 gradient-mask">
@@ -1741,7 +1782,7 @@
                 <div class="muted text-sm">Small Business Owner</div>
               </div>
             </div>
-            <p class="mt-4">“Fast, responsive, and modern. Our MVP finally feels legit thanks to their design work.”</p>
+            <p class="mt-4">"Fast, responsive, and modern. Our MVP finally feels legit thanks to their design work."</p>
             <div class="mt-3 text-yellow-400">★★★★★</div>
           </div>
 
@@ -1754,7 +1795,7 @@
                 <div class="muted text-sm">Founder of HappyCo</div>
               </div>
             </div>
-            <p class="mt-4">“The new interface is not only beautiful but also functional. It elevated our brand instantly.”</p>
+            <p class="mt-4">"The new interface is not only beautiful but also functional. It elevated our brand instantly."</p>
             <div class="mt-3 text-yellow-400">★★★★★</div>
           </div>
 
@@ -1767,7 +1808,7 @@
                 <div class="muted text-sm">Co‑Founder of ByteShift</div>
               </div>
             </div>
-            <p class="mt-4">“Exceptional communication and delivery. The design speaks directly to our audience.”</p>
+            <p class="mt-4">"Exceptional communication and delivery. The design speaks directly to our audience."</p>
             <div class="mt-3 text-yellow-400">★★★★★</div>
           </div>
 
@@ -1780,7 +1821,7 @@
                 <div class="muted text-sm">CTO at LaunchPadX</div>
               </div>
             </div>
-            <p class="mt-4">“Their UX decisions were backed by real insight. We saw an immediate boost in retention.”</p>
+            <p class="mt-4">"Their UX decisions were backed by real insight. We saw an immediate boost in retention."</p>
             <div class="mt-3 text-yellow-400">★★★★★</div>
           </div>
 
@@ -1793,7 +1834,7 @@
                 <div class="muted text-sm">COO at VantageCore</div>
               </div>
             </div>
-            <p class="mt-4">“Their design helped us close our first round of funding. Investors were impressed with the UI alone.”</p>
+            <p class="mt-4">"Their design helped us close our first round of funding. Investors were impressed with the UI alone."</p>
             <div class="mt-3 text-yellow-400">★★★★★</div>
           </div>
 
@@ -1806,7 +1847,7 @@
                 <div class="muted text-sm">Director of Digital at OrbitWave</div>
               </div>
             </div>
-            <p class="mt-4">“Fast, smart, and reliable — the perfect partner for a growing startup.”</p>
+            <p class="mt-4">"Fast, smart, and reliable — the perfect partner for a growing startup."</p>
             <div class="mt-3 text-yellow-400">★★★★★</div>
           </div>
 
@@ -1815,7 +1856,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="mt-20 site-section">
+    <section id="contact" class=" storyline  site-section">
       <div class="site-container grid lg:grid-cols-2 gap-10 items-start">
         <!-- Left side text -->
         <div>
@@ -1964,7 +2005,50 @@
         </form>
       </div>
     </section>
-    
+    <section id="map" class="storyline site-section">
+      <div class="site-container">
+        <div class="card rounded-2xl overflow-hidden border border-white/10 reveal-up">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.000107288307!2d77.20899621508314!3d28.61393948242398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd1e5a3b3a5d%3A0x5e6b6eecfdd7b1!2sNew%20Delhi!5e0!3m2!1sen!2sin!4v1632987392183!5m2!1sen!2sin" 
+            width="100%" height="420" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+    <section id="faq" class="storyline site-section">
+      <div class="site-container">
+        <div class="flex items-center gap-3 text-accent text-sm font-semibold uppercase reveal-up">
+          <span class="w-3 h-3 rounded-full" style="background:var(--accent)"></span>
+          Frequently Asked Questions
+        </div>
+        <h2 class="mt-3 text-3xl md:text-5xl font-extrabold reveal-up">Everything You Might Want To Know</h2>
+        <p class="muted mt-3 max-w-2xl reveal-up">Quick answers about our process, timelines, pricing models, and collaboration.</p>
+
+        <div class="mt-8 space-y-4">
+          <details class="card rounded-xl p-5 border border-white/10 bg-card reveal-up">
+            <summary class="font-semibold cursor-pointer">How long does a typical website project take?</summary>
+            <div class="mt-3 text-muted">Most projects take 3–6 weeks depending on scope, deliverables, and feedback speed.</div>
+          </details>
+
+          <details class="card rounded-xl p-5 border border-white/10 bg-card reveal-up">
+            <summary class="font-semibold cursor-pointer">Do you provide content writing and branding?</summary>
+            <div class="mt-3 text-muted">Yes, we offer copywriting, branding, and complete design systems as add-ons.</div>
+          </details>
+
+          <details class="card rounded-xl p-5 border border-white/10 bg-card reveal-up">
+            <summary class="font-semibold cursor-pointer">Will the site be SEO and performance optimized?</summary>
+            <div class="mt-3 text-muted">We build with accessibility, speed, and on-page SEO best practices from day one.</div>
+          </details>
+
+          <details class="card rounded-xl p-5 border border-white/10 bg-card reveal-up">
+            <summary class="font-semibold cursor-pointer">What is the typical engagement model?</summary>
+            <div class="mt-3 text-muted">Fixed-scope projects or monthly retainers for continuous iteration and support.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP SECTION (below contact) -->
+  
     <!-- ===== Extra CSS for custom dropdown ===== -->
     <style>
       .custom-select {
@@ -2133,43 +2217,176 @@
         }, 1500);
       });
     </script>
+    <!-- newslettter  -->
+    <section class="storyline site-section">
+      <div class="site-container">
+        <div class="card p-8 md:p-12 text-center">
+          <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
+              Stay Updated with Our <span class="text-accent">Latest Insights</span>
+            </h2>
+            <p class="muted mb-8">
+              Get exclusive web development tips, design trends, and business growth strategies delivered to your inbox weekly.
+            </p>
+            <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" id="newsletter-form">
+              <input 
+                type="email" 
+                placeholder="Enter your email address" 
+                required
+                class="flex-1 px-4 py-3 rounded-full border border-white/10 bg-white/5 text-center sm:text-left focus:outline-none focus:border-accent transition"
+              />
+              <button 
+                type="submit"
+                class="btn-accent whitespace-nowrap"
+              >
+                Subscribe
+              </button>
+            </form>
+            <p class="text-xs muted mt-4">
+              No spam, unsubscribe at any time. We respect your privacy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FOOTER -->
+    <footer class="footer py-14" style="border-top:1px solid rgba(255,255,255,.08)">
+      <div class="site-container grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+        
+        <!-- Brand -->
+        <div class="space-y-5">
+          <div class="flex items-center gap-3">
+            <div class="logo-dot"></div>
+            <div class="font-extrabold text-xl">Recode UX</div>
+          </div>
+          <p class="muted text-sm leading-relaxed max-w-xs">
+            Building modern websites & digital solutions that not only look good but also deliver real business growth.
+          </p>
+          <!-- Social -->
+          <div class="flex gap-3 mt-5">
+            <a href="#" aria-label="Twitter"
+               class="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--accent)] text-black hover:opacity-80 transition">
+              <i class="ri-twitter-fill text-lg"></i>
+            </a>
+            <a href="#" aria-label="LinkedIn"
+               class="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--accent)] text-black hover:opacity-80 transition">
+              <i class="ri-linkedin-fill text-lg"></i>
+            </a>
+            <a href="#" aria-label="Instagram"
+               class="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--accent)] text-black hover:opacity-80 transition">
+              <i class="ri-instagram-fill text-lg"></i>
+            </a>
+          </div>
+        </div>
+    
+        <!-- Useful Links -->
+        <div class="space-y-5">
+          <h4 class="font-bold text-base">Useful Links</h4>
+          <ul class="space-y-2 text-sm muted">
+            <li><a href="#" class="hover:text-[var(--accent)]">Home</a></li>
+            <li><a href="#services" class="hover:text-[var(--accent)]">Services</a></li>
+            <li><a href="#portfolio" class="hover:text-[var(--accent)]">Portfolio</a></li>
+            <li><a href="#about" class="hover:text-[var(--accent)]">About</a></li>
+            <li><a href="#contact" class="hover:text-[var(--accent)]">Contact</a></li>
+          </ul>
+        </div>
+    
+        <!-- Services -->
+        <div class="space-y-5">
+          <h4 class="font-bold text-base">Our Services</h4>
+          <ul class="space-y-2 text-sm muted">
+            <li>UI/UX Design</li>
+            <li>Web Development</li>
+            <li>SEO Optimization</li>
+            <li>Backend Solutions</li>
+            <li>Domain & Hosting</li>
+            <li>Email Setup</li>
+          </ul>
+        </div>
+    
+        <!-- Contact -->
+        <div class="space-y-5">
+          <h4 class="font-bold text-base">Contact Us</h4>
+          <ul class="space-y-3 text-sm muted">
+            <li class="flex items-center gap-2"><i class="ri-map-pin-fill"></i> New Delhi, India</li>
+            <li class="flex items-center gap-2"><i class="ri-phone-fill"></i> +91 89200 59901</li>
+            <li class="flex items-center gap-2"><i class="ri-phone-fill"></i> +91 77620 88957</li>
+            <li class="flex items-center gap-2"><i class="ri-mail-fill"></i> contact@recodeux.com</li>
+          </ul>
+        </div>
+    
+      </div>
+    
+      <!-- Bottom Bar -->
+      <div class="site-container mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-sm muted gap-3">
+        <div>© <span id="y"></span> Recode UX. All Rights Reserved.</div>
+        <div class="flex gap-4">
+          <a href="#" class="hover:text-[var(--accent)]">Sitemap</a>
+          <a href="#contact" class="hover:text-[var(--accent)]">Contact Us</a>
+        </div>
+      </div>
+    
+      <!-- Back to top -->
+      <button id="toTop" aria-label="Scroll to top"
+        class="fixed bottom-6 right-6 hidden rounded-full p-3 bg-black/20 dark:bg-white/10 border border-white/10 backdrop-blur hover:bg-black/40 dark:hover:bg-white/20 transition">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M12 19V5m0 0l-6 6m6-6l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </footer>
     
 
-    <!-- FOOTER -->
-    <footer class="mt-20 border-t border-white/5 py-12">
-      <div class="site-container grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div>
-          <div class="flex items-center gap-3"><div class="logo-dot"></div><div class="font-extrabold ml-2">Recode UX</div></div>
-          <p class="muted mt-3">Your Full‑Stack Digital Partner and Product Design Studio.</p>
-          <div class="mt-4 text-yellow-400">★★★★★ <span class="muted text-sm">4.9 REVIEWS</span></div>
-        </div>
-        <div>
-          <h4 class="font-bold">Company</h4>
-          <ul class="mt-3 muted space-y-2"><li><a href="#work">Our Work</a></li><li><a href="#services">Services</a></li><li><a href="#whyus">Why Us?</a></li><li>Careers</li><li>Terms & Conditions</li><li>Privacy Policy</li></ul>
-        </div>
-        <div>
-          <h4 class="font-bold">Services</h4>
-          <ul class="mt-3 muted space-y-2"><li>UI UX Design</li><li>UX Audit</li><li>Mobile App Design</li><li>Landing Page Design</li><li>Website Development</li><li>Branding</li></ul>
-        </div>
-        <div>
-          <h4 class="font-bold">Resources</h4>
-          <ul class="mt-3 muted space-y-2"><li>Blog</li><li>Newsletter</li><li>Design System</li><li>Design Tips</li><li>Development Ideas</li></ul>
-        </div>
-      </div>
-
-      <div class="site-container mt-8 flex flex-col md:flex-row items-center justify-between muted text-sm gap-4">
-        <div>©2025 Recode UX. All Rights Reserved.</div>
-        <div class="flex items-center gap-3">
-          <div class="chip">Be</div>
-          <div class="chip">dr</div>
-          <div class="chip">in</div>
-          <div class="chip">▶</div>
-        </div>
-      
-      </div>
-
-      <button id="toTop" aria-label="Scroll to top" class="fixed bottom-6 right-6 hidden rounded-full p-3 bg-white/10 border border-white/10 backdrop-blur hover:bg-white/20 transition"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 19V5m0 0l-6 6m6-6l6 6" stroke="#eaeaea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    </footer>
+    <script>
+      (function(){
+        const y = document.getElementById('y');
+        if(y) y.textContent = new Date().getFullYear();
+      })();
+    </script>
+<style>
+  .footer {
+  /* Subtle layered background with theme-aware colors */
+  background:
+    radial-gradient(1200px 600px at 90% -200px, rgba(255,255,255,0.06), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0));
+  background-color: #000;
+  color: var(--text);
+}
+:root[data-theme="light"] .footer {
+  background:
+    radial-gradient(1200px 600px at 90% -200px, rgba(0,0,0,0.04), transparent 60%),
+    linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0));
+  background-color: #fff;
+  color: #0b0b0f;
+}
+.footer h4 { color: var(--text); letter-spacing: 0.2px; }
+.footer a { color: inherit; opacity: 0.9; transition: color 0.25s ease, opacity 0.25s ease; }
+.footer a:hover { color: var(--accent); opacity: 1; }
+.footer ul li i { color: var(--accent); }
+.social-icon {
+  display: inline-flex;
+  width: 40px; height: 40px;
+  align-items: center; justify-content: center;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  font-size: 1.2rem;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+:root[data-theme="light"] .social-icon { background: #f6f7fb; border-color: rgba(0,0,0,0.06); box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+.social-icon:hover { background: var(--accent); color: #fff; transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.35); }
+/* Map tint */
+.footer iframe { filter: grayscale(12%) contrast(1.05) brightness(0.98); }
+/* Bottom bar border tint */
+.footer .border-t { border-color: rgba(255,255,255,0.1); }
+:root[data-theme="light"] .footer .border-t { border-color: rgba(0,0,0,0.08); }
+/* Back-to-top polish */
+#toTop { box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
+#toTop:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.35); }
+/* Mobile spacing */
+@media (max-width: 768px) { .footer .site-container { gap: 2rem; } }
+</style>    
   </main>
 
   <script>
@@ -2297,11 +2514,23 @@
         gsap.from('.hero-title', {y:40,opacity:0,duration:.9,ease:'power3.out'});
         // generic reveals
         gsap.utils.toArray('.reveal-up').forEach((el)=>{
-          gsap.from(el,{scrollTrigger:{trigger:el,start:'top 85%'}, y:24, opacity:0, duration:.7, ease:'power2.out'});
+          gsap.from(el,{
+            scrollTrigger:{ trigger: el, start: 'top 99%', once: true },
+            y:20,
+            opacity:0,
+            duration:.5,
+            ease:'power2.out'
+          });
         });
         // cards
-        gsap.utils.toArray('.service-card, .work-card, .testimonial-card, .process-step').forEach((c,i)=>{
-          gsap.from(c,{scrollTrigger:{trigger:c,start:'top 90%'}, y:28, opacity:0, duration:.6, delay:i*0.05, ease:'power2.out'});
+        gsap.utils.toArray('.service-card, .work-card, .testimonial-card, .process-step, .project-card').forEach((c)=>{
+          gsap.from(c,{
+            scrollTrigger:{ trigger: c, start: 'top 99%', once: true },
+            y:20,
+            opacity:0,
+            duration:.45,
+            ease:'power2.out'
+          });
         });
       }
 
