@@ -7,899 +7,295 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-    
-    /* Theme variables */
-    :root {
-      --bg: #0b0b0f; 
-      --bg-rgb: 11,11,15; 
-      --text: #e6e6e6; 
-      --text-secondary: #9aa0a6; 
-      --accent: #0c0fc4; 
-      --card: #111115; 
-      --border: rgba(255,255,255,0.08);
-      --hover: rgba(255,255,255,0.05);
-      --shadow: rgba(0,0,0,0.2);
-      --gradient: linear-gradient(135deg, #0c0fc4, #4338ca);
-      --reading-width: 65ch;
+
+    :root{
+      --bg: #0b0b0f;
+      --bg-rgb: 11,11,15;
+      --text: #e6e6e6;
+      --text-secondary: #9aa0a6;
+      --accent: #0c0fc4;
+      --accent-rgb: 12,15,196;
+      --card: #111115;
+      --border: rgba(255,255,255,0.06);
+      --hover: rgba(255,255,255,0.03);
+      --shadow: 0 12px 30px rgba(2,6,23,0.6);
+      --gradient: linear-gradient(135deg,var(--accent),#4338ca);
+      --reading-width: 62ch;
+      --container-max: 1100px;
     }
-    
-    [data-theme="light"] {
+
+    [data-theme="light"]{
       --bg: #ffffff;
       --bg-rgb: 255,255,255;
-      --text: #1a1a1a;
+      --text: #0f172a;
       --text-secondary: #6b7280;
       --accent: #3b82f6;
+      --accent-rgb: 59,130,246;
       --card: #f8fafc;
-      --border: rgba(0,0,0,0.08);
-      --hover: rgba(0,0,0,0.04);
-      --shadow: rgba(0,0,0,0.08);
-      --gradient: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      --border: rgba(15,23,42,0.06);
+      --hover: rgba(15,23,42,0.03);
+      --shadow: 0 10px 20px rgba(15,23,42,0.06);
+      --gradient: linear-gradient(135deg,var(--accent),#1d4ed8);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale; line-height:1.6}
 
-    html {
-      scroll-behavior: smooth;
-    }
+    /* Layout container */
+    .container{max-width:var(--container-max);margin:0 auto;padding:28px 20px}
 
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      font-size: 16px;
-      overflow-x: hidden;
-    }
+    /* Top UI */
+    .nav{padding:28px 0 8px;display:flex;align-items:center}
+    .back{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;background:var(--card);border:1px solid var(--border);border-radius:10px;color:var(--text);text-decoration:none;font-weight:600}
+    .back i{color:var(--accent)}
 
-    /* Theme Toggle */
-    .theme-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 1000;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-    }
+    .progress-bar{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:left;transform:scaleX(0);background:var(--gradient);z-index:9999}
+    .theme-toggle{position:fixed;top:18px;right:18px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px;cursor:pointer;z-index:1000}
+    .theme-toggle i{color:var(--accent)}
 
-    .theme-toggle:hover {
-      background: var(--hover);
-      transform: scale(1.05);
-    }
+    /* Header */
+    .article-header{padding:28px 0 6px;text-align:left}
+    .article-meta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px;align-items:center}
+    .meta-item{display:inline-flex;align-items:center;gap:10px;color:var(--text-secondary);font-weight:600;font-size:0.95rem}
+    .meta-item i{display:inline-flex;width:36px;height:36px;border-radius:8px;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(var(--accent-rgb),0.12), transparent);color:var(--accent)}
 
-    .theme-toggle i {
-      font-size: 18px;
-      color: var(--accent);
-    }
+    .article-title{font-size:clamp(1.8rem,3.6vw,3rem);font-weight:800;line-height:1.05;margin:6px 0}
+    .article-subtitle{color:var(--text-secondary);max-width:var(--reading-width);margin-top:6px}
 
-    /* Progress Bar */
-    .progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      background: var(--gradient);
-      z-index: 1000;
-      transform-origin: left;
-      transform: scaleX(0);
-    }
+    /* Hero */
+    .hero-wrapper{margin:26px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow)}
+    .hero{width:100%;height:clamp(240px,42vh,520px);object-fit:cover;display:block}
 
-    /* Container */
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+    /* Tools */
+    .tools-section{margin:28px 0 36px}
+    .tools-title{font-weight:700;color:var(--text-secondary);margin-bottom:10px}
+    .tools{display:flex;flex-wrap:wrap;gap:10px}
+    .tool{display:inline-flex;align-items:center;gap:10px;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:999px;font-weight:600}
+    .tool .icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(var(--accent-rgb),0.12), transparent);color:var(--accent)}
 
-    /* Navigation */
-    .nav {
-      padding: 40px 0 20px;
-      opacity: 0;
-      transform: translateY(-20px);
-    }
+    /* Main grid */
+    .main-content{display:grid;grid-template-columns:1fr 320px;gap:40px;align-items:start;margin:32px 0}
+    @media (max-width:1024px){.main-content{grid-template-columns:1fr;gap:28px}}
 
-    .back {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 18px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      color: var(--text);
-      font-weight: 500;
-      font-size: 14px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      text-decoration: none;
-    }
+    .article-content{max-width:var(--reading-width)}
+    .content-section{margin-bottom:42px;padding-bottom:12px;border-bottom:1px dashed var(--border);opacity:0;transform:translateY(14px);transition:all .55s cubic-bezier(.2,.9,.25,1)}
+    .content-section.is-visible{opacity:1;transform:none}
 
-    .back:hover {
-      background: var(--hover);
-      transform: translateX(-4px);
-      border-color: var(--accent);
-    }
+    .section-header{display:flex;gap:14px;align-items:center;margin-bottom:14px}
+    .section-icon{width:46px;height:46px;border-radius:10px;background:var(--gradient);display:flex;align-items:center;justify-content:center;color:white}
+    .section-title{font-weight:700;font-size:1.125rem}
 
-    .back i {
-      transition: transform 0.3s ease;
-    }
+    .section-content p{color:var(--text-secondary);margin-top:6px}
 
-    /* Article Header */
-    .article-header {
-      text-align: center;
-      padding: 60px 0;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
-    .article-meta {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-
-    .meta-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-secondary);
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .meta-item i {
-      color: var(--accent);
-    }
-
-    .article-title {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .article-subtitle {
-      font-size: 1.25rem;
-      color: var(--text-secondary);
-      font-weight: 400;
-      max-width: var(--reading-width);
-      margin: 0 auto;
-    }
-
-    /* Hero Image */
-    .hero-wrapper {
-      margin: 60px 0;
-      opacity: 0;
-      transform: translateY(40px);
-    }
-
-    .hero {
-      width: 100%;
-      height: 500px;
-      object-fit: cover;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      box-shadow: 0 20px 40px var(--shadow);
-      transition: transform 0.6s ease;
-    }
-
-    .hero:hover {
-      transform: scale(1.02);
-    }
-
-    /* Tools Section */
-    .tools-section {
-      text-align: center;
-      margin: 60px 0;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
-    .tools-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 20px;
-      color: var(--text-secondary);
-    }
-
-    .tools {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .tool {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 10px 16px;
-      border-radius: 25px;
-      color: var(--text);
-      font-size: 14px;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-
-    .tool:hover {
-      background: var(--hover);
-      transform: translateY(-2px);
-      border-color: var(--accent);
-    }
-
-    .tool i {
-      font-size: 16px;
-      color: var(--accent);
-    }
-
-    /* Main Content */
-    .main-content {
-      display: grid;
-      grid-template-columns: 1fr 300px;
-      gap: 60px;
-      margin: 80px 0;
-    }
-
-    @media (max-width: 1024px) {
-      .main-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-    }
-
-    /* Article Content */
-    .article-content {
-      max-width: var(--reading-width);
-    }
-
-    .content-section {
-      margin-bottom: 60px;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 24px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid var(--border);
-    }
-
-    .section-icon {
-      width: 40px;
-      height: 40px;
-      background: var(--gradient);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 18px;
-      box-shadow: 0 4px 12px rgba(var(--accent), 0.3);
-    }
-
-    .section-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .section-content {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: var(--text);
-    }
-
-    .section-content p {
-      margin-bottom: 20px;
-    }
+    /* Testimonial */
+    .testimonial{background:linear-gradient(180deg, rgba(var(--accent-rgb),0.06), transparent);padding:18px;border-radius:12px;border:1px solid var(--border);margin:20px 0}
+    .testimonial p{font-weight:600}
+    .testimonial .author{margin-top:10px;color:var(--text-secondary);font-size:0.95rem}
 
     /* Sidebar */
-    .sidebar {
-      opacity: 0;
-      transform: translateX(30px);
-    }
+    .sidebar{position:sticky;top:26px}
+    @media(max-width:1024px){.sidebar{position:static}}
 
-    .sidebar-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 24px;
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 20px;
-    }
-
-    .sidebar-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      color: var(--text);
-    }
-
-    .sidebar-title i {
-      color: var(--accent);
-      font-size: 18px;
-    }
-
-    .fact-grid {
-      display: grid;
-      gap: 16px;
-    }
-
+    .sidebar-card{background:var(--card);border:1px solid var(--border);padding:18px;border-radius:12px;margin-bottom:18px}
+    .sidebar-title{display:flex;align-items:center;gap:10px;font-weight:700;margin-bottom:12px}
+    .fact-grid{display:grid;gap:10px}
     .fact-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+}
+
+.fact-label {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.fact-value {
+  font-weight: 600;
+  text-align: right;
+  max-width: 55%;
+  word-break: break-word; /* prevents overflow */
+}
+
+
+    .cta-btn{display:inline-flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:var(--gradient);color:white;text-decoration:none;font-weight:700}
+
+    .gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .gallery-img{width:100%;height:140px;object-fit:cover;border-radius:8px;border:1px solid var(--border)}
+
+    /* TOC */
+    .toc .toc-list{list-style:none;padding:0;margin:0}
+    .toc-link{display:flex;align-items:center;gap:8px;padding:8px;border-radius:8px;color:var(--text-secondary);text-decoration:none}
+    .toc-link.active{background:var(--accent);color:#fff}
+
+    /* small screens tweaks */
+    @media(max-width:640px){
+      .container{padding:18px}
+      .article-title{font-size:1.5rem}
+      .gallery-grid{grid-template-columns:repeat(2,1fr)}
+      .hero{height:40vh}
     }
 
-    .fact-item:last-child {
-      border-bottom: none;
-    }
-
-    .fact-label {
-      color: var(--text-secondary);
-      font-weight: 500;
-      font-size: 0.9rem;
-    }
-
-    .fact-value {
-      font-weight: 600;
-      color: var(--text);
-      font-size: 0.9rem;
-    }
-
-    /* CTA Button */
-    .cta-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: var(--gradient);
-      color: white;
-      padding: 16px 24px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 1rem;
-      text-decoration: none;
-      margin-top: 20px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(var(--accent), 0.3);
-    }
-
-    .cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(var(--accent), 0.4);
-    }
-
-    /* Gallery */
-    .gallery {
-      margin-top: 20px;
-    }
-
-    .gallery-grid {
-      display: grid;
-      gap: 16px;
-    }
-
-    .gallery-img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .gallery-img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 25px var(--shadow);
-    }
-
-    /* Table of Contents */
-    .toc {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 24px;
-    }
-
-    .toc-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--text);
-    }
-
-    .toc-list {
-      list-style: none;
-    }
-
-    .toc-item {
-      margin-bottom: 8px;
-    }
-
-    .toc-link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text-secondary);
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-      font-size: 0.9rem;
-    }
-
-    .toc-link:hover {
-      background: var(--hover);
-      color: var(--text);
-    }
-
-    .toc-link.active {
-      background: var(--accent);
-      color: white;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .container {
-        padding: 0 16px;
-      }
-      
-      .article-header {
-        padding: 40px 0;
-      }
-      
-      .hero {
-        height: 300px;
-      }
-      
-      .main-content {
-        margin: 40px 0;
-      }
-      
-      .content-section {
-        margin-bottom: 40px;
-      }
-      
-      .article-meta {
-        gap: 16px;
-      }
-      
-      .meta-item {
-        font-size: 13px;
-      }
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--accent);
-      border-radius: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--text-secondary);
-    }
-
-    /* Selection */
-    ::selection {
-      background: var(--accent);
-      color: white;
-    }
   </style>
 </head>
 <body>
-  <!-- Progress Bar -->
-  <div class="progress-bar"></div>
-  
-  <!-- Theme Toggle -->
-  <button class="theme-toggle" onclick="toggleTheme()">
-    <i class="fas fa-moon" id="theme-icon"></i>
-  </button>
+  <div class="progress-bar" aria-hidden="true"></div>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"><i class="fas fa-moon" id="theme-icon"></i></button>
 
   <div class="container">
-    <!-- Navigation -->
     <nav class="nav">
-      <a href="index.html" class="back">
-        <i class="fas fa-arrow-left"></i>
-        Back to projects
-      </a>
+      <a href="index.html" class="back"><i class="fas fa-arrow-left"></i> Back to projects</a>
     </nav>
 
-    <div id="cs-root">
-      <!-- Dynamic content inserted here -->
-    </div>
+    <div id="cs-root"><!-- rendered dynamically --></div>
   </div>
 
   <script>
-    // Register ScrollTrigger
-    gsap.registerPlugin(ScrollTrigger);
+    document.addEventListener('DOMContentLoaded', async () => {
+      // icon map (small and safe)
+      const toolIcons = { 'Next.js':'fab fa-react','React':'fab fa-react','TypeScript':'fas fa-code','JavaScript':'fab fa-js-square','Stripe':'fab fa-stripe','Tailwind CSS':'fas fa-palette','Node.js':'fab fa-node-js','GSAP':'fas fa-magic','Figma':'fab fa-figma','Vercel':'fas fa-cloud','PostgreSQL':'fas fa-database','Chart.js':'fas fa-chart-line','WordPress':'fab fa-wordpress','Elementor':'fas fa-puzzle-piece' };
+      const sectionIcons = { 'Overview':'fas fa-eye','Challenge':'fas fa-exclamation-triangle','Approach':'fas fa-route','Solution':'fas fa-lightbulb','Results':'fas fa-chart-line' };
+      function getToolIcon(t){return toolIcons[t]||'fas fa-code'}
 
-    // Tool icons mapping
-    const toolIcons = {
-      'Next.js': 'fab fa-react',
-      'React': 'fab fa-react',
-      'TypeScript': 'fas fa-code',
-      'JavaScript': 'fab fa-js-square',
-      'Stripe': 'fab fa-stripe',
-      'Tailwind CSS': 'fas fa-palette',
-      'Node.js': 'fab fa-node-js',
-      'GSAP': 'fas fa-magic',
-      'Figma': 'fab fa-figma',
-      'Vercel': 'fas fa-cloud',
-      'PostgreSQL': 'fas fa-database',
-      'Chart.js': 'fas fa-chart-line'
-    };
+      // theme
+      function toggleTheme(){ const html=document.documentElement, icon=document.getElementById('theme-icon'); if(html.getAttribute('data-theme')==='light'){ html.removeAttribute('data-theme'); icon.className='fas fa-moon'; localStorage.setItem('theme','dark'); } else { html.setAttribute('data-theme','light'); icon.className='fas fa-sun'; localStorage.setItem('theme','light'); } }
+      window.toggleTheme = toggleTheme;
+      function loadTheme(){ const s=localStorage.getItem('theme'); const icon=document.getElementById('theme-icon'); if(s==='light'){ document.documentElement.setAttribute('data-theme','light'); icon.className='fas fa-sun'; } }
 
-    // Section icons
-    const sectionIcons = {
-      'Overview': 'fas fa-eye',
-      'Challenge': 'fas fa-exclamation-triangle',
-      'Approach': 'fas fa-route',
-      'Solution': 'fas fa-lightbulb',
-      'Results': 'fas fa-chart-line'
-    };
+      // progress
+      function updateProgressBar(){ const prog = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight || 1); document.querySelector('.progress-bar').style.transform = `scaleX(${prog})`; }
 
-    // Theme toggle
-    function toggleTheme() {
-      const html = document.documentElement;
-      const icon = document.getElementById('theme-icon');
-      
-      if (html.getAttribute('data-theme') === 'light') {
-        html.removeAttribute('data-theme');
-        icon.className = 'fas fa-moon';
-        localStorage.setItem('theme', 'dark');
-      } else {
-        html.setAttribute('data-theme', 'light');
-        icon.className = 'fas fa-sun';
-        localStorage.setItem('theme', 'light');
-      }
-    }
+      // fetch projects
+      async function fetchProjects(){ try{ const r=await fetch('projects.json'); if(!r.ok) throw new Error(r.status); const j=await r.json(); if(Array.isArray(j.projects)) return j.projects; if(Array.isArray(j)) return j; return []; } catch(e){ console.warn('fetch failed', e); return window.__PROJECTS_FALLBACK||[]; } }
 
-    // Load saved theme
-    function loadTheme() {
-      const savedTheme = localStorage.getItem('theme');
-      const icon = document.getElementById('theme-icon');
-      
-      if (savedTheme === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
-        icon.className = 'fas fa-sun';
-      }
-    }
+      function createCaseStudy(p){
+        const sections = [
+          {key:'overview',title:'Overview',content:p.caseStudy?.overview || p.shortDescription || ''},
+          {key:'challenge',title:'Challenge',content:p.caseStudy?.challenge || ''},
+          {key:'approach',title:'Approach',content:p.caseStudy?.approach || ''},
+          {key:'solution',title:'Solution',content:p.caseStudy?.solution || ''},
+          {key:'results',title:'Results',content:p.caseStudy?.results || ''}
+        ];
 
-    // Progress bar
-    function updateProgressBar() {
-      const scrollProgress = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-      gsap.to('.progress-bar', {
-        scaleX: scrollProgress,
-        duration: 0.3,
-        ease: 'none'
-      });
-    }
-
-    async function fetchProjects() {
-      try {
-        const res = await fetch('projects.json');
-        return (await res.json()).projects;
-      } catch (e) {
-        console.warn('fetch failed', e);
-        return window.__PROJECTS_FALLBACK || [];
-      }
-    }
-
-    function getToolIcon(tool) {
-      return toolIcons[tool] || 'fas fa-code';
-    }
-
-    function createCaseStudy(p) {
-      const sections = [
-        { key: 'overview', title: 'Overview', content: p.shortDescription },
-        { key: 'challenge', title: 'Challenge', content: p.caseStudy.challenge },
-        { key: 'approach', title: 'Approach', content: p.caseStudy.approach },
-        { key: 'solution', title: 'Solution', content: p.caseStudy.solution },
-        { key: 'results', title: 'Results', content: p.caseStudy.results }
-      ];
-
-      return `
-        <!-- Article Header -->
-        <header class="article-header">
-          <div class="article-meta">
-            <div class="meta-item">
-              <i class="fas fa-folder"></i>
-              ${p.category}
+        return `
+          <header class="article-header">
+            <div class="article-meta">
+              <div class="meta-item"><i class="fas fa-folder"></i> ${p.category || ''}</div>
+              <div class="meta-item"><i class="fas fa-clock"></i> ${p.duration || ''}</div>
+              <div class="meta-item"><i class="fas fa-user"></i> ${p.role || ''}</div>
             </div>
-            <div class="meta-item">
-              <i class="fas fa-clock"></i>
-              6–12 weeks
+            <h1 class="article-title">${p.title || ''}</h1>
+            <p class="article-subtitle">${p.shortDescription || ''}</p>
+          </header>
+
+          <div class="hero-wrapper"><img class="hero" src="${p.heroImage || ''}" alt="${p.title||''}" loading="lazy"/></div>
+
+          <section class="tools-section">
+            <div class="tools-title">Built with</div>
+            <div class="tools">
+              ${Array.isArray(p.tools) ? p.tools.map(t=>`<span class="tool"><span class="icon"><i class="${getToolIcon(t)}"></i></span>${t}</span>`).join('') : ''}
             </div>
-            <div class="meta-item">
-              <i class="fas fa-user"></i>
-              Design & Development
-            </div>
-          </div>
-          <h1 class="article-title">${p.title}</h1>
-          <p class="article-subtitle">${p.shortDescription}</p>
-        </header>
+          </section>
 
-        <!-- Hero Image -->
-        <div class="hero-wrapper">
-          <img class="hero" src="${p.heroImage}" alt="${p.title}" loading="lazy" decoding="async" />
-        </div>
-
-        <!-- Tools Section -->
-        <section class="tools-section">
-          <h2 class="tools-title">Built with</h2>
-          <div class="tools">
-            ${p.tools.map(tool => `
-              <span class="tool">
-                <i class="${getToolIcon(tool)}"></i>
-                ${tool}
-              </span>
-            `).join('')}
-          </div>
-        </section>
-
-        <!-- Main Content -->
-        <div class="main-content">
-          <!-- Article Content -->
-          <article class="article-content">
-            ${sections.map(section => `
-              <section class="content-section" id="${section.key}">
-                <header class="section-header">
-                  <div class="section-icon">
-                    <i class="${sectionIcons[section.title] || 'fas fa-file-alt'}"></i>
+          <div class="main-content">
+            <article class="article-content">
+              ${sections.map(s=>`
+                <section class="content-section" id="${s.key}">
+                  <div class="section-header">
+                    <div class="section-icon"><i class="${sectionIcons[s.title] || 'fas fa-file-alt'}"></i></div>
+                    <div class="section-title">${s.title}</div>
                   </div>
-                  <h2 class="section-title">${section.title}</h2>
-                </header>
-                <div class="section-content">
-                  <p>${section.content}</p>
-                </div>
-              </section>
-            `).join('')}
-          </article>
+                  <div class="section-content"><p>${s.content}</p></div>
+                </section>
+              `).join('')}
 
-          <!-- Sidebar -->
-          <aside class="sidebar">
-            <!-- Table of Contents -->
-            <div class="toc">
-              <h3 class="toc-title">
-                <i class="fas fa-list"></i>
-                Contents
-              </h3>
-              <ul class="toc-list">
-                ${sections.map(section => `
-                  <li class="toc-item">
-                    <a href="#${section.key}" class="toc-link">
-                      <i class="${sectionIcons[section.title]}"></i>
-                      ${section.title}
-                    </a>
-                  </li>
-                `).join('')}
-              </ul>
-            </div>
+              <!-- Testimonial (if exists) -->
+              ${p.testimonial ? `<div class="testimonial"><p>“${p.testimonial.quote}”</p><div class="author">— ${p.testimonial.author}, ${p.testimonial.position || ''}</div></div>` : ''}
 
-            <!-- Quick Facts -->
-            <div class="sidebar-card">
-              <h3 class="sidebar-title">
-                <i class="fas fa-info-circle"></i>
-                Project Details
-              </h3>
-              <div class="fact-grid">
-                <div class="fact-item">
-                  <span class="fact-label">Category</span>
-                  <span class="fact-value">${p.category}</span>
-                </div>
-                <div class="fact-item">
-                  <span class="fact-label">Tools</span>
-                  <span class="fact-value">${p.tools.slice(0, 2).join(', ')}</span>
-                </div>
-                <div class="fact-item">
-                  <span class="fact-label">Role</span>
-                  <span class="fact-value">Design & Dev</span>
-                </div>
-                <div class="fact-item">
-                  <span class="fact-label">Timeline</span>
-                  <span class="fact-value">6–12 weeks</span>
-                </div>
+            </article>
+
+            <aside class="sidebar">
+              <div class="sidebar-card toc">
+                <div class="sidebar-title"><i class="fas fa-list"></i> Contents</div>
+                <ul class="toc-list">
+                  ${sections.map(s=>`<li><a class="toc-link" href="#${s.key}"><i class="${sectionIcons[s.title]}"></i> ${s.title}</a></li>`).join('')}
+                </ul>
               </div>
-              <a class="cta-btn" href="#contact">
-                <i class="fas fa-rocket"></i>
-                Start a project
-              </a>
-            </div>
 
-            <!-- Gallery -->
-            <div class="sidebar-card">
-              <h3 class="sidebar-title">
-                <i class="fas fa-images"></i>
-                Gallery
-              </h3>
-              <div class="gallery">
+              <div class="sidebar-card">
+                <div class="sidebar-title"><i class="fas fa-info-circle"></i> Project Details</div>
+                <div class="fact-grid">
+                  <div class="fact-item"><div class="fact-label">Category</div><div class="fact-value">${p.category || ''}</div></div>
+                 <div class="fact-item">
+  <div class="fact-label">Tools</div>
+  <div class="fact-value">
+    ${Array.isArray(p.tools) 
+      ? p.tools.slice(0, 4).join(', ')
+      : ''}
+  </div>
+</div>
+
+                  <div class="fact-item"><div class="fact-label">Role</div><div class="fact-value">${p.role || ''}</div></div>
+                  <div class="fact-item"><div class="fact-label">Timeline</div><div class="fact-value">${p.duration || ''}</div></div>
+                </div>
+
+                <div style="margin-top:12px"><a class="cta-btn" href="#contact"><i class="fas fa-rocket"></i> Start a project</a></div>
+              </div>
+
+              <div class="sidebar-card">
+                <div class="sidebar-title"><i class="fas fa-images"></i> Gallery</div>
                 <div class="gallery-grid">
-                  ${p.gallery.map(img => `
-                    <img src="${img}" alt="Project gallery" class="gallery-img" loading="lazy" decoding="async" />
-                  `).join('')}
+                  ${Array.isArray(p.gallery) ? p.gallery.map(img=>`<img class="gallery-img" src="${img}" alt="gallery" />`).join('') : ''}
                 </div>
               </div>
-            </div>
-          </aside>
-        </div>
-      `;
-    }
+            </aside>
 
-    function initAnimations() {
-      // Initial animations
-      const tl = gsap.timeline();
-      
-      tl.to('.nav', {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: 'power2.out'
-      })
-      .to('.article-header', {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power2.out'
-      }, '-=0.4')
-      .to('.hero-wrapper', {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power2.out'
-      }, '-=0.6')
-      .to('.tools-section', {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: 'power2.out'
-      }, '-=0.4')
-      .to('.sidebar', {
-        opacity: 1,
-        x: 0,
-        duration: 1,
-        ease: 'power2.out'
-      }, '-=0.6');
+          </div>
+        `;
+      }
 
-      // Scroll-triggered animations
-      gsap.utils.toArray('.content-section').forEach((section) => {
-        gsap.to(section, {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 98%',
-            end: 'bottom 10%',
-            toggleActions: 'play none none none'
-          }
-        });
-      });
+      // IntersectionObserver reveals + active TOC
+      function observeSections(){
+        const links = document.querySelectorAll('.toc-link');
+        const sections = document.querySelectorAll('.content-section');
+        const observer = new IntersectionObserver((entries)=>{
+          entries.forEach(e=>{
+            if(e.isIntersecting){
+              e.target.classList.add('is-visible');
+              links.forEach(l=>l.classList.toggle('active', l.getAttribute('href') === `#${e.target.id}`));
+            }
+          });
+        }, {root:null,rootMargin:'-30% 0px -40% 0px',threshold:0.1});
+        sections.forEach(s=>observer.observe(s));
+      }
 
-      // Tool hover animations
-      gsap.utils.toArray('.tool').forEach(tool => {
-        tool.addEventListener('mouseenter', () => {
-          gsap.to(tool, { scale: 1.05, duration: 0.2 });
-        });
-        tool.addEventListener('mouseleave', () => {
-          gsap.to(tool, { scale: 1, duration: 0.2 });
-        });
-      });
+      // animations fallback: small entrance for header + hero
+      function initEntrance(){ document.querySelector('.nav').style.opacity = 1; setTimeout(()=>{ document.querySelectorAll('.article-header, .hero-wrapper, .tools-section').forEach(el=>el.style.opacity = 1); }, 120); }
 
-      // Gallery image hover
-      gsap.utils.toArray('.gallery-img').forEach(img => {
-        img.addEventListener('mouseenter', () => {
-          gsap.to(img, { scale: 1.05, duration: 0.3 });
-        });
-        img.addEventListener('mouseleave', () => {
-          gsap.to(img, { scale: 1, duration: 0.3 });
-        });
-      });
-    }
-
-    // Active TOC tracking
-    function updateActiveTOC() {
-      const sections = document.querySelectorAll('.content-section');
-      const tocLinks = document.querySelectorAll('.toc-link');
-      
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (scrollY >= sectionTop - 100) {
-          current = section.getAttribute('id');
-        }
-      });
-
-      tocLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
-      });
-    }
-
-    // Initialize everything
-    (async function() {
+      // init main
       const slug = new URLSearchParams(location.search).get('project');
+      console.log('requested slug:', slug);
       const projects = await fetchProjects();
-      const p = projects.find(x => x.slug === slug) || projects[0];
-      
+      console.log('projects loaded:', projects.length);
+
+      let p = projects.find(x=>x.slug === slug) || projects[0];
+      if(!p){ document.getElementById('cs-root').innerHTML = `<div style="padding:36px;color:#f33">No project found. Check projects.json or slug in URL.</div>`; return; }
+
       document.getElementById('cs-root').innerHTML = createCaseStudy(p);
-      
-      // Load theme and initialize animations
-      loadTheme();
-      
-      requestAnimationFrame(() => {
-        initAnimations();
-      });
+      loadTheme(); initEntrance(); observeSections(); updateProgressBar();
 
-      // Event listeners
-      window.addEventListener('scroll', () => {
-        updateProgressBar();
-        updateActiveTOC();
-      });
+      // scroll events
+      window.addEventListener('scroll', ()=>{ updateProgressBar(); });
 
-      // Smooth scroll for TOC links
-      document.querySelectorAll('.toc-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const targetId = link.getAttribute('href').substring(1);
-          const targetElement = document.getElementById(targetId);
-          
-          if (targetElement) {
-            targetElement.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-        });
-      });
-    })();
+      // smooth toc click
+      document.querySelectorAll('.toc-link').forEach(a=>a.addEventListener('click', e=>{ e.preventDefault(); const t=document.querySelector(a.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); }));
+
+    });
   </script>
 </body>
 </html>

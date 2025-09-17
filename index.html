@@ -36,10 +36,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
   <!-- Animation libs (deferred for faster first paint) -->
 
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
   
   <!-- Google Analytics -->
@@ -190,6 +191,12 @@ section {
   padding-inline: 0; /* sections take full width */
 }
 
+/* Hero responsive min-height control */
+#hero-carousel { min-height: 87vh; }
+@media (min-width: 1024px) {
+  #hero-carousel { min-height: 90vh}
+}
+
 /* ===============================
    CARDS & COMPONENTS
    =============================== */
@@ -299,6 +306,12 @@ nav a { position: relative; }
   #stats .text-sm { font-size: .8rem; }
 }
 
+/* Reduce space between hero and the next static section */
+#stats.site-section { padding-top: clamp(24px, 6vh, 56px); }
+
+/* Hamburger color in light mode */
+:root[data-theme="light"] #menu-btn span { background: #000; }
+
 </style>
   <script>
     
@@ -348,20 +361,56 @@ nav a { position: relative; }
       <button id="theme-toggle" aria-label="Toggle theme" class="rounded-full p-2 border border-white/10 hover:bg-white/10 transition">
         <span id="theme-icon" class="text-sm">🌙</span>
       </button>
-      <a class="chip hidden md:inline" href="#">Behance</a>
-      <a class="btn-accent" href="#contact">Book A Free Call
-        <svg class="icon-sm" viewBox="0 0 24 24" fill="none">
-          <path d="M5 12h14m0 0l-5-5m5 5l-5 5" stroke="#060606" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <a href="https://techad.in/"
+      class="chip inline-flex items-center gap-1 px-4 py-2 rounded-full 
+             bg-gradient-to-r from-gray-100 to-gray-200 
+             dark:from-gray-800 dark:to-gray-700
+             text-sm font-bold text-gray-900 dark:text-white
+             shadow-md hover:shadow-lg hover:scale-105 
+             transition-all duration-300">
+     Tech<span class="text-red-600 font-bold">Ad</span>
+   </a>
+   
+      
+      <a class="btn-accent group inline-flex items-center gap-2" href="#contact">
+        <span>Book A Free Call</span>
+        <svg class="icon-sm transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12h14m0 0l-5-5m5 5l-5 5" 
+                stroke="#060606" stroke-width="1.8" 
+                stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          gsap.to(".btn-accent", {
+            y: -4,              // move up
+            repeat: -1,         // infinite loop
+            yoyo: true,         // go back smoothly
+            ease: "power1.inOut",
+            duration: 1.5       // speed of float
+          });
+        });
+      </script>
+      
     </div>
 
-    <!-- Mobile Menu Button -->
-    <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 z-50">
-      <span class="block w-6 h-0.5 bg-white"></span>
-      <span class="block w-6 h-0.5 bg-white"></span>
-      <span class="block w-6 h-0.5 bg-white"></span>
-    </button>
+    <!-- Mobile TechAd + Menu Button (mobile only) -->
+    <div class="md:hidden flex items-center gap-3">
+      <a href="https://techad.in/"
+         class="chip inline-flex items-center gap-1 px-3 py-1.5 rounded-full 
+                bg-gradient-to-r from-gray-100 to-gray-200 
+                dark:from-gray-800 dark:to-gray-700
+                text-xs font-bold text-gray-900 dark:text-white
+                shadow-md hover:shadow-lg hover:scale-105 
+                transition-all duration-300">
+        Tech<span class="text-red-600 font-bold">Ad</span>
+      </a>
+      <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 z-50">
+        <span class="block w-6 h-0.5 bg-white"></span>
+        <span class="block w-6 h-0.5 bg-white"></span>
+        <span class="block w-6 h-0.5 bg-white"></span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -410,6 +459,15 @@ nav a { position: relative; }
   menuBtn.addEventListener("click", openMenu);
   closeBtn.addEventListener("click", closeMenu);
 
+  // Auto-close menu on any link click inside the mobile menu
+  mobileMenu.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', () => {
+      closeMenu();
+      // small delay to ensure smooth scroll starts after menu hides
+      setTimeout(() => {}, 0);
+    });
+  });
+
   // Auto-close when resizing to desktop
   window.addEventListener("resize", () => {
     if (window.innerWidth >= 1024) {
@@ -425,219 +483,123 @@ nav a { position: relative; }
 
 <!-- HERO SECTION -->
 
-<section id="hero-carousel" 
-         class="min-h-screen overflow-hidden transition-colors duration-300"
-         style="background: var(--bg); color: var(--text)">
-  <div class="swiper h-full" data-swiper-autoheight="true">
+<section id="hero-carousel"
+  class="min-h-screen overflow-hidden transition-colors duration-300"
+  style="background: var(--bg); color: var(--text)">
 
-      <div class="swiper-wrapper">
+  <div class="swiper h-full">
+    <div class="swiper-wrapper">
 
-        <!-- SLIDE 1 -->
-        <div class="swiper-slide flex items-center justify-center h-full px-6 md:px-20">
-          <div class="max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center pt-12 md:pt-20">
+      <!-- SLIDE 1 -->
+      <div class="swiper-slide flex items-center justify-center px-6 md:px-20">
+        <div class="max-w-7xl w-full grid md:grid-cols-2 gap-8 items-center pt-12 md:pt-20">
 
-            <!-- LEFT -->
-            <div class="space-y-6 pl-2 md:pl-16">
-              <p class="uppercase tracking-[.25em] text-sm" style="color: var(--muted)">
-                DIGITAL TRANSFORMATION
-              </p>
-              <h1 class="font-extrabold text-5xl md:text-6xl leading-[1.1]">
-                We Build Websites That <span style="color: #d6ff3d;">Drive Results</span>
-              </h1>
-              <p class="text-lg max-w-lg leading-relaxed" style="color: var(--text)">
-                From startups to enterprises, we create digital experiences that convert visitors into customers and deliver measurable growth for your business.
-              </p>
-              <div class="flex flex-wrap gap-4 mt-6">
-
-                <!-- Book a Call (accent button) -->
-                <a href="#contact"
-                   class="relative btn-accent overflow-hidden group">
-              
-                   <!-- Shine sweep -->
-                   <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent
-                                -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></span>
-              
-                   <!-- Text + Hover Icon -->
-                   <span class="relative flex items-center gap-2">
-                     🚀 Book a Call
-                     <svg xmlns="http://www.w3.org/2000/svg" 
-                          fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                          class="w-5 h-5 opacity-0 group-hover:opacity-100 translate-x-[-6px] group-hover:translate-x-0 transition duration-300">
-                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                             d="M3 5h12M9 3v2m0 14v2m0-2a7 7 0 110-14 7 7 0 010 14zm8 0h4m0 0v-4m0 4l-4-4" />
-                     </svg>
-                   </span>
-                </a>
-              
-                <!-- View Work (secondary button) -->
-                <a href="#work"
-                   class="relative px-6 py-3 font-semibold rounded-full border transition overflow-hidden group"
-                   style="border: 1px solid var(--muted); color: var(--text)">
-              
-                   <!-- Subtle hover background pattern -->
-                   <span class="absolute inset-0 opacity-0 group-hover:opacity-10 transition duration-300"
-                         style="background: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 fill=%22%23fff%22 opacity=%220.1%22><circle cx=%2220%22 cy=%2220%22 r=%224%22/></svg>') center/20px repeat;">
-                   </span>
-              
-                   <!-- Text + Hover Icon -->
-                   <span class="relative flex items-center gap-2">
-                     ✨ View Work
-                     <svg xmlns="http://www.w3.org/2000/svg"
-                          fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                          class="w-5 h-5 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition duration-300">
-                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                             d="M12 4v16m8-8H4" />
-                     </svg>
-                   </span>
-                </a>
-              
-              </div>
-              
-            </div>
-
-            <!-- RIGHT -->
-            <div>
-              <img src="Banner/8.1.png"
-              alt="Web Development"
-              class="rounded-2xl shadow-2xl object-cover w-full aspect-[4/3]" />
+          <!-- LEFT -->
+          <div class="space-y-6 md:pl-16">
+            <p class="uppercase tracking-[.25em] text-sm" style="color: var(--muted)">
+              DIGITAL TRANSFORMATION
+            </p>
+            <h1 class="font-extrabold text-4xl md:text-6xl leading-tight">
+              We Build Websites That <span class="text-lime-400">Drive Results</span>
+            </h1>
+            <p class="text-base md:text-lg max-w-lg leading-relaxed" style="color: var(--text)">
+              From startups to enterprises, we create digital experiences that convert visitors
+              into customers and deliver measurable growth for your business.
+            </p>
+            <div class="flex flex-wrap gap-4 mt-6">
+              <a href="#contact" class="btn-accent">🚀 Book a Call</a>
+              <a href="#work"
+                 class="px-6 py-3 font-semibold rounded-full border transition"
+                 style="border: 1px solid var(--muted); color: var(--text)">
+                 ✨ View Work
+              </a>
             </div>
           </div>
-        </div>
 
-        <!-- SLIDE 2 -->
-        <div class="swiper-slide flex items-center justify-center h-full px-6 md:px-20">
-          <div class="max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center pt-12 md:pt-20">
-            <div class="space-y-6 pl-2 md:pl-16">
-              <p class="uppercase tracking-[.25em] text-sm" style="color: var(--muted)">
-                CREATIVE & STRATEGIC
-              </p>
-              <h1 class="font-extrabold text-5xl md:text-6xl leading-[1.1]">
-                Designs That 
-               <span style="color: #ff8c00;">Inspire, Experiences</span> That Convert
-              </h1>
-              <p class="text-lg max-w-lg leading-relaxed" style="color: var(--text)">
-                We craft interfaces that not only look beautiful but also provide seamless user experiences.
-              </p>
-              <div class="flex flex-wrap gap-4 mt-6">
-
-                <!-- Services Button (accent style with hover pattern) -->
-                <a href="#services"
-                   class="relative btn-accent overflow-hidden group">
-                   
-                   <!-- Hover background pattern -->
-                   <span class="absolute inset-0 opacity-0 group-hover:opacity-15 transition duration-300"
-                         style="background: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 fill=%22%23fff%22 opacity=%220.2%22><circle cx=%2220%22 cy=%2220%22 r=%224%22/></svg>') center/28px repeat;">
-                   </span>
-              
-                   <span class="relative flex items-center gap-2">
-                     🎨 Our Services
-                     <svg xmlns="http://www.w3.org/2000/svg" 
-                          fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                          class="w-5 h-5 opacity-0 group-hover:opacity-100 translate-x-[-8px] group-hover:translate-x-0 transition duration-300">
-                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                     </svg>
-                   </span>
-                </a>
-              
-                <!-- Portfolio Button (secondary + shine effect) -->
-                <a href="#portfolio"
-                   class="relative px-6 py-3 font-semibold rounded-full border transition overflow-hidden group"
-                   style="border: 1px solid var(--muted); color: var(--text)">
-                   
-                   <!-- Shine sweep -->
-                   <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent 
-                                -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></span>
-              
-                   <span class="relative flex items-center gap-2">
-                     📂 View Portfolio
-                     <svg xmlns="http://www.w3.org/2000/svg" 
-                          fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                          class="w-5 h-5 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition duration-300">
-                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                     </svg>
-                   </span>
-                </a>
-              </div>
-              
-              
-            </div>
-            <div>
-              <img src="Banner/1.3.png"
-              alt="Web Development"
-              class="rounded-2xl shadow-2xl object-cover w-full aspect-[4/3]" />
-            </div>
+          <!-- RIGHT -->
+          <div>
+            <img src="Banner/Slider-1.png"
+                 alt="Web Development"
+                 class="rounded-2xl shadow-2xl object-cover w-full aspect-[4/3]" />
           </div>
         </div>
-
-        <!-- SLIDE 3 -->
-        <div class="swiper-slide flex items-center justify-center h-full px-6 md:px-20">
-          <div class="max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center pt-12 md:pt-20">
-            <div class="space-y-6 pl-2 md:pl-16">
-              <p class="uppercase tracking-[.25em] text-sm" style="color: var(--muted)">
-                FUTURE-READY WEB SOLUTIONS
-              </p>
-              <h1 class="font-extrabold text-5xl md:text-6xl leading-[1.1]">
-                Where Innovation Meets<span style="color: #16a34a;">Functionality</span>
-              </h1>
-              <p class="text-lg max-w-lg leading-relaxed" style="color: var(--text)">
-                Our SEO, optimization, and analytics strategies help you reach more people and scale effectively.
-              </p>
-              <div class="flex flex-wrap gap-4 mt-6">
-
-                <!-- Learn More Button (accent green variant) -->
-                <a href="#about"
-                   class="btn-accent relative px-6 py-3 font-semibold rounded-full shadow-lg overflow-hidden group">
-                   
-                   <!-- Shine sweep -->
-                   <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent 
-                                -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></span>
-              
-                   <span class="relative flex items-center gap-2">
-                     📈 Learn More
-                     <svg xmlns="http://www.w3.org/2000/svg" 
-                          fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                          class="w-5 h-5 opacity-0 group-hover:opacity-100 translate-x-[-6px] group-hover:translate-x-0 transition duration-300">
-                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-                     </svg>
-                   </span>
-                </a>
-              
-                <!-- Get in Touch Button (secondary style) -->
-                <a href="#contact"
-                   class="relative px-6 py-3 font-semibold rounded-full border transition overflow-hidden group"
-                   style="border: 1px solid var(--muted); color: var(--text)">
-                   
-                   <!-- Hover background pattern -->
-                   <span class="absolute inset-0 opacity-0 group-hover:opacity-10 transition duration-300"
-                         style="background: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22 fill=%22%23fff%22 opacity=%220.15%22><circle cx=%2215%22 cy=%2215%22 r=%223%22/></svg>') center/20px repeat;">
-                   </span>
-              
-                   <span class="relative flex items-center gap-2">
-                     🤝 Get in Touch
-                     <svg xmlns="http://www.w3.org/2000/svg" 
-                          fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                          class="w-5 h-5 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition duration-300">
-                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                             d="M18 8a6 6 0 00-12 0c0 6 6 12 6 12s6-6 6-12z"/>
-                     </svg>
-                   </span>
-                </a>
-              </div>
-            </div>
-            <div>
-              <img src="Banner/10.png"
-     alt="Web Development"
-     class="rounded-2xl shadow-2xl object-cover w-full aspect-[4/3]" />
-            </div>
-          </div>
-        </div>
-
       </div>
 
-      <!-- Swiper Pagination -->
-      <div class="swiper-pagination !bottom-4"></div>
+      <!-- SLIDE 2 -->
+      <div class="swiper-slide flex items-center justify-center px-6 md:px-20">
+        <div class="max-w-7xl w-full grid md:grid-cols-2 gap-8 items-center pt-12 md:pt-20">
+
+          <!-- LEFT -->
+          <div class="space-y-6 md:pl-16">
+            <p class="uppercase tracking-[.25em] text-sm" style="color: var(--muted)">
+              CREATIVE & STRATEGIC
+            </p>
+            <h1 class="font-extrabold text-4xl md:text-6xl leading-tight">
+              Designs That <span class="text-orange-500">Inspire, Experiences</span> That Convert
+            </h1>
+            <p class="text-base md:text-lg max-w-lg leading-relaxed" style="color: var(--text)">
+              We craft interfaces that not only look beautiful but also provide seamless user experiences.
+            </p>
+            <div class="flex flex-wrap gap-4 mt-6">
+              <a href="#services" class="btn-accent">🎨 Our Services</a>
+              <a href="#portfolio"
+                 class="px-6 py-3 font-semibold rounded-full border transition"
+                 style="border: 1px solid var(--muted); color: var(--text)">
+                 📂 View Portfolio
+              </a>
+            </div>
+          </div>
+
+          <!-- RIGHT -->
+          <div>
+            <img src="Banner/Slider-2.png"
+                 alt="UI/UX Design"
+                 class="rounded-2xl shadow-2xl object-cover w-full aspect-[4/3]" />
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 -->
+      <div class="swiper-slide flex items-center justify-center px-6 md:px-20">
+        <div class="max-w-7xl w-full grid md:grid-cols-2 gap-8 items-center pt-12 md:pt-20">
+
+          <!-- LEFT -->
+          <div class="space-y-6 md:pl-16">
+            <p class="uppercase tracking-[.25em] text-sm" style="color: var(--muted)">
+              FUTURE-READY WEB SOLUTIONS
+            </p>
+            <h1 class="font-extrabold text-4xl md:text-6xl leading-tight">
+              Where Innovation Meets <span class="text-green-600">Functionality & Performance</span>
+            </h1>
+            <p class="text-base md:text-lg max-w-lg leading-relaxed" style="color: var(--text)">
+              Our SEO, optimization, and analytics strategies help you reach more people and scale effectively.
+            </p>
+            <div class="flex flex-wrap gap-4 mt-6">
+              <a href="#about" class="btn-accent">📈 Learn More</a>
+              <a href="#contact"
+                 class="px-6 py-3 font-semibold rounded-full border transition"
+                 style="border: 1px solid var(--muted); color: var(--text)">
+                 🤝 Get in Touch
+              </a>
+            </div>
+          </div>
+
+          <!-- RIGHT -->
+          <div>
+            <img src="Banner/Slider-3.png"
+                 alt="SEO Growth"
+                 class="rounded-2xl shadow-2xl object-cover w-full aspect-[4/3]" />
+          </div>
+        </div>
+      </div>
+
     </div>
-  </section>
+
+    <!-- Swiper Pagination -->
+    <div class="swiper-pagination !bottom-4"></div>
+  </div>
+</section>
+
 
 
 
@@ -650,16 +612,14 @@ nav a { position: relative; }
   const swiper = new Swiper('.swiper', {
     loop: true,
     autoplay: { delay: 3000 },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-      autoHeight: true,
-    },
+    autoHeight: true,
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
     },
   });
+
+  // Intersection-based reveal doesn't need ScrollTrigger syncing
 </script>
 
 
@@ -667,54 +627,7 @@ nav a { position: relative; }
 
 
 
-<!-- GSAP Carousel Script -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script>
-  const slides = document.querySelectorAll(".hero-slide");
-  let current = 0;
-  let animating = false;
-
-  function showSlide(index, direction = 1) {
-    if (animating || index === current) return;
-    animating = true;
-
-    const currentSlide = slides[current];
-    const nextSlide = slides[index];
-
-    // Ensure next slide is visible for animation
-    nextSlide.classList.remove("hidden");
-
-    // Animate current slide out
-    gsap.to(currentSlide, {
-      x: -200 * direction,
-      opacity: 0,
-      duration: 0.7,
-      ease: "power3.inOut",
-      onComplete: () => currentSlide.classList.add("hidden")
-    });
-
-    // Animate next slide in
-    gsap.fromTo(nextSlide, 
-      { x: 200 * direction, opacity: 0 }, 
-      { x: 0, opacity: 1, duration: 0.8, ease: "power3.inOut", onComplete: () => animating = false }
-    );
-
-    current = index;
-  }
-
-  function nextSlide() {
-    showSlide((current + 1) % slides.length, 1);
-  }
-  function prevSlide() {
-    showSlide((current - 1 + slides.length) % slides.length, -1);
-  }
-
-  document.getElementById("next-slide").addEventListener("click", nextSlide);
-  document.getElementById("prev-slide").addEventListener("click", prevSlide);
-
-  // Auto-play every 6s
-  setInterval(nextSlide, 6000);
-</script>
+<!-- GSAP Carousel Script removed: replaced by Swiper -->
 
 
 <!-- GSAP + Animations -->
@@ -726,19 +639,57 @@ nav a { position: relative; }
     <!-- STATISTICS SECTION -->
     <section id="stats" class="storyline site-section">
       <div class="site-container">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div class="space-y-2">
-            <div class="text-3xl md:text-4xl font-bold text-accent">150+</div>
-            <div class="text-sm text-muted">Projects Delivered</div>
+        <!-- Mobile / Tablet Layout -->
+        <div class="relative flex md:hidden justify-between items-start">
+          <!-- Left Column -->
+          <div class="flex flex-col gap-8 w-1/2 pr-6 text-center">
+            <div class="space-y-2">
+              <div class="text-3xl font-bold text-accent">20+</div>
+              <div class="text-sm text-muted">Skills Learned</div>
+            </div>
+            <div class="space-y-2">
+              <div class="text-3xl font-bold text-accent">3</div>
+              <div class="text-sm text-muted">Years Exploring</div>
+            </div>
           </div>
-          <div class="space-y-2">
+    
+          <!-- Center Divider -->
+          <div class="absolute left-1/2 top-0 h-full border-r-2 border-dashed border-gray-300"></div>
+    
+          <!-- Right Column -->
+          <div class="flex flex-col gap-8 w-1/2 pl-6 text-center">
+            <div class="space-y-2">
+              <div class="text-3xl font-bold text-accent">98%</div>
+              <div class="text-sm text-muted">Client Satisfaction</div>
+            </div>
+            <div class="space-y-2">
+              <div class="text-3xl font-bold text-accent">24/7</div>
+              <div class="text-sm text-muted">Support Available</div>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Desktop Layout -->
+        <div class="hidden md:grid grid-cols-4 gap-8 text-center relative">
+          <!-- Stat 1 -->
+          <div class="space-y-2 relative">
+            <div class="text-3xl md:text-4xl font-bold text-accent">20+</div>
+            <div class="text-sm text-muted">Skills Learned</div>
+            <div class="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 h-10 w-px border-r-2 border-dashed border-gray-300"></div>
+          </div>
+          <!-- Stat 2 -->
+          <div class="space-y-2 relative">
+            <div class="text-3xl md:text-4xl font-bold text-accent">3</div>
+            <div class="text-sm text-muted">Years Exploring</div>
+            <div class="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 h-10 w-px border-r-2 border-dashed border-gray-300"></div>
+          </div>
+          <!-- Stat 3 -->
+          <div class="space-y-2 relative">
             <div class="text-3xl md:text-4xl font-bold text-accent">98%</div>
             <div class="text-sm text-muted">Client Satisfaction</div>
+            <div class="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 h-10 w-px border-r-2 border-dashed border-gray-300"></div>
           </div>
-          <div class="space-y-2">
-            <div class="text-3xl md:text-4xl font-bold text-accent">5+</div>
-            <div class="text-sm text-muted">Years Experience</div>
-          </div>
+          <!-- Stat 4 -->
           <div class="space-y-2">
             <div class="text-3xl md:text-4xl font-bold text-accent">24/7</div>
             <div class="text-sm text-muted">Support Available</div>
@@ -746,6 +697,12 @@ nav a { position: relative; }
         </div>
       </div>
     </section>
+    
+    
+    
+
+<!-- Removed duplicate GSAP + ScrollTrigger and unused stats counter script -->
+
 
     <!-- WHY CHOOSE US -->
     <section id="whyus" class="storyline site-section">
@@ -761,12 +718,13 @@ nav a { position: relative; }
           <!-- Image first on large screens -->
           <div class="card overflow-hidden rounded-2xl reveal-up order-1 lg:order-none">
             <img 
-              decoding="async" 
-              loading="lazy" 
-              src="/4.png" 
-              alt="Team collaboration and brainstorming session for web development projects" 
-              class="w-full object-cover h-full min-h-[320px]"
-            >
+  decoding="async" 
+  loading="lazy" 
+  src="Banner/whychooseus.png" 
+  alt="Team collaboration and brainstorming session for web development projects" 
+  class="w-full object-cover rounded-2xl aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9]"
+>
+
           </div>
     
           <!-- Text second on large screens -->
@@ -831,7 +789,7 @@ nav a { position: relative; }
               <span class="text-sm font-medium">Figma</span>
             </div>
             <div class="flex items-center gap-3 p-3 rounded-xl border border-white/10 bg-card hover:shadow-lg transition">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/shopify/shopify-original.svg" 
+              <img src="https://cdn.simpleicons.org/Shopify/06B6D4" 
                    alt="Shopify" class="w-6 h-6">
               <span class="text-sm font-medium">Shopify</span>
             </div>
@@ -1392,19 +1350,19 @@ nav a { position: relative; }
         <div id="project-grid" class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           
           <!-- Project 1 -->
-          <a href="case-study.html?project=shop-sphere" class="project-card group relative reveal-up" style="background:var(--card)">
-            <img src="https://images.unsplash.com/photo-1519222970733-f546218fa6d7?q=80&w=1170&auto=format&fit=crop" 
+          <a href="case-study.html?project=evarastaffing" class="project-card group relative reveal-up" style="background:var(--card)">
+            <img src="Banner/Evarastaffing.png" 
                  alt="E-commerce" class="w-full h-64 object-cover" />
             <div class="project-caption">
-              <div class="title">ShopSphere</div>
-              <div class="meta">E-commerce • Next.js, Stripe</div>
+              <div class="title">EvaraStaffing</div>
+              <div class="meta">Consultancy • WordPress, Elementor</div>
             </div>
             <div class="project-overlay">
-              <p>High-performance e-commerce store built with Next.js & Stripe.</p>
+              <p>Consultany website for my client with resume upload option </p>
               <div class="stack">
-                <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-6" alt="React"/>
-                <img src="https://cdn.simpleicons.org/nextdotjs/ffffff" class="w-6" alt="Next.js"/>
-                <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" class="w-6" alt="Tailwind"/>
+                <img src="https://cdn.simpleicons.org/Javascript/61DAFB" class="w-6" alt="Html"/>
+                <img src="https://cdn.simpleicons.org/Elementor/ffffff" class="w-6" alt="Elementor"/>
+                <img src="https://cdn.simpleicons.org/wordpress/06B6D4" class="w-6" alt="Tailwind"/>
               </div>
             </div>
             <span class="project-link absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-full bg-[var(--accent)] text-black shadow-lg opacity-0 group-hover:opacity-100 transition duration-300"
@@ -1412,15 +1370,15 @@ nav a { position: relative; }
           </a>
 
           <!-- Project 2 -->
-          <a href="case-study.html?project=localbrew" class="project-card group relative reveal-up" style="background:var(--card)">
-            <img src="https://images.unsplash.com/photo-1558174685-430919a96c8d?q=80&w=1171&auto=format&fit=crop" 
+          <a href="case-study.html?project=tourly" class="project-card group relative reveal-up" style="background:var(--card)">
+            <img src="Banner/tourly.png" 
                  alt="Small Business" class="w-full h-64 object-cover" />
             <div class="project-caption">
-              <div class="title">LocalBrew</div>
-              <div class="meta">Small Business • Booking, Menus</div>
+              <div class="title">Tourly</div>
+              <div class="meta">Small Business • Booking, Packages</div>
             </div>
             <div class="project-overlay">
-              <p>Modern website for cafes & local shops with booking & menus.</p>
+              <p>Modern website for trips and packages with booking & menus.</p>
               <div class="stack">
                 <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-6" alt="React"/>
                 <img src="https://cdn.simpleicons.org/greensock/88CE02" class="w-6" alt="GSAP"/>
@@ -1432,19 +1390,19 @@ nav a { position: relative; }
           </a>
     
           <!-- Project 3 -->
-          <a href="case-study.html?project=smilecare" class="project-card group relative reveal-up" style="background:var(--card)">
-            <img src="https://images.unsplash.com/photo-1658677414428-d0ae187034cc?q=80&w=1170&auto=format&fit=crop" 
+          <a href="case-study.html?project=rv-internet" class="project-card group relative reveal-up" style="background:var(--card)">
+            <img src="Banner/RV.png" 
                  alt="Dentist Website" class="w-full h-64 object-cover" />
             <div class="project-caption">
-              <div class="title">SmileCare</div>
-              <div class="meta">Healthcare • Appointments</div>
+              <div class="title">Rv Internet</div>
+              <div class="meta">Tech • Router/Modem</div>
             </div>
             <div class="project-overlay">
-              <p>Clean, trust-building design with appointment scheduling.</p>
+              <p>Clean, trust-building design with 5 pages product <small></small>howcase</p>
               <div class="stack">
-                <img src="https://cdn.simpleicons.org/nextdotjs/ffffff" class="w-6" alt="Next.js"/>
+                <img src="https://cdn.simpleicons.org/Javascript/ffffff" class="w-6" alt="Next.js"/>
                 <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" class="w-6" alt="Tailwind"/>
-                <img src="https://cdn.simpleicons.org/nodedotjs/5FA04E" class="w-6" alt="Node.js"/>
+                <img src="https://cdn.simpleicons.org/Css/5FA04E" class="w-6" alt="Node.js"/>
               </div>
             </div>
             <span class="project-link absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-full bg-[var(--accent)] text-black shadow-lg opacity-0 group-hover:opacity-100 transition duration-300"
@@ -1452,15 +1410,15 @@ nav a { position: relative; }
           </a>
     
           <!-- Project 4 -->
-          <a href="case-study.html?project=visionary" class="project-card group relative reveal-up" style="background:var(--card)">
-            <img src="https://images.unsplash.com/photo-1642132652935-d750e2014719?q=80&w=1460&auto=format&fit=crop" 
+          <a href="case-study.html?project=himachal-travel" class="project-card group relative reveal-up" style="background:var(--card)">
+            <img src="Banner/Himachal.png" 
                  alt="Portfolio" class="w-full h-64 object-cover" />
             <div class="project-caption">
-              <div class="title">Visionary</div>
-              <div class="meta">Portfolio • Motion, Showcase</div>
+              <div class="title">Himachal Trvael</div>
+              <div class="meta">Travel • Motion, Showcase</div>
             </div>
             <div class="project-overlay">
-              <p>A designer's personal portfolio with animations and showcase.</p>
+              <p>A designer's personal travel guide to himachal</p>
               <div class="stack">
                 <img src="https://cdn.simpleicons.org/figma/F24E1E" class="w-6" alt="Figma"/>
                 <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-6" alt="React"/>
@@ -1472,15 +1430,15 @@ nav a { position: relative; }
           </a>
     
           <!-- Project 5 -->
-          <a href="case-study.html?project=cloudmetrics" class="project-card group relative reveal-up" style="background:var(--card)">
-            <img src="https://images.unsplash.com/photo-1678690832871-8b9993c76aa8?q=80&w=1170&auto=format&fit=crop" 
+          <a href="case-study.html?project=dr-noor-oil" class="project-card group relative reveal-up" style="background:var(--card)">
+            <img src="Banner/drnooroil.png" 
                  alt="SaaS" class="w-full h-64 object-cover" />
             <div class="project-caption">
-              <div class="title">CloudMetrics</div>
-              <div class="meta">SaaS • Analytics</div>
+              <div class="title">Dr Noor oil</div>
+              <div class="meta">E-commerce • store</div>
             </div>
             <div class="project-overlay">
-              <p>Analytics SaaS dashboard optimized for speed & clarity.</p>
+              <p>Product showcase with pricing and the other section like cart and pay</p>
               <div class="stack">
                 <img src="https://cdn.simpleicons.org/typescript/3178C6" class="w-6" alt="TypeScript"/>
                 <img src="https://cdn.simpleicons.org/nextdotjs/ffffff" class="w-6" alt="Next.js"/>
@@ -1697,21 +1655,31 @@ nav a { position: relative; }
       <div class="site-container grid lg:grid-cols-2 gap-12 items-center">
         
         <!-- Left Card -->
-        <div class="p-16 rounded-2xl shadow-lg" 
-             style="background: var(--accent); color: #fff;">
-          <div class="bg-black/80 p-6 rounded-lg inline-block mb-4">
-            <h2 class="text-3xl md:text-4xl font-extrabold leading-snug">
-              All Your Website Needs, <br class="hidden md:block"/> Expertly Handled
-            </h2>
-            <div class="mt-2 w-16 h-1 bg-yellow-400 rounded-full"></div>
-          </div>
-          <p class="mt-4 text-base font-medium">
-            End-to-end website solutions <span class="ml-1">🔥</span> that ensure your website looks great, functions flawlessly, and drives results 🚀
-          </p>
-          <button class="mt-6 px-6 py-3 bg-black text-white rounded-lg font-semibold hover:bg-white hover:text-black transition">
-            BOOK A CALL
-          </button>
-        </div>
+        <div class="p-6 md:p-16 rounded-2xl shadow-lg" 
+        style="background: var(--accent); color: #fff;">
+     
+     <!-- Heading Block -->
+     <div class="bg-black/80 p-4 md:p-6 rounded-lg inline-block mb-4">
+       <h2 class="text-2xl md:text-4xl font-extrabold leading-snug">
+         All Your Website Needs, <br class="hidden md:block"/> Expertly Handled
+       </h2>
+       <div class="mt-2 w-12 md:w-16 h-1 bg-yellow-400 rounded-full"></div>
+     </div>
+     
+     <!-- Description -->
+     <p class="mt-3 md:mt-4 text-sm md:text-base font-medium leading-relaxed">
+       End-to-end website solutions <span class="ml-1">🔥</span> 
+       that ensure your website looks great, functions flawlessly, 
+       and drives results 🚀
+     </p>
+     
+     <!-- Button -->
+     <button class="mt-6 w-full md:w-auto px-6 py-3 bg-black text-white rounded-lg font-semibold 
+                    hover:bg-white hover:text-black transition">
+       BOOK A CALL
+     </button>
+   </div>
+   
     
         <!-- Right List -->
       <!-- Right Services Grid -->
@@ -1771,86 +1739,83 @@ nav a { position: relative; }
 
     <!-- TESTIMONIALS -->
     <section id="reviews" class="storyline  site-section">
+   
       <div class="site-container">
         <h3 class="text-3xl md:text-4xl font-extrabold">What Clients Say</h3>
-        <div class="mt-6 grid md:grid-cols-3 gap-6 gradient-mask">
+        <div class="mt-6 grid md:grid-cols-3 gap-6 gradient-mask relative">
+          <!-- Fade overlay at bottom -->
+      
 
-          <!-- Six dummy testimonial cards to match reference -->
+          <!-- Six testimonial cards with Indian names and companies -->
           <div class="card p-6 rounded-2xl tilt relative testimonial-card">
             <div class="shine"></div>
             <div class="flex items-center gap-3">
-              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=400&q=70" class="w-12 h-12 rounded-full object-cover" alt="Avatar">
               <div>
-                <div class="font-semibold">JAKE T</div>
-                <div class="muted text-sm">Small Business Owner</div>
+                <div class="font-semibold">RAJESH SHARMA</div>
+                <div class="muted text-sm">Founder of EvaraStaffing</div>
               </div>
             </div>
-            <p class="mt-4">"Fast, responsive, and modern. Our MVP finally feels legit thanks to their design work."</p>
+            <p class="mt-4">"Fast, responsive, and modern. Our recruitment platform finally feels professional thanks to their design work."</p>
             <div class="mt-3 text-yellow-400">★★★★★</div>
           </div>
 
           <div class="card p-6 rounded-2xl tilt relative testimonial-card">
             <div class="shine"></div>
             <div class="flex items-center gap-3">
-              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?auto=format&fit=crop&w=400&q=70" class="w-12 h-12 rounded-full object-cover" alt="Avatar">
               <div>
-                <div class="font-semibold">JAMES MORETTI</div>
-                <div class="muted text-sm">Founder of HappyCo</div>
+                <div class="font-semibold">DR. NOOR ALI</div>
+                <div class="muted text-sm">Managing Director, Dr Noor Oil</div>
               </div>
             </div>
-            <p class="mt-4">"The new interface is not only beautiful but also functional. It elevated our brand instantly."</p>
+            <p class="mt-4">"The new website is not only beautiful but also functional. It elevated our oil trading business instantly."</p>
             <div class="mt-3 text-yellow-400">★★★★★</div>
           </div>
 
           <div class="card p-6 rounded-2xl tilt relative testimonial-card">
             <div class="shine"></div>
             <div class="flex items-center gap-3">
-              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=400&q=70" class="w-12 h-12 rounded-full object-cover" alt="Avatar">
               <div>
-                <div class="font-semibold">LENA WHITMORE</div>
-                <div class="muted text-sm">Co‑Founder of ByteShift</div>
+                <div class="font-semibold">VIKRAM PATEL</div>
+                <div class="muted text-sm">Co‑Founder of VRTrips</div>
               </div>
             </div>
-            <p class="mt-4">"Exceptional communication and delivery. The design speaks directly to our audience."</p>
+            <p class="mt-4">"Exceptional communication and delivery. The travel website design speaks directly to our customers."</p>
             <div class="mt-3 text-yellow-400">★★★★★</div>
           </div>
 
           <div class="card p-6 rounded-2xl tilt relative testimonial-card">
             <div class="shine"></div>
             <div class="flex items-center gap-3">
-              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1519340333755-5063d9ab18d8?auto=format&fit=crop&w=400&q=70" class="w-12 h-12 rounded-full object-cover" alt="Avatar">
               <div>
-                <div class="font-semibold">LEO NGUYEN</div>
-                <div class="muted text-sm">CTO at LaunchPadX</div>
+                <div class="font-semibold">PRIYA SINGH</div>
+                <div class="muted text-sm">CTO at TechVantage Solutions</div>
               </div>
             </div>
-            <p class="mt-4">"Their UX decisions were backed by real insight. We saw an immediate boost in retention."</p>
+            <p class="mt-4">"Their UX decisions were backed by real insight. We saw an immediate boost in client inquiries."</p>
             <div class="mt-3 text-yellow-400">★★★★★</div>
           </div>
 
           <div class="card p-6 rounded-2xl tilt relative testimonial-card">
             <div class="shine"></div>
             <div class="flex items-center gap-3">
-              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=400&q=70" class="w-12 h-12 rounded-full object-cover" alt="Avatar">
               <div>
-                <div class="font-semibold">MELISSA GRANT</div>
-                <div class="muted text-sm">COO at VantageCore</div>
+                <div class="font-semibold">AMIT KUMAR</div>
+                <div class="muted text-sm">CEO at DigitalCraft India</div>
               </div>
             </div>
-            <p class="mt-4">"Their design helped us close our first round of funding. Investors were impressed with the UI alone."</p>
+            <p class="mt-4">"Their design helped us attract premium clients. New customers are impressed with our professional website."</p>
             <div class="mt-3 text-yellow-400">★★★★★</div>
           </div>
 
           <div class="card p-6 rounded-2xl tilt relative testimonial-card">
             <div class="shine"></div>
             <div class="flex items-center gap-3">
-              <img decoding="async" loading="lazy" src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?auto=format&fit=crop&w=400&q=70" class="w-12 h-12 rounded-full object-cover" alt="Avatar">
               <div>
-                <div class="font-semibold">CARLOS MENDEZ</div>
-                <div class="muted text-sm">Director of Digital at OrbitWave</div>
+                <div class="font-semibold">MEERA GUPTA</div>
+                <div class="muted text-sm">Director at SmartHub Enterprises</div>
               </div>
             </div>
-            <p class="mt-4">"Fast, smart, and reliable — the perfect partner for a growing startup."</p>
+            <p class="mt-4">"Fast, smart, and reliable — the perfect partner for a growing Indian business."</p>
             <div class="mt-3 text-yellow-400">★★★★★</div>
           </div>
 
@@ -2028,23 +1993,23 @@ nav a { position: relative; }
 
         <div class="mt-8 space-y-4">
           <details class="card rounded-xl p-5 border border-white/10 bg-card reveal-up">
-            <summary class="font-semibold cursor-pointer">How long does a typical website project take?</summary>
-            <div class="mt-3 text-muted">Most projects take 3–6 weeks depending on scope, deliverables, and feedback speed.</div>
+            <summary class="font-semibold cursor-pointer">What's included in your website packages?</summary>
+            <div class="mt-3 text-muted">Our website packages include everything your business needs to get online: custom design tailored to your brand, mobile-responsive layout, basic SEO optimization, contact forms, social media integration, and hosting for the first year. We also provide a content management system so you can easily update your site, plus basic training on how to use it. Additional features like e-commerce functionality, blog setup, and advanced analytics can be added based on your specific needs.</div>
           </details>
 
           <details class="card rounded-xl p-5 border border-white/10 bg-card reveal-up">
-            <summary class="font-semibold cursor-pointer">Do you provide content writing and branding?</summary>
-            <div class="mt-3 text-muted">Yes, we offer copywriting, branding, and complete design systems as add-ons.</div>
+            <summary class="font-semibold cursor-pointer">How long does it take to build my website?</summary>
+            <div class="mt-3 text-muted">Most small to medium business websites are completed within 2-4 weeks from the time we receive all your content and requirements. The timeline depends on the complexity of your site and how quickly you provide feedback during the design process. Simple brochure websites typically take 2 weeks, while more complex sites with custom features or extensive product catalogs may take 4-6 weeks. We'll give you a specific timeline during your initial consult</div>
           </details>
 
           <details class="card rounded-xl p-5 border border-white/10 bg-card reveal-up">
-            <summary class="font-semibold cursor-pointer">Will the site be SEO and performance optimized?</summary>
-            <div class="mt-3 text-muted">We build with accessibility, speed, and on-page SEO best practices from day one.</div>
+            <summary class="font-semibold cursor-pointer">Do you provide ongoing support after my website launches?</summary>
+            <div class="mt-3 text-muted">Yes, we offer comprehensive post-launch support to ensure your website continues running smoothly. This includes technical maintenance, security updates, backup services, and minor content updates. We offer different support packages ranging from basic maintenance to full-service management where we handle all updates and improvements for you. You'll never be left wondering how to fix a technical issue or make important updates to your site.</div>
           </details>
 
           <details class="card rounded-xl p-5 border border-white/10 bg-card reveal-up">
-            <summary class="font-semibold cursor-pointer">What is the typical engagement model?</summary>
-            <div class="mt-3 text-muted">Fixed-scope projects or monthly retainers for continuous iteration and support.</div>
+            <summary class="font-semibold cursor-pointer">Can I update my website content myself?</summary>
+            <div class="mt-3 text-muted">Absolutely! We build all our websites with user-friendly content management systems that allow you to easily update text, images, prices, and other content without any technical knowledge. We provide training and documentation to show you how to make these updates. For more complex changes or if you prefer not to handle updates yourself, our team is always available to make changes for you at affordable rates.</div>
           </details>
         </div>
       </div>
@@ -2254,12 +2219,15 @@ nav a { position: relative; }
     </section>
     <!-- FOOTER -->
     <footer class="footer py-14" style="border-top:1px solid rgba(255,255,255,.08)">
-      <div class="site-container grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="site-container grid gap-10 sm:grid-cols-2 lg:grid-cols-4 items-start">
         
         <!-- Brand -->
         <div class="space-y-5">
           <div class="flex items-center gap-3">
-            <div class="logo-dot"></div>
+            <div class="logo-dot">
+        <img src="/e-removebg-preview.png" alt="Recode UX Logo" class="h-8" />
+
+            </div>
             <div class="font-extrabold text-xl">Recode UX</div>
           </div>
           <p class="muted text-sm leading-relaxed max-w-xs">
@@ -2267,62 +2235,144 @@ nav a { position: relative; }
           </p>
           <!-- Social -->
           <div class="flex gap-3 mt-5">
+            <!-- Twitter / X -->
             <a href="#" aria-label="Twitter"
-               class="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--accent)] text-black hover:opacity-80 transition">
-              <i class="ri-twitter-fill text-lg"></i>
+               class="w-10 h-10 flex items-center justify-center rounded-full 
+                       text-black dark:text-white 
+                      hover:scale-110 hover:opacity-90 transition">
+              <i class="fa-brands fa-x-twitter text-lg"></i>
             </a>
+          
+            <!-- LinkedIn -->
             <a href="#" aria-label="LinkedIn"
-               class="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--accent)] text-black hover:opacity-80 transition">
-              <i class="ri-linkedin-fill text-lg"></i>
+               class="w-10 h-10 flex items-center justify-center rounded-full 
+                       text-black dark:text-white 
+                      hover:scale-110 hover:opacity-90 transition">
+              <i class="fa-brands fa-linkedin-in text-lg"></i>
             </a>
+          
+            <!-- Instagram -->
             <a href="#" aria-label="Instagram"
-               class="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--accent)] text-black hover:opacity-80 transition">
-              <i class="ri-instagram-fill text-lg"></i>
+               class="w-10 h-10 flex items-center justify-center rounded-full 
+                      text-black dark:text-white 
+                      hover:scale-110 hover:opacity-90 transition">
+              <i class="fa-brands fa-instagram text-lg"></i>
             </a>
           </div>
+          
+          
         </div>
     
         <!-- Useful Links -->
         <div class="space-y-5">
           <h4 class="font-bold text-base">Useful Links</h4>
-          <ul class="space-y-2 text-sm muted">
-            <li><a href="#" class="hover:text-[var(--accent)]">Home</a></li>
-            <li><a href="#services" class="hover:text-[var(--accent)]">Services</a></li>
-            <li><a href="#portfolio" class="hover:text-[var(--accent)]">Portfolio</a></li>
-            <li><a href="#about" class="hover:text-[var(--accent)]">About</a></li>
-            <li><a href="#contact" class="hover:text-[var(--accent)]">Contact</a></li>
+          <ul class="space-y-2 text-sm text-muted">
+            <li>
+              <a href="#" class="flex items-center gap-2 hover:text-[var(--accent)]">
+                <i class="fa-solid fa-chevron-right text-[var(--accent)] text-xs"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="#services" class="flex items-center gap-2 hover:text-[var(--accent)]">
+                <i class="fa-solid fa-chevron-right text-[var(--accent)] text-xs"></i>
+                <span>Services</span>
+              </a>
+            </li>
+            <li>
+              <a href="#portfolio" class="flex items-center gap-2 hover:text-[var(--accent)]">
+                <i class="fa-solid fa-chevron-right text-[var(--accent)] text-xs"></i>
+                <span>Portfolio</span>
+              </a>
+            </li>
+            <li>
+              <a href="#about" class="flex items-center gap-2 hover:text-[var(--accent)]">
+                <i class="fa-solid fa-chevron-right text-[var(--accent)] text-xs"></i>
+                <span>About</span>
+              </a>
+            </li>
+            <li>
+              <a href="#contact" class="flex items-center gap-2 hover:text-[var(--accent)]">
+                <i class="fa-solid fa-chevron-right text-[var(--accent)] text-xs"></i>
+                <span>Contact</span>
+              </a>
+            </li>
           </ul>
         </div>
     
         <!-- Services -->
         <div class="space-y-5">
           <h4 class="font-bold text-base">Our Services</h4>
-          <ul class="space-y-2 text-sm muted">
-            <li>UI/UX Design</li>
-            <li>Web Development</li>
-            <li>SEO Optimization</li>
-            <li>Backend Solutions</li>
-            <li>Domain & Hosting</li>
-            <li>Email Setup</li>
+          <ul class="space-y-2 text-sm text-muted">
+            <li>
+              <a href="#" class="flex items-center gap-2 hover:text-[var(--accent)]">
+                <i class="fa-solid fa-chevron-right text-[var(--accent)] text-xs"></i>
+                <span>UI/UX Design</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-2 hover:text-[var(--accent)]">
+                <i class="fa-solid fa-chevron-right text-[var(--accent)] text-xs"></i>
+                <span>Web Development</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-2 hover:text-[var(--accent)]">
+                <i class="fa-solid fa-chevron-right text-[var(--accent)] text-xs"></i>
+                <span>SEO Optimization</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-2 hover:text-[var(--accent)]">
+                <i class="fa-solid fa-chevron-right text-[var(--accent)] text-xs"></i>
+                <span>Backend Solutions</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-2 hover:text-[var(--accent)]">
+                <i class="fa-solid fa-chevron-right text-[var(--accent)] text-xs"></i>
+                <span>Domain & Hosting</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-2 hover:text-[var(--accent)]">
+                <i class="fa-solid fa-chevron-right text-[var(--accent)] text-xs"></i>
+                <span>Email Setup</span>
+              </a>
+            </li>
           </ul>
         </div>
+        
     
         <!-- Contact -->
         <div class="space-y-5">
           <h4 class="font-bold text-base">Contact Us</h4>
           <ul class="space-y-3 text-sm muted">
-            <li class="flex items-center gap-2"><i class="ri-map-pin-fill"></i> New Delhi, India</li>
-            <li class="flex items-center gap-2"><i class="ri-phone-fill"></i> +91 89200 59901</li>
-            <li class="flex items-center gap-2"><i class="ri-phone-fill"></i> +91 77620 88957</li>
-            <li class="flex items-center gap-2"><i class="ri-mail-fill"></i> contact@recodeux.com</li>
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-location-dot text-[var(--accent)]"></i>
+              <span>RecodeUX.com, Tech - AD Network and Solution, 616A, 6th Floor, Devika Tower Nehru Place, New Delhi, Delhi 110019</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-phone text-[var(--accent)]"></i>
+              <span>+91 89200 59901</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-phone text-[var(--accent)]"></i>
+              <span>+91 77620 88957</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-envelope text-[var(--accent)]"></i>
+              <span>contact@recodeux.com</span>
+            </li>
           </ul>
         </div>
+        
     
       </div>
     
       <!-- Bottom Bar -->
       <div class="site-container mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-sm muted gap-3">
-        <div>© <span id="y"></span> Recode UX. All Rights Reserved.</div>
+        <div>© <span id="y"></span> Copyright 2025, Tech-Ad. All Rights Reserved.</div>
         <div class="flex gap-4">
           <a href="#" class="hover:text-[var(--accent)]">Sitemap</a>
           <a href="#contact" class="hover:text-[var(--accent)]">Contact Us</a>
@@ -2510,31 +2560,25 @@ nav a { position: relative; }
         });
       })();
 
-      // GSAP reveals & micro animations
+      // GSAP: simple reveal without ScrollTrigger (faster and earlier)
       if(window.gsap){
-        gsap.registerPlugin(ScrollTrigger);
-        // hero
-        gsap.from('.hero-title', {y:40,opacity:0,duration:.9,ease:'power3.out'});
-        // generic reveals
-        gsap.utils.toArray('.reveal-up').forEach((el)=>{
-          gsap.from(el,{
-            scrollTrigger:{ trigger: el, start: 'top 99%', once: true },
-            y:20,
-            opacity:0,
-            duration:.5,
-            ease:'power2.out'
+        const elementsToReveal = gsap.utils.toArray('.reveal-up, .service-card, .work-card, .testimonial-card, .process-step, .project-card');
+        gsap.set(elementsToReveal, {opacity: 0, y: 14});
+
+        const io = new IntersectionObserver((entries)=>{
+          entries.forEach(entry=>{
+            if(entry.isIntersecting){
+              gsap.to(entry.target, {opacity:1, y:0, duration:.45, ease:'power2.out'});
+              io.unobserve(entry.target);
+            }
           });
-        });
-        // cards
-        gsap.utils.toArray('.service-card, .work-card, .testimonial-card, .process-step, .project-card').forEach((c)=>{
-          gsap.from(c,{
-            scrollTrigger:{ trigger: c, start: 'top 99%', once: true },
-            y:20,
-            opacity:0,
-            duration:.45,
-            ease:'power2.out'
-          });
-        });
+        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+
+        elementsToReveal.forEach(el=> io.observe(el));
+
+        if (document.querySelector('.hero-title')) {
+          gsap.from('.hero-title', {y:36, opacity:0, duration:.8, ease:'power3.out'});
+        }
       }
 
       // subtle pulsing CTA (Anime.js)

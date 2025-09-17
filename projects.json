@@ -2,204 +2,187 @@
   "projects": [
     {
       "id": 1,
-      "slug": "shop-sphere",
-      "title": "ShopSphere",
-      "category": "E-commerce",
-      "meta": "Next.js • Stripe • Tailwind",
-      "tools": ["Next.js", "Stripe", "Tailwind CSS", "React"],
-      "shortDescription": "High-performance e-commerce platform with optimized checkout flow.",
-      "duration": "4 months",
-      "role": "Lead Developer & UX Designer",
-      "team": "4 developers, 1 designer, 1 PM",
-      "liveUrl": "https://shopsphere-demo.vercel.app",
-      "codeUrl": "https://github.com/username/shopsphere",
-      "heroImage": "https://images.unsplash.com/photo-1519222970733-f546218fa6d7?q=80&w=1400&auto=format&fit=crop",
-      "gallery": [
-        "https://images.unsplash.com/photo-1519222970733-f546218fa6d7?q=80&w=1400&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=1400&auto=format&fit=crop"
-      ],
+      "slug": "evarastaffing",
+      "title": "EvaraStaffing",
+      "category": "Consultancy",
+      "meta": "WordPress • Elementor",
+      "tools": ["WordPress", "Elementor", "JavaScript"],
+      "shortDescription": "Consultancy website with resume upload functionality for staffing solutions.",
+      "duration": "3 weeks",
+      "role": "Full-stack Developer",
+      "team": "Solo project",
+      "liveUrl": "#",
+      "heroImage": "Banner/Evarastaffing.png",
+      "gallery": ["Banner/Evarastaffing.png"],
       "keyFeatures": [
-        "Single-page checkout optimization",
-        "Real-time inventory management",
-        "Advanced product filtering",
-        "Progressive Web App capabilities"
+        "Resume upload and management",
+        "Service showcase",
+        "Clean and professional UI",
+        "Mobile responsive design"
       ],
       "caseStudy": {
-        "overview": "ShopSphere was struggling with a 68% cart abandonment rate and poor mobile performance that was costing them $50K monthly in lost revenue. Their existing checkout process required users to navigate through five separate pages, each with multiple form fields and loading states that frustrated customers and led to drop-offs.",
-        "challenge": "The client's analytics revealed that users were abandoning carts primarily during the checkout process, with mobile users showing even higher abandonment rates at 74%. The existing WordPress-based solution had significant performance issues, taking an average of 6 seconds to load product pages and 8 seconds for checkout initiation. Additionally, the site lacked modern trust indicators and had inconsistent branding across different devices. The backend inventory system wasn't real-time, leading to overselling issues and customer complaints.",
-        "research": "We conducted comprehensive user research including heatmap analysis, user session recordings, and exit surveys. The data showed that 43% of users abandoned due to unexpected shipping costs, 31% due to lengthy checkout processes, and 26% cited security concerns. Mobile users specifically complained about small touch targets and difficult form completion. We also performed competitive analysis of top-performing e-commerce sites and identified key patterns in successful checkout flows.",
-        "approach": "Our strategy focused on three core areas: performance optimization, checkout streamlining, and trust building. We migrated the entire frontend to Next.js to leverage server-side rendering and automatic code splitting. The checkout process was redesigned as a single-page application with progressive disclosure, showing information only when needed. We implemented real-time form validation to catch errors early and integrated multiple payment options including Apple Pay and Google Pay for faster transactions.",
-        "implementation": "The development process began with performance auditing and identifying critical render paths. We implemented lazy loading for product images, optimized the bundle size by removing unused dependencies, and set up a CDN for static assets. The new checkout system used Stripe's latest APIs for secure payment processing and included features like address autocomplete and saved payment methods. We built a comprehensive design system with reusable components to ensure consistency across all touchpoints.",
-        "solution": "The final solution included a lightning-fast Next.js storefront with optimized Core Web Vitals, a streamlined single-page checkout with smart defaults, and enhanced trust signals including customer reviews, security badges, and clear return policies. We implemented progressive form validation that guides users through completion and added real-time inventory updates to prevent overselling. The mobile experience was completely redesigned with thumb-friendly navigation and optimized touch targets.",
-        "results": "The results exceeded expectations with cart abandonment dropping from 68% to 44%, representing a 24% improvement. Overall conversions increased by 18%, directly translating to an additional $72K in monthly revenue. Page load times improved dramatically from 6 seconds to 1.2 seconds average, with mobile performance seeing even greater gains. Customer satisfaction scores increased by 32%, and support tickets related to checkout issues decreased by 56%.",
-        "impact": "Beyond the immediate metrics, ShopSphere gained a scalable platform that could handle traffic spikes during sales events. The new architecture reduced server costs by 30% while improving performance. The client team could now make updates independently through the headless CMS, reducing their dependency on external developers for content changes.",
-        "lessons": "This project reinforced the importance of user research in driving design decisions. The biggest wins came from simplifying complex processes rather than adding features. Performance optimization had a direct correlation with conversion rates, and building trust through transparent pricing and security indicators was crucial for mobile users."
+        "overview": "EvaraStaffing wanted a professional site where job seekers could upload resumes while presenting their services in a credible way.",
+        "challenge": "Their old setup lacked branding, clear structure, and a system to handle candidate submissions.",
+        "research": "Looked at staffing competitors to identify features like resume uploads, clear CTAs, and trust-building layouts.",
+        "approach": "Chose WordPress with Elementor for quick customization and scalability, keeping future updates simple.",
+        "implementation": "Designed a clean interface, built a resume upload form, and structured service pages for easy browsing.",
+        "solution": "Delivered a consultancy platform with direct resume submissions, polished visuals, and service clarity.",
+        "results": "Saw a 45% increase in candidate submissions and more client inquiries within weeks.",
+        "impact": "Helped EvaraStaffing scale digitally and simplify their recruitment flow.",
+        "lessons": "Straightforward navigation and visible CTAs significantly improve conversions."
       },
       "testimonial": {
-        "quote": "The ShopSphere redesign transformed our business. We're seeing the highest conversion rates in our company's history.",
-        "author": "Sarah Chen",
-        "position": "Head of E-commerce"
+        "quote": "The resume upload feature has been a game-changer for our hiring process.",
+        "author": "Client",
+        "position": "Founder, EvaraStaffing"
       }
     },
     {
       "id": 2,
-      "slug": "localbrew",
-      "title": "LocalBrew",
+      "slug": "tourly",
+      "title": "Tourly",
       "category": "Small Business",
       "meta": "React • GSAP • Vercel",
-      "tools": ["React", "GSAP", "Vercel", "Contentful"],
-      "shortDescription": "Modern cafe website with seamless booking and menu management.",
+      "tools": ["React", "GSAP", "Vercel"],
+      "shortDescription": "Modern travel packages and booking platform for tours and trips.",
       "duration": "6 weeks",
-      "role": "Full-stack Developer",
+      "role": "Frontend Developer",
       "team": "2 developers, 1 designer",
-      "liveUrl": "https://localbrew-cafe.vercel.app",
-      "heroImage": "https://images.unsplash.com/photo-1558174685-430919a96c8d?q=80&w=1400&auto=format&fit=crop",
-      "gallery": [
-        "https://images.unsplash.com/photo-1558174685-430919a96c8d?q=80&w=1400&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1400&auto=format&fit=crop"
-      ],
+      "liveUrl": "#",
+      "heroImage": "Banner/tourly.png",
+      "gallery": ["Banner/tourly.png"],
       "keyFeatures": [
-        "Real-time table booking system",
-        "Dynamic menu management",
-        "Event calendar integration",
-        "Staff-friendly CMS interface"
+        "Tour package showcase",
+        "Online booking system",
+        "Animated UI with GSAP",
+        "Mobile responsive"
       ],
       "caseStudy": {
-        "overview": "LocalBrew, a thriving neighborhood cafe, was losing potential customers due to their outdated booking system that required phone calls during peak hours. Staff spent countless hours manually updating printed menus and coordinating reservations, while customers often left frustrated when they couldn't secure tables during busy periods.",
-        "challenge": "The cafe's phone-based reservation system was creating bottlenecks during rush hours, with staff unable to answer calls while serving customers. Menu updates required printing new materials weekly, costing time and money while often resulting in outdated pricing. The existing website was a basic template that didn't reflect the cafe's warm, community-focused brand and provided no digital booking capabilities. Mobile users, who comprised 78% of their web traffic, struggled with the non-responsive layout.",
-        "research": "We conducted on-site observations during peak hours and interviewed both staff and regular customers. Our findings revealed that 34% of potential bookings were lost due to unanswered phones, and staff spent 8 hours weekly on menu-related tasks. Customer surveys showed strong demand for online booking, with 67% preferring digital reservations over phone calls. We also analyzed competitor cafes and identified successful booking flow patterns.",
-        "approach": "We designed a customer-first booking experience that prioritized speed and simplicity. The solution needed to work seamlessly for both customers making reservations and staff managing the restaurant floor. We chose a headless CMS architecture to give staff real-time menu control without technical complexity. The design emphasized LocalBrew's artisanal brand through warm colors, authentic photography, and subtle animations that reflected the care put into their coffee craft.",
-        "implementation": "The booking system was built with real-time availability checking and automatic confirmation emails. We integrated with the cafe's existing POS system for seamless table management. The menu system connected to Contentful CMS, allowing staff to update items, prices, and availability instantly from any device. GSAP animations were strategically used to guide user attention to key actions like booking and featured menu items without overwhelming the experience.",
-        "solution": "The final website featured an intuitive booking interface with real-time availability, a dynamically managed menu system that staff could update in minutes, and an events calendar showcasing community activities. The design reflected LocalBrew's artisanal identity while maintaining fast loading speeds and accessibility standards. Mobile-first design ensured perfect functionality on the tablets used at each table for additional orders.",
-        "results": "Table bookings increased by 31% within the first month, with 89% of reservations now coming through the website. Staff reduced weekly menu management time from 8 hours to 30 minutes, allowing them to focus on customer service. No-show rates decreased by 18% due to automated reminder emails. Website engagement metrics improved dramatically, with average session duration increasing by 156%.",
-        "impact": "The digital transformation allowed LocalBrew to operate more efficiently while providing superior customer service. Revenue increased by 23% over six months, partly due to better table turnover management and reduced no-shows. The cafe became a model for other local businesses looking to modernize their operations.",
-        "lessons": "Small businesses benefit enormously from simple, focused solutions. The biggest impact came from reducing friction in common tasks rather than adding complex features. Staff training and buy-in were crucial for successful adoption of the new systems."
+        "overview": "Tourly needed a modern platform that made browsing and booking trips easy and enjoyable.",
+        "challenge": "The old site felt static, outdated, and didn’t offer smooth booking flows.",
+        "research": "Studied leading travel portals to figure out what makes browsing intuitive and fun.",
+        "approach": "Built with React and GSAP to deliver fast performance and engaging animations.",
+        "implementation": "Developed dynamic package pages, smooth transitions, and a responsive booking form.",
+        "solution": "Created a lively, mobile-first travel site that highlights packages and streamlines booking.",
+        "results": "Inquiries for tours grew steadily, and customers reported a smoother experience.",
+        "impact": "Tourly could compete with larger platforms and stand out with better usability.",
+        "lessons": "Adding motion and interactivity makes users spend more time exploring."
       },
       "testimonial": {
-        "quote": "Our customers love the new booking system, and we've saved hours every week on menu updates. It's been a game-changer.",
-        "author": "Marcus Rodriguez",
-        "position": "LocalBrew Owner"
+        "quote": "Customers love how easy it is to browse and book trips now.",
+        "author": "Owner",
+        "position": "Tourly Founder"
       }
     },
     {
       "id": 3,
-      "slug": "smilecare",
-      "title": "SmileCare",
-      "category": "Healthcare",
-      "meta": "Next.js • Node.js • Tailwind",
-      "tools": ["Next.js", "Node.js", "Tailwind CSS", "PostgreSQL"],
-      "shortDescription": "Patient-focused dental practice website with streamlined booking.",
-      "duration": "8 weeks",
+      "slug": "rv-internet",
+      "title": "RV Internet",
+      "category": "Tech",
+      "meta": "JavaScript • Tailwind • Node.js",
+      "tools": ["JavaScript", "Tailwind CSS", "Node.js"],
+      "shortDescription": "Tech website showcasing routers, modems, and internet solutions.",
+      "duration": "5 weeks",
       "role": "Frontend Lead",
-      "team": "3 developers, 1 designer, 1 healthcare consultant",
-      "liveUrl": "https://smilecare-dental.vercel.app",
-      "heroImage": "https://images.unsplash.com/photo-1658677414428-d0ae187034cc?q=80&w=1400&auto=format&fit=crop",
-      "gallery": [
-        "https://images.unsplash.com/photo-1658677414428-d0ae187034cc?q=80&w=1400&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1588776814546-1f0bdb0e9d3a?q=80&w=1400&auto=format&fit=crop"
-      ],
+      "team": "2 developers",
+      "liveUrl": "#",
+      "heroImage": "Banner/RV.png",
+      "gallery": ["Banner/RV.png"],
       "keyFeatures": [
-        "HIPAA-compliant appointment system",
-        "Patient resource library",
-        "Insurance verification tool",
-        "Multi-location booking management"
+        "Product showcase",
+        "Modern tech design",
+        "5-page responsive layout",
+        "Trust-building structure"
       ],
       "caseStudy": {
-        "overview": "SmileCare Dental Practice was facing declining new patient acquisition due to their confusing website navigation and complicated appointment booking process. Potential patients were abandoning the site before scheduling consultations, directly impacting the practice's growth and revenue goals.",
-        "challenge": "The existing website suffered from poor information architecture that buried important details like services, pricing, and availability deep within multiple menu layers. The appointment booking system required users to download PDFs, fill them manually, and email them back - a process that deterred busy professionals and tech-savvy patients. Trust indicators were minimal, leaving potential patients uncertain about the quality of care. Mobile users faced additional challenges with slow loading times and difficult form completion on smaller screens.",
-        "research": "We conducted patient interviews and analyzed website analytics to understand user behavior patterns. The data revealed that 52% of visitors left without finding contact information, and 61% abandoned the booking process before completion. Patients specifically mentioned wanting to see doctor credentials, patient reviews, and clear pricing information upfront. We also reviewed HIPAA compliance requirements and studied successful healthcare websites to identify best practices.",
-        "approach": "Our strategy focused on building trust through transparency and simplifying the patient journey from discovery to appointment booking. We restructured the information architecture around patient needs rather than internal organization charts. The booking system was redesigned to be progressive and user-friendly while maintaining strict HIPAA compliance. We prioritized mobile-first design since 71% of healthcare searches happen on mobile devices.",
-        "implementation": "The new site architecture featured clear service categorization, prominent doctor profiles with credentials, and easily accessible patient resources. We built a custom booking widget that integrated with their practice management software while ensuring data encryption and HIPAA compliance. The FAQ section was restructured based on actual patient questions, and we added insurance verification tools to reduce administrative overhead.",
-        "solution": "The final website provided a clean, trustworthy experience with intuitive navigation, a streamlined booking process that could be completed in under 3 minutes, and comprehensive patient resources including procedure explanations and post-care instructions. Trust signals were prominently displayed, including certifications, patient testimonials, and before/after galleries where appropriate.",
-        "results": "Bounce rate decreased by 18% within the first month, indicating improved user engagement and content relevance. Online appointment bookings increased by 22%, reducing phone volume and allowing staff to focus on patient care. New patient acquisition improved by 28% over three months. Patient satisfaction scores increased, particularly regarding the convenience of online booking and access to information.",
-        "impact": "The website transformation helped SmileCare establish a stronger digital presence in their competitive market. Administrative efficiency improved as more patients used self-service options for basic questions and booking. The practice exceeded their annual growth targets and opened a second location partly due to increased patient volume.",
-        "lessons": "Healthcare websites must prioritize trust-building alongside usability. Patients need comprehensive information to make decisions, but it must be presented in digestible formats. Compliance requirements can be met without sacrificing user experience when properly planned from the beginning."
+        "overview": "RV Internet wanted a modern site to showcase routers and connectivity solutions clearly.",
+        "challenge": "Their existing site was outdated, cluttered, and didn’t highlight products properly.",
+        "research": "Analyzed competitor ISP websites to see how they structured product categories.",
+        "approach": "Used JavaScript with Tailwind to design a sleek, responsive layout.",
+        "implementation": "Organized products into categories, added visuals, and built trust-focused sections.",
+        "solution": "Delivered a clean, modern internet solutions site with focus on usability.",
+        "results": "Website inquiries increased, and customers found products easier to navigate.",
+        "impact": "Improved brand credibility and positioned RV Internet as more professional.",
+        "lessons": "A structured product layout improves trust and helps customers make decisions faster."
       },
       "testimonial": {
-        "quote": "Patient acquisition has never been easier. The new website attracts the right patients and makes booking appointments effortless.",
-        "author": "Dr. Jennifer Walsh",
-        "position": "Lead Dentist, SmileCare"
+        "quote": "Our website finally reflects the trust and quality of our services.",
+        "author": "CEO",
+        "position": "RV Internet"
       }
     },
     {
       "id": 4,
-      "slug": "visionary",
-      "title": "Visionary",
-      "category": "Portfolio",
+      "slug": "himachal-travel",
+      "title": "Himachal Travel",
+      "category": "Travel",
       "meta": "Figma • React • GSAP",
-      "tools": ["Figma", "React", "GSAP", "Framer Motion"],
-      "shortDescription": "Creative portfolio showcasing design work through immersive storytelling.",
-      "duration": "5 weeks",
+      "tools": ["Figma", "React", "GSAP"],
+      "shortDescription": "Travel guide with immersive motion design showcasing Himachal destinations.",
+      "duration": "4 weeks",
       "role": "Designer & Developer",
-      "team": "Solo project with client feedback",
-      "liveUrl": "https://visionary-portfolio.vercel.app",
-      "heroImage": "https://images.unsplash.com/photo-1642132652935-d750e2014719?q=80&w=1400&auto=format&fit=crop",
-      "gallery": [
-        "https://images.unsplash.com/photo-1642132652935-d750e2014719?q=80&w=1400&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop"
-      ],
+      "team": "Solo",
+      "liveUrl": "#",
+      "heroImage": "Banner/Himachal.png",
+      "gallery": ["Banner/Himachal.png"],
       "keyFeatures": [
-        "Immersive case study presentations",
-        "Interactive project timelines",
-        "Motion-driven storytelling",
-        "Modular content management"
+        "Immersive animations",
+        "Destination highlights",
+        "Smooth motion UI",
+        "Responsive design"
       ],
       "caseStudy": {
-        "overview": "A talented creative director needed a portfolio that could effectively communicate their design process and project impact to potential clients and employers. Their existing portfolio was overwhelming visitors with too much information presented simultaneously, resulting in low engagement and few quality inquiries.",
-        "challenge": "The original portfolio attempted to showcase every project detail on single pages, creating cognitive overload for visitors. Excessive animations competed for attention instead of guiding users through the narrative. Case studies lacked focus on business impact, instead emphasizing design process over results. The site performed poorly on mobile devices, where 64% of portfolio visitors were browsing. Most critically, the portfolio wasn't effectively converting views into meaningful conversations with potential clients or employers.",
-        "research": "We analyzed portfolios from industry leaders and identified patterns in successful presentations. User testing revealed that visitors wanted to see work quality quickly, then dive deeper into specific projects that interested them. Recruiters specifically mentioned wanting to see problem-solving approaches and measurable outcomes. We studied attention patterns and found that users made decisions about portfolio quality within 15 seconds of landing.",
-        "approach": "We adopted a storytelling framework that revealed information progressively, using motion to guide attention rather than distract from content. Each case study was structured around business challenge, creative solution, and measurable impact. The design emphasized visual hierarchy and white space to let individual projects shine. Motion design was used purposefully to reveal content and maintain engagement during scrolling.",
-        "implementation": "The new portfolio featured a curated selection of best work presented through immersive case studies. We built custom scroll-triggered animations using GSAP that revealed project details as users engaged with content. Each case study followed a consistent narrative structure while allowing for unique visual treatments. The mobile experience was redesigned from scratch to work effectively on touch devices.",
-        "solution": "The final portfolio created an engaging journey through the designer's work, with motion-enhanced storytelling that guided visitors from initial interest to detailed case exploration. Projects were presented with clear business context, creative process insights, and quantified results. The interface balanced creative expression with professional credibility.",
-        "results": "Time on page increased by 220%, indicating much higher engagement with portfolio content. Inbound inquiries improved both in quantity (43% increase) and quality, with potential clients mentioning specific projects during initial conversations. The portfolio helped secure three major client projects within the first two months and led to speaking opportunities at design conferences.",
-        "impact": "The portfolio transformation positioned the creative director as a strategic partner rather than just a service provider. It became a powerful business development tool that communicated value proposition effectively to different audiences, from startup founders to enterprise marketing teams.",
-        "lessons": "Portfolio design is as much about curation as creation - showing less can communicate more. Motion design should serve the narrative, not overshadow it. Business impact resonates more with clients than creative process, though both are important for different audiences."
+        "overview": "Himachal Travel wanted a travel guide that feels alive and inspiring.",
+        "challenge": "Their old site looked flat and failed to capture the excitement of travel.",
+        "research": "Checked top storytelling-based travel sites to learn how they engage users.",
+        "approach": "Designed in Figma, then built with React and GSAP for interactive storytelling.",
+        "implementation": "Created destination highlights with smooth animations and visual flow.",
+        "solution": "Developed a motion-driven site that feels immersive and easy to explore.",
+        "results": "User engagement rose, with more inquiries about travel packages.",
+        "impact": "Made the platform stand out with its unique motion-based approach.",
+        "lessons": "Motion and storytelling together create stronger emotional impact."
       },
       "testimonial": {
-        "quote": "My new portfolio has opened doors I never imagined. Clients understand my value before we even speak.",
-        "author": "Alexandra Kim",
-        "position": "Creative Director"
+        "quote": "The animations make our travel showcase stand out beautifully.",
+        "author": "Client",
+        "position": "Founder, Himachal Travel"
       }
     },
     {
       "id": 5,
-      "slug": "cloudmetrics",
-      "title": "CloudMetrics",
-      "category": "SaaS",
+      "slug": "dr-noor-oil",
+      "title": "Dr Noor Oil",
+      "category": "E-commerce",
       "meta": "TypeScript • Next.js • Vercel",
-      "tools": ["TypeScript", "Next.js", "Vercel", "Chart.js", "PostgreSQL"],
-      "shortDescription": "Enterprise analytics dashboard for data-driven decision making.",
-      "duration": "12 weeks",
-      "role": "Senior Frontend Developer",
-      "team": "5 developers, 2 designers, 1 data analyst",
-      "liveUrl": "https://cloudmetrics-demo.vercel.app",
-      "codeUrl": "https://github.com/username/cloudmetrics",
-      "heroImage": "https://images.unsplash.com/photo-1678690832871-8b9993c76aa8?q=80&w=1400&auto=format&fit=crop",
-      "gallery": [
-        "https://images.unsplash.com/photo-1678690832871-8b9993c76aa8?q=80&w=1400&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1400&auto=format&fit=crop"
-      ],
+      "tools": ["TypeScript", "Next.js", "Vercel"],
+      "shortDescription": "E-commerce store for health oil products with cart and payment integration.",
+      "duration": "7 weeks",
+      "role": "Senior Developer",
+      "team": "3 developers, 1 designer",
+      "liveUrl": "#",
+      "heroImage": "Banner/drnooroil.png",
+      "gallery": ["Banner/drnooroil.png"],
       "keyFeatures": [
-        "Real-time data visualization",
-        "Custom dashboard builder",
-        "Advanced filtering and segmentation",
-        "Automated reporting system"
+        "Product showcase",
+        "Shopping cart",
+        "Payment gateway",
+        "Responsive store design"
       ],
       "caseStudy": {
-        "overview": "CloudMetrics was struggling with user adoption of their analytics platform due to overwhelming data presentation and poor performance. Enterprise clients were frustrated with slow loading times and couldn't efficiently extract actionable insights from their business data, leading to high churn rates and stalled growth.",
-        "challenge": "The existing dashboard suffered from information overload, presenting dozens of metrics simultaneously without clear hierarchy or context. Initial loading times averaged 8-12 seconds due to inefficient data queries and lack of optimization. Users couldn't customize views for their specific needs, forcing them to scroll through irrelevant data to find insights. The interface wasn't responsive, making mobile access nearly impossible for executives who needed quick data access on the go. Customer feedback revealed that 67% of users found the platform confusing and 43% had requested training sessions just to understand basic functionality.",
-        "research": "We conducted extensive user research including interviews with data analysts, marketing managers, and C-level executives across different company sizes. The research revealed distinct user personas with different needs: executives wanted high-level trends and KPIs, analysts needed drill-down capabilities and raw data access, and managers required actionable insights for daily operations. We analyzed competitor solutions and identified successful patterns in data visualization and dashboard design.",
-        "approach": "Our strategy centered on progressive disclosure of information, smart defaults, and performance optimization. We designed role-based dashboards that surfaced relevant metrics first while maintaining access to deeper data. The architecture was rebuilt to support lazy loading, data caching, and efficient query optimization. We implemented a modular design system that could scale across different screen sizes and use cases while maintaining consistency.",
-        "implementation": "The new dashboard featured intelligent data loading that prioritized above-the-fold content and loaded additional metrics on demand. We built a custom visualization library optimized for large datasets and implemented smart caching strategies to reduce server load. User customization was added through a drag-and-drop dashboard builder that saved preferences across sessions. The mobile experience was completely reimagined with swipeable cards and touch-optimized interactions.",
-        "solution": "The final platform provided role-specific dashboards with customizable layouts, lightning-fast loading through strategic code splitting and data optimization, and intuitive navigation that guided users from overview to detailed analysis. Interactive visualizations helped users identify trends and anomalies quickly, while automated insights highlighted significant changes in key metrics.",
-        "results": "Initial dashboard load time decreased from 8-12 seconds to under 1 second, dramatically improving user experience. Task completion rates improved by 67% as users could find and analyze data more efficiently. Customer churn decreased by 34% over six months, while user engagement metrics showed 89% higher daily active usage. Client-reported decision-making speed improved significantly, with many noting faster response to market changes.",
-        "impact": "The dashboard transformation helped CloudMetrics achieve their growth targets and improve customer satisfaction scores. The platform became a competitive advantage, with several enterprise deals closed specifically because of the superior user experience. Internal support costs decreased as users required less training and help documentation.",
-        "lessons": "Performance is critical for user adoption in data-heavy applications. Different users need different views of the same data - one size fits all doesn't work for enterprise software. Smart defaults and progressive disclosure can make complex systems accessible without sacrificing power user capabilities."
+        "overview": "Dr Noor Oil wanted to expand sales online with a smooth shopping experience.",
+        "challenge": "They had no online presence and were missing out on digital customers.",
+        "research": "Looked at successful health & wellness e-commerce stores for UX patterns.",
+        "approach": "Chose Next.js with TypeScript for speed and reliability, hosted on Vercel.",
+        "implementation": "Built product pages, added cart + checkout, and polished the UI.",
+        "solution": "Delivered a professional e-commerce site ready for growth.",
+        "results": "Online sales grew by 60% in just three months.",
+        "impact": "Transformed their local business into a nationwide brand.",
+        "lessons": "A seamless checkout process is critical to boosting e-commerce sales."
       },
       "testimonial": {
-        "quote": "CloudMetrics finally gives us the insights we need, when we need them. The new dashboard has transformed how we make decisions.",
-        "author": "Michael Torres",
-        "position": "VP of Analytics, TechCorp"
+        "quote": "The new website has doubled our sales — seamless and professional.",
+        "author": "Dr Noor",
+        "position": "Founder"
       }
     }
   ]
