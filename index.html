@@ -425,9 +425,11 @@ nav a { position: relative; }
 
 <!-- HERO SECTION -->
 
-  <section id="hero-carousel" class="h-[135vh] md:h-[90vh] overflow-hidden transition-colors duration-300"
-           style="background: var(--bg); color: var(--text)">
-    <div class="swiper h-full">
+<section id="hero-carousel" 
+         class="min-h-screen overflow-hidden transition-colors duration-300"
+         style="background: var(--bg); color: var(--text)">
+  <div class="swiper h-full" data-swiper-autoheight="true">
+
       <div class="swiper-wrapper">
 
         <!-- SLIDE 1 -->
@@ -496,8 +498,8 @@ nav a { position: relative; }
             <!-- RIGHT -->
             <div>
               <img src="Banner/8.1.png"
-                   alt="Web Development"
-                   class="rounded-2xl shadow-2xl object-cover w-full h-[400px] md:h-[500px]" />
+              alt="Web Development"
+              class="rounded-2xl shadow-2xl object-cover w-full aspect-[4/3]" />
             </div>
           </div>
         </div>
@@ -561,8 +563,8 @@ nav a { position: relative; }
             </div>
             <div>
               <img src="Banner/1.3.png"
-                   alt="UI/UX Design"
-                   class="rounded-2xl shadow-2xl object-cover w-full h-[400px] md:h-[500px]" />
+              alt="Web Development"
+              class="rounded-2xl shadow-2xl object-cover w-full aspect-[4/3]" />
             </div>
           </div>
         </div>
@@ -624,8 +626,8 @@ nav a { position: relative; }
             </div>
             <div>
               <img src="Banner/10.png"
-                   alt="SEO Growth"
-                   class="rounded-2xl shadow-2xl object-cover w-full h-[400px] md:h-[500px]" />
+     alt="Web Development"
+     class="rounded-2xl shadow-2xl object-cover w-full aspect-[4/3]" />
             </div>
           </div>
         </div>
@@ -651,6 +653,7 @@ nav a { position: relative; }
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
+      autoHeight: true,
     },
     pagination: {
       el: '.swiper-pagination',
