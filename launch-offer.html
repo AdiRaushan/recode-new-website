@@ -256,16 +256,30 @@
             color: #ef4444;
         }
 
-        /* Custom Hero for Offer */
+        /* Custom Hero for Offer - Always Dark for Premium Look */
         .offer-hero {
-            background: linear-gradient(135deg, rgba(var(--bg-rgb), 0.95), rgba(var(--bg-rgb), 0.8)), url('Banner/offer banner.jpg');
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.75)), url('Banner/offer banner.jpg');
             background-size: cover;
             background-position: center;
+            height: 100vh;
             position: relative;
+            color: #ffffff;
+        }
+
+        /* Ensuring text remains light in hero regardless of global theme */
+        .offer-hero p,
+        .offer-hero div:not(.logo-dot),
+        .offer-hero span:not(.text-accent) {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .offer-hero .font-bold.text-\[var\(--text\)\] {
+            color: #ffffff !important;
         }
 
         .glow-text {
-            text-shadow: 0 0 20px rgba(var(--accent-rgb), 0.5);
+            text-shadow: 0 0 30px rgba(var(--accent-rgb), 0.6);
+            color: #ffffff !important;
         }
 
         /* Footer Styles */
@@ -434,7 +448,7 @@
                     Get online quickly with a professional, lead-focused website at an affordable price point.
                 </p>
 
-                <div class="text-5xl md:text-6xl font-bold text-white mt-8">
+                <div class="text-5xl md:text-6xl font-bold text-[var(--text)] mt-8">
                     ₹5,000 <span class="text-xl text-[var(--muted)] font-normal align-middle">/ Complete Package</span>
                 </div>
 

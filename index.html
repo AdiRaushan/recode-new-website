@@ -576,152 +576,350 @@
 
     <!-- HERO SECTION -->
 
-    <section
-      class="min-h-[100vh] flex items-center justify-center overflow-hidden transition-colors duration-300 py-12 md:py-[clamp(4rem,7vh,6rem)] storyline site-section"
+
+    <!-- HERO SECTION (Expanding Grid) -->
+    <!-- HERO SECTION (Expanding Grid) -->
+    <!-- HERO SECTION (Expanding Grid) -->
+    <!-- HERO SECTION (Expanding Grid) -->
+    <!-- HERO SECTION (Refined Full Width - GenStudio Style) -->
+    <section id="hero"
+      class="min-h-[80vh] w-full flex flex-col pt-16 pb-12 relative overflow-hidden storyline site-section"
       style="background: var(--bg); color: var(--text)">
 
-      <div class="swiper w-full h-full">
-        <div class="swiper-wrapper">
+      <div class="site-container w-full flex flex-col items-center">
 
-          <!-- SLIDE 1 -->
-          <div class="swiper-slide flex items-center justify-center px-4 sm:px-8 md:px-20">
-            <div class="max-w-7xl w-full grid md:grid-cols-2 gap-8 md:gap-12 items-center mx-auto">
+        <!-- Centered Header -->
+        <div class="text-center max-w-5xl mx-auto mb-16 relative z-10 reveal-up">
+          <div
+            class="inline-flex items-center gap-2 mb-6 px-5 py-1.5 rounded-full border border-white/10 bg-white/5 text-white/90 text-xs font-bold tracking-widest uppercase backdrop-blur-sm shadow-sm hover:bg-white/10 transition-colors cursor-default">
+            <span class="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse shadow-[0_0_10px_var(--accent)]"></span>
+            Launch offer
+          </div>
+          <h1 class="text-4xl md:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight mb-8">
+            Build. Convert. Scale. <br>
 
-              <!-- LEFT -->
-              <div class="space-y-6 sm:space-y-8 md:pl-10 lg:pl-20">
-                <p class="uppercase tracking-[.25em] text-sm sm:text-base md:text-lg text-[color:var(--muted)]">
-                  DIGITAL TRANSFORMATION
-                </p>
-                <h1 class="font-extrabold text-3xl sm:text-4xl md:text-6xl lg:text-7xl leading-snug md:leading-tight">
-                  We Build Websites That <span class="text-lime-400">Drive Results</span>
-                </h1>
-                <p class="text-base sm:text-lg md:text-xl max-w-xl leading-relaxed text-[color:var(--text)]">
-                  From startups to enterprises, we create digital experiences that convert visitors
-                  into customers and deliver measurable growth for your business.
-                </p>
-                <div class="flex flex-wrap gap-4 sm:gap-5 mt-6 sm:mt-8">
-                  <a href="#contact" class="btn-accent text-base sm:text-lg">🚀 Book a Call</a>
-                  <a href="#projects"
-                    class="px-6 sm:px-7 py-3 sm:py-3.5 font-semibold rounded-full border transition text-base sm:text-lg border-[color:var(--muted)] text-[color:var(--text)]">
-                    ✨ View Work
-                  </a>
-                </div>
+          </h1>
+          <p class="text-lg md:text-2xl text-[var(--muted)] mb-10 max-w-3xl mx-auto leading-relaxed font-light">
+            Stunning visuals. High-performing websites. Built to convert.
+          </p>
+          <a href="#contact"
+            class="inline-flex items-center justify-center h-14 px-12 rounded-full bg-[var(--accent)] text-white font-semibold text-lg transition-all hover:scale-105 shadow-[0_10px_30px_-10px_rgba(var(--accent-rgb),0.5)] hover:shadow-[0_20px_40px_-10px_rgba(var(--accent-rgb),0.6)] ring-1 ring-white/20">
+            Get Started
+          </a>
+        </div>
+
+        <!-- Gallery Grid (Desktop) -->
+        <div class="hidden md:grid w-full h-[60vh] grid-cols-12 gap-6 reveal-up delay-200">
+
+          <!-- Large Left Item (Business) -->
+          <div
+            class="col-span-5 h-full relative rounded-[2.5rem] overflow-hidden group cursor-pointer border border-white/5 shadow-2xl">
+            <img src="Banner/Slider-1.1.png"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-90 group-hover:brightness-100"
+              alt="Business">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-8 left-8 transition-transform duration-300 group-hover:-translate-y-2">
+              <div
+                class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center mb-4 border border-white/10">
+                <i class="fa-solid fa-briefcase text-xl text-white"></i>
               </div>
-
-              <!-- RIGHT -->
-              <div class="flex justify-center mt-8 md:mt-0">
-                <!-- Mobile -->
-                <img src="https://techad.in/wp-content/uploads/2025/09/Slider-1.1.avif" alt="Web Development Mobile"
-                  class="block md:hidden rounded-[1.5rem] shadow-2xl object-cover w-full max-h-[50vh] bg-transparent" />
-                <!-- Desktop -->
-                <img src="https://techad.in/wp-content/uploads/2025/09/Slider-1.1.avif" alt="Web Development Desktop"
-                  class="hidden md:block rounded-[2rem] shadow-2xl object-cover w-full max-h-[70vh] bg-transparent" />
-              </div>
-
+              <h3 class="text-3xl font-bold text-white mb-1">Business</h3>
+              <p
+                class="text-white/60 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+                Professional authority & trust.</p>
             </div>
           </div>
 
-          <!-- SLIDE 2 -->
-          <div class="swiper-slide flex items-center justify-center px-4 sm:px-8 md:px-20">
-            <div class="max-w-7xl w-full grid md:grid-cols-2 gap-8 md:gap-12 items-center mx-auto">
-
-              <!-- LEFT -->
-              <div class="space-y-6 sm:space-y-8 md:pl-10 lg:pl-20">
-                <p class="uppercase tracking-[.25em] text-sm sm:text-base md:text-lg text-[color:var(--muted)]">
-                  CREATIVE & STRATEGIC
-                </p>
-                <h1 class="font-extrabold text-3xl sm:text-4xl md:text-6xl lg:text-7xl leading-snug md:leading-tight">
-                  Designs That <span class="text-orange-500">Inspire</span>, Experiences That Convert
-                </h1>
-                <p class="text-base sm:text-lg md:text-xl max-w-xl leading-relaxed text-[color:var(--text)]">
-                  We craft interfaces that not only look beautiful but also provide seamless user experiences.
-                </p>
-                <div class="flex flex-wrap gap-4 sm:gap-5 mt-6 sm:mt-8">
-                  <a href="#services" class="btn-accent text-base sm:text-lg">🎨 Our Services</a>
-                  <a href="#projects"
-                    class="px-6 sm:px-7 py-3 sm:py-3.5 font-semibold rounded-full border transition text-base sm:text-lg border-[color:var(--muted)] text-[color:var(--text)]">
-                    📂 View Portfolio
-                  </a>
+          <!-- Middle Column (Stacked) -->
+          <div class="col-span-3 flex flex-col gap-6 h-full">
+            <!-- Top Item (E-commerce) -->
+            <div
+              class="flex-1 relative rounded-[2.5rem] overflow-hidden group cursor-pointer border border-white/5 shadow-xl">
+              <img src="Banner/Slider-2.1.png"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-90 group-hover:brightness-100"
+                alt="Store">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div class="absolute bottom-6 left-6 transition-transform duration-300 group-hover:-translate-y-1">
+                <div class="flex items-center justify-between w-full pr-6">
+                  <h3 class="text-2xl font-bold text-white">Store</h3>
+                  <i
+                    class="fa-solid fa-arrow-right -rotate-45 text-white/50 group-hover:text-white transition-colors"></i>
                 </div>
               </div>
-
-              <!-- RIGHT -->
-              <div class="flex justify-center mt-8 md:mt-0">
-                <!-- Mobile -->
-                <img src="https://techad.in/wp-content/uploads/2025/09/Slider-2.1.avif" alt="Creative Design Mobile"
-                  class="block md:hidden rounded-[1.5rem] shadow-2xl object-cover w-full max-h-[50vh] bg-transparent" />
-                <!-- Desktop -->
-                <img src="https://techad.in/wp-content/uploads/2025/09/Slider-2.1.avif" alt="Creative Design Desktop"
-                  class="hidden md:block rounded-[2rem] shadow-2xl object-cover w-full max-h-[70vh] bg-transparent" />
+            </div>
+            <!-- Bottom Item (Services) -->
+            <div
+              class="flex-1 relative rounded-[2.5rem] overflow-hidden group cursor-pointer border border-white/5 shadow-xl">
+              <img src="Banner/Slider-3.1.png"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-90 group-hover:brightness-100"
+                alt="Services">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div class="absolute bottom-6 left-6 transition-transform duration-300 group-hover:-translate-y-1">
+                <div class="flex items-center justify-between w-full pr-6">
+                  <h3 class="text-2xl font-bold text-white">Services</h3>
+                  <i
+                    class="fa-solid fa-arrow-right -rotate-45 text-white/50 group-hover:text-white transition-colors"></i>
+                </div>
               </div>
-
             </div>
           </div>
 
-          <!-- SLIDE 3 -->
-          <div class="swiper-slide flex items-center justify-center px-4 sm:px-8 md:px-20">
-            <div class="max-w-7xl w-full grid md:grid-cols-2 gap-8 md:gap-12 items-center mx-auto">
-
-              <!-- LEFT -->
-              <div class="space-y-6 sm:space-y-8 md:pl-10 lg:pl-20">
-                <p class="uppercase tracking-[.25em] text-sm sm:text-base md:text-lg text-[color:var(--muted)]">
-                  FUTURE-READY WEB SOLUTIONS
-                </p>
-                <h1 class="font-extrabold text-3xl sm:text-4xl md:text-6xl lg:text-7xl leading-snug md:leading-tight">
-                  Where Innovation Meets <span class="text-green-600">Functionality & Performance</span>
-                </h1>
-                <p class="text-base sm:text-lg md:text-xl max-w-xl leading-relaxed text-[color:var(--text)]">
-                  Our SEO, optimization, and analytics strategies help you reach more people and scale effectively.
-                </p>
-                <div class="flex flex-wrap gap-4 sm:gap-5 mt-6 sm:mt-8">
-                  <a href="#services" class="btn-accent text-base sm:text-lg">📈 Learn More</a>
-                  <a href="#contact"
-                    class="px-6 sm:px-7 py-3 sm:py-3.5 font-semibold rounded-full border transition text-base sm:text-lg border-[color:var(--muted)] text-[color:var(--text)]">
-                    🤝 Get in Touch
-                  </a>
-                </div>
-              </div>
-
-              <!-- RIGHT -->
-              <div class="flex justify-center mt-8 md:mt-0">
-                <!-- Mobile -->
-                <img src="https://techad.in/wp-content/uploads/2025/09/Slider-3.1.avif" alt="Future Ready Mobile"
-                  class="block md:hidden rounded-[1.5rem] shadow-2xl object-cover w-full max-h-[50vh] bg-transparent" />
-                <!-- Desktop -->
-                <img src="https://techad.in/wp-content/uploads/2025/09/Slider-3.1.avif" alt="Future Ready Desktop"
-                  class="hidden md:block rounded-[2rem] shadow-2xl object-cover w-full max-h-[70vh] bg-transparent" />
-              </div>
-
+          <!-- Large Right Item (Portfolio/Creative) -->
+          <div
+            class="col-span-4 h-full relative rounded-[2.5rem] overflow-hidden group cursor-pointer border border-white/5 shadow-2xl">
+            <img src="Banner/Slider-1.1.png"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 mix-blend-overlay group-hover:opacity-80"
+              style="filter: hue-rotate(200deg) contrast(1.2) saturate(0.5);" alt="Creative">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/20 to-purple-900/20 mix-blend-color-dodge">
+            </div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+              <h3
+                class="text-4xl font-serif italic text-white mb-4 transform group-hover:scale-110 transition-transform duration-500">
+                View Work</h3>
+              <span
+                class="w-16 h-16 rounded-full border border-white/30 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-300">
+                <i
+                  class="fa-solid fa-arrow-right text-xl -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+              </span>
             </div>
           </div>
 
         </div>
 
-        <!-- Swiper Pagination -->
-        <div class="swiper-pagination"></div>
+        <!-- MOBILE: Swiper Slider (Optimized) -->
+        <div
+          class="md:hidden w-full mt-8 swiper overflow-hidden rounded-[2rem] shadow-2xl aspect-[4/5] relative border border-white/5">
+          <div class="swiper-wrapper">
+
+            <!-- Slide 1 -->
+            <div class="swiper-slide relative w-full h-full">
+              <img src="Banner/Slider-1.1.png" class="absolute inset-0 w-full h-full object-cover" alt="Business">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 w-full p-8 pb-16">
+                <h3 class="text-4xl font-bold text-white mb-2 leading-none">Business</h3>
+                <p class="text-white/80 text-lg font-light">Professional authority & trust.</p>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="swiper-slide relative w-full h-full">
+              <img src="Banner/Slider-2.1.png" class="absolute inset-0 w-full h-full object-cover" alt="E-Commerce">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 w-full p-8 pb-16">
+                <h3 class="text-4xl font-bold text-white mb-2 leading-none">Store</h3>
+                <p class="text-white/80 text-lg font-light">Scale your sales.</p>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="swiper-slide relative w-full h-full">
+              <img src="Banner/Slider-3.1.png" class="absolute inset-0 w-full h-full object-cover" alt="Services">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 w-full p-8 pb-16">
+                <h3 class="text-4xl font-bold text-white mb-2 leading-none">Services</h3>
+                <p class="text-white/80 text-lg font-light">Tailored solutions.</p>
+              </div>
+            </div>
+
+          </div>
+          <!-- Pagination -->
+          <div class="swiper-pagination !bottom-6 !w-full flex justify-center gap-2"></div>
+        </div>
+
       </div>
     </section>
 
-
-
-
-
-
-    <!-- SwiperJS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Initializing Swiper for Mobile Hero -->
     <script>
-      const swiper = new Swiper('.swiper', {
-        loop: true,
-        autoplay: { delay: 3000 },
-        autoHeight: true,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
+      document.addEventListener('DOMContentLoaded', () => {
+        const mobileHeroSwiper = new Swiper('#hero .swiper', {
+          loop: true,
+          autoplay: {
+            delay: 3500,
+            disableOnInteraction: false,
+          },
+          effect: 'cards',
+          grabCursor: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+        });
       });
+    </script>
 
-      // Intersection-based reveal doesn't need ScrollTrigger syncing
+    <!-- Card 1: Business -->
+    <div
+      class="hero-card group relative flex-1 hover:flex-[2.5] transition-[flex-grow] duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] overflow-hidden rounded-[2.5rem] cursor-pointer isolate">
+      <img src="Banner/Slider-1.1.png"
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        alt="Business Website">
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent transition-opacity duration-300">
+      </div>
+
+      <div
+        class="absolute bottom-0 left-0 w-full p-8 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-8 group-hover:translate-y-0 z-20 hidden md:block">
+        <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-3xl">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center text-xl">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <span class="text-white/80 text-sm font-mono">01</span>
+          </div>
+          <h3 class="text-3xl font-bold text-white mb-3">Business Website</h3>
+          <p class="text-gray-200 text-sm mb-0 leading-relaxed max-w-sm">Establish authority with a professional
+            digital presence designed to build trust.</p>
+        </div>
+      </div>
+
+      <div
+        class="absolute inset-0 flex items-end justify-center pb-10 pointer-events-none group-hover:opacity-0 transition-opacity duration-300">
+        <h3 class="hidden md:block text-3xl font-bold text-white rotate-180" style="writing-mode: vertical-rl;">
+          Business</h3>
+      </div>
+    </div>
+
+    <!-- Card 2: E-Commerce -->
+    <div
+      class="hero-card group relative flex-1 hover:flex-[2.5] transition-[flex-grow] duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] overflow-hidden rounded-[2.5rem] cursor-pointer isolate">
+      <img src="Banner/Slider-2.1.png"
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        alt="E-Commerce">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+
+      <div
+        class="absolute bottom-0 left-0 w-full p-8 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-8 group-hover:translate-y-0 z-20 hidden md:block">
+        <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-3xl">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-full bg-[var(--accent)] text-white flex items-center justify-center text-xl">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <span class="text-white/80 text-sm font-mono">02</span>
+          </div>
+          <h3 class="text-3xl font-bold text-white mb-3">E-Commerce</h3>
+          <p class="text-gray-200 text-sm mb-0 leading-relaxed max-w-sm">Seamless shopping experiences
+            configured to maximize conversions and sales.</p>
+        </div>
+      </div>
+
+      <div
+        class="absolute inset-0 flex items-end justify-center pb-10 pointer-events-none group-hover:opacity-0 transition-opacity duration-300">
+        <h3 class="hidden md:block text-3xl font-bold text-white rotate-180" style="writing-mode: vertical-rl;">
+          Store</h3>
+      </div>
+    </div>
+
+    <!-- Card 3: Services -->
+    <div
+      class="hero-card group relative flex-1 hover:flex-[2.5] transition-[flex-grow] duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] overflow-hidden rounded-[2.5rem] cursor-pointer isolate">
+      <img src="Banner/Slider-3.1.png"
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        alt="Services">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+
+      <div
+        class="absolute bottom-0 left-0 w-full p-8 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-8 group-hover:translate-y-0 z-20 hidden md:block">
+        <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-3xl">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-full bg-orange-500 text-white flex items-center justify-center text-xl">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <span class="text-white/80 text-sm font-mono">03</span>
+          </div>
+          <h3 class="text-3xl font-bold text-white mb-3">Custom services</h3>
+          <p class="text-gray-200 text-sm mb-0 leading-relaxed max-w-sm">Tailored digital strategies and
+            technical solutions for unique business needs.</p>
+        </div>
+      </div>
+
+      <div
+        class="absolute inset-0 flex items-end justify-center pb-10 pointer-events-none group-hover:opacity-0 transition-opacity duration-300">
+        <h3 class="hidden md:block text-3xl font-bold text-white rotate-180" style="writing-mode: vertical-rl;">
+          Services</h3>
+      </div>
+    </div>
+
+    </div>
+    </div>
+
+    <!-- MOBILE: Swiper Slider (Original Style) -->
+    <div class="md:hidden flex-1 w-full min-h-0 swiper overflow-hidden rounded-[1.5rem] shadow-2xl relative">
+      <div class="swiper-wrapper">
+
+        <!-- Slide 1 -->
+        <div class="swiper-slide relative w-full h-full">
+          <img src="Banner/Slider-1.1.png" class="absolute inset-0 w-full h-full object-cover" alt="Business">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 w-full p-6 pb-12">
+            <div
+              class="inline-block px-3 py-1 mb-3 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold text-white border border-white/20">
+              <i class="fa-solid fa-briefcase mr-1"></i> Business
+            </div>
+            <h3 class="text-3xl font-bold text-white mb-2 leading-tight">Business Website</h3>
+            <p class="text-white/80 text-sm line-clamp-2">Establish authority with a professional digital presence
+              designed to build trust.</p>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide relative w-full h-full">
+          <img src="Banner/Slider-2.1.png" class="absolute inset-0 w-full h-full object-cover" alt="E-Commerce">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 w-full p-6 pb-12">
+            <div
+              class="inline-block px-3 py-1 mb-3 bg-[var(--accent)]/80 backdrop-blur-md rounded-full text-xs font-bold text-white border border-white/20">
+              <i class="fa-solid fa-cart-shopping mr-1"></i> Store
+            </div>
+            <h3 class="text-3xl font-bold text-white mb-2 leading-tight">E-Commerce</h3>
+            <p class="text-white/80 text-sm line-clamp-2">Seamless shopping experiences configured to maximize
+              conversions and sales.</p>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide relative w-full h-full">
+          <img src="Banner/Slider-3.1.png" class="absolute inset-0 w-full h-full object-cover" alt="Services">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 w-full p-6 pb-12">
+            <div
+              class="inline-block px-3 py-1 mb-3 bg-orange-500/80 backdrop-blur-md rounded-full text-xs font-bold text-white border border-white/20">
+              <i class="fa-solid fa-layer-group mr-1"></i> Custom
+            </div>
+            <h3 class="text-3xl font-bold text-white mb-2 leading-tight">Custom Services</h3>
+            <p class="text-white/80 text-sm line-clamp-2">Tailored digital strategies and technical solutions for
+              unique business needs.</p>
+          </div>
+        </div>
+
+      </div>
+      <!-- Pagination -->
+      <div class="swiper-pagination !bottom-4 !left-auto !w-full flex justify-center gap-1"></div>
+    </div>
+
+    </div>
+    </section>
+
+    <!-- Initializing Swiper for Mobile Hero -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const mobileHeroSwiper = new Swiper('#hero .swiper', {
+          loop: true,
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+          },
+          effect: 'fade',
+          fadeEffect: { crossFade: true },
+          speed: 800,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true,
+          },
+        });
+      });
     </script>
 
 
@@ -806,14 +1004,14 @@
       <div class="site-container">
 
         <div
-          class="card relative isolate overflow-hidden rounded-3xl p-8 md:p-14 reveal-up group hover:border-[var(--accent)]/50 transition-colors duration-500">
+          class="card relative isolate overflow-hidden rounded-3xl p-8 md:p-14 reveal-up group hover:border-[var(--accent)]/50 transition-colors duration-500 bg-[var(--card)] border border-white/5 dark:border-white/10 shadow-xl">
 
           <!-- Dynamic Background Glow -->
           <div
-            class="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-[var(--accent)] opacity-20 blur-[100px] pointer-events-none group-hover:opacity-30 transition-opacity duration-500">
+            class="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-[var(--accent)] opacity-10 dark:opacity-20 blur-[100px] pointer-events-none group-hover:opacity-20 dark:group-hover:opacity-30 transition-opacity duration-500">
           </div>
           <div
-            class="absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-[var(--accent)] opacity-10 blur-[120px] pointer-events-none">
+            class="absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-[var(--accent)] opacity-5 dark:opacity-10 blur-[120px] pointer-events-none">
           </div>
 
           <!-- Content Grid -->
@@ -827,9 +1025,10 @@
                 Limited Launch Offer
               </div>
 
-              <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">
+              <h2 class="text-3xl md:text-5xl font-extrabold leading-tight text-[var(--text)]">
                 Launch Your Business <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-[var(--muted)]">In Just 4
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--text)] to-[var(--muted)]">In
+                  Just 4
                   Days</span>
               </h2>
 
@@ -845,7 +1044,7 @@
                   <i class="fa-solid fa-arrow-right"></i>
                 </a>
                 <a href="launch-offer.html#details"
-                  class="px-6 py-3 rounded-full border border-white/10 hover:bg-white/5 transition flex items-center justify-center gap-2 font-semibold">
+                  class="px-6 py-3 rounded-full border border-[var(--muted)]/20 hover:bg-[var(--muted)]/5 transition flex items-center justify-center gap-2 font-semibold text-[var(--text)]">
                   View Details
                 </a>
               </div>
@@ -855,7 +1054,7 @@
             <div class="relative flex justify-center lg:justify-end">
               <!-- Ticket Card Visual -->
               <div
-                class="relative w-full max-w-sm rounded-2xl bg-black/40 border border-white/10 backdrop-blur-md p-6 transform transition-transform duration-500 hover:-rotate-1 hover:scale-105 shadow-2xl">
+                class="relative w-full max-w-sm rounded-2xl bg-[var(--card)]/80 border border-[var(--muted)]/10 backdrop-blur-md p-6 transform transition-transform duration-500 hover:-rotate-1 hover:scale-105 shadow-2xl">
                 <!-- Decorative Elements -->
                 <div
                   class="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-50">
@@ -864,7 +1063,7 @@
                 <div class="flex justify-between items-start mb-6">
                   <div>
                     <div class="text-xs uppercase tracking-widest text-[var(--muted)] mb-1">Standard Package</div>
-                    <div class="text-4xl font-extrabold text-white">₹5,000</div>
+                    <div class="text-4xl font-extrabold text-[var(--text)]">₹5,000</div>
                   </div>
                   <div class="w-12 h-12 rounded-full bg-[var(--accent)]/10 flex items-center justify-center">
                     <i class="fa-solid fa-rocket text-[var(--accent)]"></i>
@@ -873,26 +1072,26 @@
 
                 <ul class="space-y-3 mb-6">
                   <li class="flex items-center gap-3 text-sm text-[var(--muted)]">
-                    <i class="fa-solid fa-check text-green-400"></i> 4-Day Delivery
+                    <i class="fa-solid fa-check text-green-500"></i> 4-Day Delivery
                   </li>
                   <li class="flex items-center gap-3 text-sm text-[var(--muted)]">
-                    <i class="fa-solid fa-check text-green-400"></i> Custom Design
+                    <i class="fa-solid fa-check text-green-500"></i> Custom Design
                   </li>
                   <li class="flex items-center gap-3 text-sm text-[var(--muted)]">
-                    <i class="fa-solid fa-check text-green-400"></i> 1 Year Hosting Free
+                    <i class="fa-solid fa-check text-green-500"></i> 1 Year Hosting Free
                   </li>
                   <li class="flex items-center gap-3 text-sm text-[var(--muted)]">
-                    <i class="fa-solid fa-check text-green-400"></i> Mobile Responsive
+                    <i class="fa-solid fa-check text-green-500"></i> Mobile Responsive
                   </li>
                 </ul>
 
-                <div class="pt-4 border-t border-white/10 flex justify-between items-center">
+                <div class="pt-4 border-t border-[var(--muted)]/10 flex justify-between items-center">
                   <div class="text-xs text-[var(--muted)]">Only 5 Spots Left</div>
                   <div class="flex -space-x-2">
-                    <div class="w-6 h-6 rounded-full bg-slate-700 border border-black"></div>
-                    <div class="w-6 h-6 rounded-full bg-slate-600 border border-black"></div>
+                    <div class="w-6 h-6 rounded-full bg-slate-700 border border-white dark:border-black"></div>
+                    <div class="w-6 h-6 rounded-full bg-slate-600 border border-white dark:border-black"></div>
                     <div
-                      class="w-6 h-6 rounded-full bg-slate-500 border border-black flex items-center justify-center text-[8px]">
+                      class="w-6 h-6 rounded-full bg-slate-500 border border-white dark:border-black flex items-center justify-center text-[8px] text-white">
                       +3</div>
                   </div>
                 </div>
@@ -903,7 +1102,7 @@
                 class="absolute -z-10 top-10 -right-10 w-24 h-24 rounded-full border border-[var(--accent)]/20 animate-[spin_10s_linear_infinite]">
               </div>
               <div
-                class="absolute -z-10 -bottom-5 -left-5 w-16 h-16 rounded-full border border-white/5 animate-[bounce_3s_infinite]">
+                class="absolute -z-10 -bottom-5 -left-5 w-16 h-16 rounded-full border border-[var(--muted)]/10 animate-[bounce_3s_infinite]">
               </div>
             </div>
           </div>
@@ -2075,7 +2274,8 @@
                 <div class="muted text-sm">Founder of EvaraStaffing</div>
               </div>
             </div>
-            <p class="mt-4">"Fast, responsive, and modern. Our recruitment platform finally feels professional thanks to
+            <p class="mt-4">"Fast, responsive, and modern. Our recruitment platform finally feels professional thanks
+              to
               their design work."</p>
             <div class="mt-3 text-yellow-400">★★★★★</div>
           </div>
@@ -2331,14 +2531,17 @@
             <div class="mt-3 text-muted">Our website packages include everything your business needs to get online:
               custom design tailored to your brand, mobile-responsive layout, basic SEO optimization, contact forms,
               social media integration, and hosting for the first year. We also provide a content management system so
-              you can easily update your site, plus basic training on how to use it. Additional features like e-commerce
+              you can easily update your site, plus basic training on how to use it. Additional features like
+              e-commerce
               functionality, blog setup, and advanced analytics can be added based on your specific needs.</div>
           </details>
 
           <details class="card rounded-xl p-5 border border-white/10 bg-card reveal-up">
             <summary class="font-semibold cursor-pointer">How long does it take to build my website?</summary>
-            <div class="mt-3 text-muted">Most small to medium business websites are completed within 2-4 weeks from the
-              time we receive all your content and requirements. The timeline depends on the complexity of your site and
+            <div class="mt-3 text-muted">Most small to medium business websites are completed within 2-4 weeks from
+              the
+              time we receive all your content and requirements. The timeline depends on the complexity of your site
+              and
               how quickly you provide feedback during the design process. Simple brochure websites typically take 2
               weeks, while more complex sites with custom features or extensive product catalogs may take 4-6 weeks.
               We'll give you a specific timeline during your initial consult</div>
@@ -2349,8 +2552,10 @@
             </summary>
             <div class="mt-3 text-muted">Yes, we offer comprehensive post-launch support to ensure your website
               continues running smoothly. This includes technical maintenance, security updates, backup services, and
-              minor content updates. We offer different support packages ranging from basic maintenance to full-service
-              management where we handle all updates and improvements for you. You'll never be left wondering how to fix
+              minor content updates. We offer different support packages ranging from basic maintenance to
+              full-service
+              management where we handle all updates and improvements for you. You'll never be left wondering how to
+              fix
               a technical issue or make important updates to your site.</div>
           </details>
 
@@ -2359,7 +2564,8 @@
             <div class="mt-3 text-muted">Absolutely! We build all our websites with user-friendly content management
               systems that allow you to easily update text, images, prices, and other content without any technical
               knowledge. We provide training and documentation to show you how to make these updates. For more complex
-              changes or if you prefer not to handle updates yourself, our team is always available to make changes for
+              changes or if you prefer not to handle updates yourself, our team is always available to make changes
+              for
               you at affordable rates.</div>
           </details>
         </div>
@@ -2549,7 +2755,8 @@
               Stay Updated with Our <span class="text-accent">Latest Insights</span>
             </h2>
             <p class="muted mb-8">
-              Get exclusive web development tips, design trends, and business growth strategies delivered to your inbox
+              Get exclusive web development tips, design trends, and business growth strategies delivered to your
+              inbox
               weekly.
             </p>
             <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" id="newsletter-form">
@@ -2580,7 +2787,8 @@
             <div class="font-extrabold text-xl">Recode UX</div>
           </div>
           <p class="muted text-sm leading-relaxed max-w-xs">
-            Building modern websites & digital solutions that not only look good but also deliver real business growth.
+            Building modern websites & digital solutions that not only look good but also deliver real business
+            growth.
           </p>
           <!-- Social -->
           <div class="flex gap-3 mt-5">
@@ -2696,7 +2904,8 @@
           <ul class="space-y-3 text-sm muted">
             <li class="flex items-center gap-2">
               <i class="fa-solid fa-location-dot text-[var(--accent)]"></i>
-              <span>RecodeUX.com, Tech - AD Network and Solution, 616A, 6th Floor, Devika Tower Nehru Place, New Delhi,
+              <span>RecodeUX.com, Tech - AD Network and Solution, 616A, 6th Floor, Devika Tower Nehru Place, New
+                Delhi,
                 Delhi 110019</span>
             </li>
             <li class="flex items-center gap-2">
